@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://u4lgrkgvc5cg"]
+
+[ext_resource type="Script" path="res://ManualTests/WeaponTest.gd" id="1_m0p5l"]
+[ext_resource type="PackedScene" uid="uid://eeddb232a82t" path="res://Assets/Weapons/WeaponTypes/HitscanShootingWeapon/HitscanShootingWeapon.tscn" id="1_r261m"]
+[ext_resource type="Material" uid="uid://bt2vsy5dlu6dk" path="res://Assets/Materials/Maps/Dev/Dev_Orange.tres" id="3_ftnc3"]
+[ext_resource type="Material" uid="uid://57yq8q50rrni" path="res://Assets/Materials/Maps/Dev/Dev_Blue.tres" id="4_lxcnc"]
+[ext_resource type="PackedScene" uid="uid://dd6oll1sm7uxf" path="res://Assets/Characters/Character.tscn" id="5_1csw7"]
+[ext_resource type="Script" path="res://Assets/Characters/CharacterProfile.gd" id="7_kee76"]
+
+[sub_resource type="Resource" id="Resource_1xae8"]
+resource_local_to_scene = true
+script = ExtResource("7_kee76")
+display_name = "Totally Not A Bot"
+display_color = Color(0.662745, 0.662745, 0.662745, 1)
+avatar_hash = null
+fov = 90
+badges = Array[int]([])
+voice = "res://Assets/Characters/CharacterVoices/Default.tres"
+voice_pitch = 1.0
+
+[node name="WeaponCharacterTest" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0265136, -5.97379, -5.00004)
+script = ExtResource("1_m0p5l")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3, 0, -5)
+
+[node name="Weapon" parent="." instance=ExtResource("1_r261m")]
+damage_amount = 25
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, -0.000762285, -0.000186862, 0.000762314, 1, 0.000168974, 0.000186743, -0.000169106, 1, -6.87559, 1, 0)
+material_override = ExtResource("3_ftnc3")
+use_collision = true
+size = Vector3(0.2, 4, 8)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12359, 1.02951, -0.0117178)
+material_override = ExtResource("3_ftnc3")
+use_collision = true
+size = Vector3(0.2, 4, 8)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.87559, -1, 0)
+material_override = ExtResource("4_lxcnc")
+use_collision = true
+size = Vector3(10, 0.164353, 10)
+
+[node name="Character" parent="." instance=ExtResource("5_1csw7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.00202, 0.00769329, -0.00368786)
+profile = SubResource("Resource_1xae8")
+controller_scene = null
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.893497, -0.270764, 0.358261, -0.272449, 0.307341, 0.911764, -0.356981, -0.912266, 0.200839, -0.00139189, 0.747887, 1.13001)
+shadow_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.01
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

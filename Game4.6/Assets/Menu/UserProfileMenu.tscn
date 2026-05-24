@@ -1,0 +1,313 @@
+[gd_scene load_steps=16 format=3 uid="uid://bbey7g03awrrp"]
+
+[ext_resource type="Script" path="res://Assets/Menu/UserProfileMenu.gd" id="1_u4yi1"]
+[ext_resource type="Texture2D" uid="uid://cbtuf3e4g54rj" path="res://Assets/Characters/Avatars/DefaultAvatar.png" id="2_1g166"]
+[ext_resource type="PackedScene" uid="uid://dy6s6ghk6m3ft" path="res://Assets/Menu/CharacterProfilePreview.tscn" id="3_71f1e"]
+[ext_resource type="Material" uid="uid://cwslqiphlif7x" path="res://Assets/Environments/Sky/PhysicalSky.tres" id="3_ryp5x"]
+[ext_resource type="Script" path="res://Assets/Characters/CharacterProfile.gd" id="5_5xeqk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xabyj"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_oygfx"]
+font_size = 24
+
+[sub_resource type="FontVariation" id="FontVariation_bfsuw"]
+variation_embolden = 1.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_pwata"]
+font = SubResource("FontVariation_bfsuw")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uumli"]
+blend_mode = 4
+light_mode = 1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_2d84t"]
+dof_blur_far_distance = 444.15
+dof_blur_far_transition = 1.51
+
+[sub_resource type="Sky" id="Sky_bidil"]
+sky_material = ExtResource("3_ryp5x")
+process_mode = 2
+radiance_size = 1
+
+[sub_resource type="Environment" id="Environment_1e4cx"]
+background_color = Color(0, 0, 0, 0)
+sky = SubResource("Sky_bidil")
+sky_custom_fov = 24.2
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_white = 4.0
+ssr_max_steps = 256
+ssr_fade_out = 0.210224
+ssao_radius = 2.0
+sdfgi_enabled = true
+sdfgi_cascades = 1
+sdfgi_min_cell_size = 0.1
+glow_enabled = true
+glow_levels/1 = 1.01
+glow_levels/2 = 1.23
+glow_levels/3 = 1.47
+glow_levels/4 = 1.99
+glow_levels/5 = 0.0
+glow_normalized = true
+glow_intensity = 2.0
+glow_blend_mode = 1
+glow_hdr_threshold = 0.8
+
+[sub_resource type="World3D" id="World3D_d1g0c"]
+environment = SubResource("Environment_1e4cx")
+camera_attributes = SubResource("CameraAttributesPractical_2d84t")
+
+[sub_resource type="Resource" id="Resource_brolj"]
+resource_local_to_scene = true
+script = ExtResource("5_5xeqk")
+display_name = "Bot 1"
+display_color = Color(0.368627, 0.360784, 0.380392, 1)
+avatar_hash = PackedByteArray()
+fov = 90
+badges = Array[int]([1])
+voice = "res://Assets/Characters/CharacterVoices/Default.tres"
+voice_pitch = 1.0
+
+[node name="UserProfile" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_u4yi1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="ProfileContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Avatar" type="VBoxContainer" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/Avatar"]
+layout_mode = 2
+text = "Avatar"
+label_settings = SubResource("LabelSettings_xabyj")
+horizontal_alignment = 1
+
+[node name="AvatarPreview" type="TextureRect" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/Avatar"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_1g166")
+expand_mode = 1
+
+[node name="SelectAvatar" type="Button" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/Avatar"]
+layout_mode = 2
+text = "Change..."
+
+[node name="FileDialog" type="FileDialog" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/Avatar/SelectAvatar"]
+mode = 2
+title = "Open a File"
+position = Vector2i(64, 64)
+size = Vector2i(481, 300)
+min_size = Vector2i(400, 300)
+max_size = Vector2i(64, 0)
+content_scale_mode = 1
+content_scale_aspect = 1
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png, *.jpg, *.webp, *.tga, *.exr, *.bmp ; Supported image file formats")
+
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DisplayNameContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label3" type="Label" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/DisplayNameContainer"]
+layout_mode = 2
+text = "Display Name"
+label_settings = SubResource("LabelSettings_oygfx")
+horizontal_alignment = 1
+
+[node name="DisplayName" type="LineEdit" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/DisplayNameContainer"]
+custom_minimum_size = Vector2(205, 0)
+layout_mode = 2
+max_length = 24
+
+[node name="Randomize" type="Button" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/DisplayNameContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Randomize!"
+
+[node name="ClaimName" type="CheckButton" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/DisplayNameContainer"]
+layout_mode = 2
+text = "Claim"
+expand_icon = true
+
+[node name="VSeparator2" type="VSeparator" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/ColorContainer"]
+layout_mode = 2
+text = "Display Color"
+label_settings = SubResource("LabelSettings_oygfx")
+horizontal_alignment = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/ColorContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+toggle_mode = false
+text = "Change..."
+color = Color(1, 0, 1, 1)
+edit_alpha = false
+
+[node name="Randomize2" type="Button" parent="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/ColorContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Randomize!"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer2/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Character voice pitch: "
+
+[node name="VoicePitchLabel" type="Label" parent="CenterContainer/HBoxContainer2/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1.0"
+label_settings = SubResource("LabelSettings_pwata")
+
+[node name="VoicePitchSlider" type="HSlider" parent="CenterContainer/HBoxContainer2/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+min_value = 0.5
+max_value = 1.5
+step = 0.1
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+alignment = 1
+
+[node name="StoreOnline" type="CheckButton" parent="CenterContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Store online"
+
+[node name="Save" type="Button" parent="CenterContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save"
+
+[node name="Revert" type="Button" parent="CenterContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Revert
+"
+
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CenterContainer/HBoxContainer2"]
+unique_name_in_owner = true
+texture_filter = 2
+texture_repeat = 1
+material = SubResource("CanvasItemMaterial_uumli")
+custom_minimum_size = Vector2(380, 380)
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CenterContainer/HBoxContainer2/SubViewportContainer"]
+own_world_3d = true
+world_3d = SubResource("World3D_d1g0c")
+transparent_bg = true
+handle_input_locally = false
+msaa_3d = 1
+screen_space_aa = 1
+use_debanding = true
+scaling_3d_scale = 2.0
+texture_mipmap_bias = -2.0
+canvas_item_default_texture_filter = 0
+positional_shadow_atlas_size = 0
+positional_shadow_atlas_16_bits = false
+positional_shadow_atlas_quad_0 = 1
+positional_shadow_atlas_quad_1 = 0
+positional_shadow_atlas_quad_2 = 0
+positional_shadow_atlas_quad_3 = 0
+size = Vector2i(380, 380)
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/HBoxContainer2/SubViewportContainer/SubViewport"]
+visible = false
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CharacterProfilePreview" parent="CenterContainer/HBoxContainer2/SubViewportContainer/SubViewport" instance=ExtResource("3_71f1e")]
+
+[node name="Character" parent="CenterContainer/HBoxContainer2/SubViewportContainer/SubViewport/CharacterProfilePreview/Marker3d" index="0"]
+profile = SubResource("Resource_brolj")
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="visibility_changed" from="." to="." method="_on_user_profile_visibility_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/Avatar/SelectAvatar" to="." method="_on_select_avatar_pressed"]
+[connection signal="file_selected" from="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/Avatar/SelectAvatar/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="text_changed" from="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/DisplayNameContainer/DisplayName" to="." method="_on_display_name_text_changed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/DisplayNameContainer/Randomize" to="." method="_on_randomize_pressed"]
+[connection signal="color_changed" from="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/ColorContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer2/VBoxContainer/ProfileContainer/ColorContainer/Randomize2" to="." method="_on_randomize_2_pressed"]
+[connection signal="value_changed" from="CenterContainer/HBoxContainer2/VBoxContainer/HBoxContainer2/VoicePitchSlider" to="." method="_on_voice_pitch_slider_value_changed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer2/VBoxContainer/HBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer2/VBoxContainer/HBoxContainer/Revert" to="." method="_on_revert_pressed"]
+[connection signal="size_changed" from="CenterContainer/HBoxContainer2/SubViewportContainer/SubViewport" to="." method="_on_sub_viewport_size_changed"]
+
+[editable path="CenterContainer/HBoxContainer2/SubViewportContainer/SubViewport/CharacterProfilePreview"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://dld8q8hkh4rje"]
+
+[ext_resource type="PackedScene" uid="uid://dttsuev2aug5r" path="res://Assets/Weapons/WeaponComponents/Barrel/Barrel.tscn" id="1_r752l"]
+[ext_resource type="Script" path="res://Assets/Weapons/WeaponComponents/Barrel/ProjectileBarrel.gd" id="2_7pte6"]
+[ext_resource type="PackedScene" uid="uid://u4yj7iq0lc6p" path="res://Assets/Weapons/WeaponTypes/ProjectileShootingWeapon/Projectiles/Projectile.tscn" id="3_xyvvs"]
+[ext_resource type="AudioStream" uid="uid://bqukgwtx4p87s" path="res://Assets/SFX/Weapons_Handgun_Shoot.wav" id="3_yon1t"]
+[ext_resource type="PackedScene" uid="uid://bsil2y4nxtx4l" path="res://Assets/Effects/Weapons/MuzzleFlash.tscn" id="4_soxr6"]
+[ext_resource type="Script" path="res://Assets/Weapons/WeaponComponents/Barrel/Pooler.gd" id="6_s0aav"]
+
+[node name="Barrel" instance=ExtResource("1_r752l")]
+script = ExtResource("2_7pte6")
+projectile = ExtResource("3_xyvvs")
+projectile_velocity = 15.0
+shoot_animation = "Shoot"
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="ProjectileSpawner" index="0"]
+stream = ExtResource("3_yon1t")
+bus = &"SFX"
+
+[node name="MuzzleFlash" parent="ProjectileSpawner" index="1" instance=ExtResource("4_soxr6")]
+
+[node name="Pooler" type="Node" parent="." index="1"]
+script = ExtResource("6_s0aav")

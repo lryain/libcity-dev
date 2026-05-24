@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b1hic2ii01pf1"]
+
+[ext_resource type="Script" path="res://Assets/Badges/Badge.gd" id="1_u2gdx"]
+[ext_resource type="Texture2D" uid="uid://bb0cpuabaavyg" path="res://Assets/Badges/Textures/Badge_Auth.png" id="2_1mvm6"]
+
+[resource]
+script = ExtResource("1_u2gdx")
+display_name = "Authenticated"
+description = "plays Liblast using an online account"
+texture = ExtResource("2_1mvm6")
+priority = 1000

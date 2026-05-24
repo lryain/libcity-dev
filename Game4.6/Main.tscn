@@ -1,0 +1,828 @@
+[gd_scene load_steps=52 format=3 uid="uid://blj7xqa6u102e"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_dq3ap"]
+[ext_resource type="PackedScene" uid="uid://hixlw26lqvyw" path="res://Assets/Menu/PlayerAuthMenu.tscn" id="2_6k72l"]
+[ext_resource type="PackedScene" uid="uid://cdhbui4itcjky" path="res://Assets/UI/UiSounds.tscn" id="2_l6pfj"]
+[ext_resource type="PackedScene" uid="uid://q2v25tb2hhok" path="res://Assets/Maps/_MenuBackgrounMap.tscn" id="2_n74gn"]
+[ext_resource type="Texture2D" uid="uid://d2gc2f3qhw7o" path="res://Assets/Menu/ShadowNinePatch.png" id="2_pqygy"]
+[ext_resource type="PackedScene" uid="uid://bwct0yvcmxci7" path="res://Assets/Menu/MainMenu.tscn" id="3_lxic1"]
+[ext_resource type="Material" uid="uid://bp7073iu542ty" path="res://Assets/HUD/FilmGrain.tres" id="4_p1mb3"]
+[ext_resource type="AudioStream" uid="uid://cjcuiy25r46qi" path="res://Assets/Announcer/Welcome.wav" id="5_ca744"]
+[ext_resource type="Script" path="res://Assets/Menu/Version.gd" id="7_nnn7t"]
+[ext_resource type="Script" path="res://Assets/Menu/NetworkStatus.gd" id="8_05l6u"]
+[ext_resource type="Texture2D" uid="uid://b8jffd1fxms82" path="res://Assets/Badges/Textures/Badge_NoAuth.png" id="8_oxyod"]
+[ext_resource type="Script" path="res://Assets/Menu/LiblastLink.gd" id="9_gpe7i"]
+[ext_resource type="AudioStream" uid="uid://l1yde4ckel2u" path="res://Assets/Music/unfa - Liblast 02.ogg" id="9_lw2a7"]
+[ext_resource type="AudioStream" uid="uid://dc4rractm5dhf" path="res://Assets/SFX/UI_Hover.wav" id="9_t2ocr"]
+[ext_resource type="Texture2D" uid="uid://nvmxqamvgmwl" path="res://Assets/HUD/MuteIcon.png" id="11_h6meb"]
+[ext_resource type="Theme" uid="uid://ddtu7o1dbp0s8" path="res://Assets/Theme.tres" id="17_1eswu"]
+[ext_resource type="PackedScene" uid="uid://c8xrjeikcjedp" path="res://Assets/UI/DisconnectedScreen.tscn" id="17_c3kc7"]
+[ext_resource type="Script" path="res://Assets/UI/LoadingScreen.gd" id="18_nsgng"]
+[ext_resource type="Shader" uid="uid://q2dsocfv4nid" path="res://Assets/HUD/Console.tres" id="18_pbt5r"]
+[ext_resource type="Texture2D" uid="uid://pnh872qjk0oy" path="res://Assets/Effects/Flame.png" id="19_7wsui"]
+[ext_resource type="Texture2D" uid="uid://bxwfe00s0juj0" path="res://Assets/Textures/CircleAlphaSoft.png" id="20_82icx"]
+[ext_resource type="Script" path="res://Assets/Menu/PreAlphaDisclaimer.gd" id="22_34xkh"]
+[ext_resource type="FontFile" uid="uid://sv606h1wylsm" path="res://Assets/Fonts/Liberation Sans/LiberationSans-Italic.ttf" id="22_orc61"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gc0di"]
+shader = ExtResource("18_pbt5r")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sg7b"]
+bg_color = Color(0.0509804, 0.0117647, 0, 0.882353)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_4q2uo"]
+font = ExtResource("22_orc61")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_g3rsm"]
+font = ExtResource("22_orc61")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kdmhc"]
+light_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o7uxi"]
+shader = ExtResource("18_pbt5r")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yx7rj"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.462745, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_lbkc4"]
+parameter_name = "throbber"
+default_value_enabled = true
+default_value = true
+
+[sub_resource type="VisualShaderNodeSwitch" id="VisualShaderNodeSwitch_djcra"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_rv823"]
+parameter_name = "progress"
+
+[sub_resource type="VisualShaderNodeSmoothStep" id="VisualShaderNodeSmoothStep_k4101"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ptg6p"]
+default_input_values = [0, 0.0, 1, 0.005]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_fpjj8"]
+default_input_values = [0, 0.0, 1, 2.0]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_rool0"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_s0ua6"]
+function = 0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_5faki"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_q7n1f"]
+default_input_values = [0, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_88utl"]
+default_input_values = [0, 0.0, 1, -1.0, 2, 0.0]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_nktow"]
+default_input_values = [0, 0.0, 1, 4.0]
+operator = 5
+
+[sub_resource type="VisualShader" id="VisualShader_8aqwo"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform bool throbber = true;
+uniform float progress;
+
+
+
+void fragment() {
+// BooleanParameter:12
+	bool n_out12p0 = throbber;
+
+
+// Input:3
+	float n_out3p0 = TIME;
+
+
+// Input:5
+	vec2 n_out5p0 = UV;
+
+
+// VectorDecompose:6
+	float n_out6p0 = n_out5p0.x;
+	float n_out6p1 = n_out5p0.y;
+
+
+// MultiplyAdd:7
+	float n_in7p1 = -1.00000;
+	float n_out7p0 = fma(n_out3p0, n_in7p1, n_out6p0);
+
+
+// FloatOp:19
+	float n_in19p1 = 2.00000;
+	float n_out19p0 = n_out7p0 * n_in19p1;
+
+
+// FloatFunc:4
+	float n_out4p0 = sin(n_out19p0);
+
+
+// FloatOp:8
+	float n_in8p1 = 4.00000;
+	float n_out8p0 = pow(n_out4p0, n_in8p1);
+
+
+// FloatParameter:14
+	float n_out14p0 = progress;
+
+
+// FloatOp:18
+	float n_in18p1 = 0.00500;
+	float n_out18p0 = n_out14p0 + n_in18p1;
+
+
+// SmoothStep:17
+	float n_out17p0 = smoothstep(n_out18p0, n_out14p0, n_out6p0);
+
+
+	float n_out13p0;
+// Switch:13
+	n_out13p0 = mix(n_out17p0, n_out8p0, float(n_out12p0));
+
+
+// Output:0
+	COLOR.a = n_out13p0;
+
+
+}
+"
+graph_offset = Vector2(105.946, 365.805)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(1160, 200)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_rool0")
+nodes/fragment/3/position = Vector2(-1200, 420)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatFunc_s0ua6")
+nodes/fragment/4/position = Vector2(40, 200)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_5faki")
+nodes/fragment/5/position = Vector2(-1000, 160)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVectorDecompose_q7n1f")
+nodes/fragment/6/position = Vector2(-680, 200)
+nodes/fragment/7/node = SubResource("VisualShaderNodeMultiplyAdd_88utl")
+nodes/fragment/7/position = Vector2(-460, 320)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatOp_nktow")
+nodes/fragment/8/position = Vector2(260, 320)
+nodes/fragment/12/node = SubResource("VisualShaderNodeBooleanParameter_lbkc4")
+nodes/fragment/12/position = Vector2(-520, 600)
+nodes/fragment/13/node = SubResource("VisualShaderNodeSwitch_djcra")
+nodes/fragment/13/position = Vector2(640, 580)
+nodes/fragment/14/node = SubResource("VisualShaderNodeFloatParameter_rv823")
+nodes/fragment/14/position = Vector2(-520, 940)
+nodes/fragment/17/node = SubResource("VisualShaderNodeSmoothStep_k4101")
+nodes/fragment/17/position = Vector2(280, 720)
+nodes/fragment/18/node = SubResource("VisualShaderNodeFloatOp_ptg6p")
+nodes/fragment/18/position = Vector2(40, 1000)
+nodes/fragment/19/node = SubResource("VisualShaderNodeFloatOp_fpjj8")
+nodes/fragment/19/position = Vector2(-240, 180)
+nodes/fragment/connections = PackedInt32Array(5, 0, 6, 0, 3, 0, 7, 0, 6, 0, 7, 2, 4, 0, 8, 0, 8, 0, 13, 1, 12, 0, 13, 0, 13, 0, 0, 1, 6, 0, 17, 2, 14, 0, 18, 0, 17, 0, 13, 2, 18, 0, 17, 0, 14, 0, 17, 1, 7, 0, 19, 0, 19, 0, 4, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q6gpt"]
+shader = SubResource("VisualShader_8aqwo")
+shader_parameter/throbber = true
+shader_parameter/progress = 0.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_d3nse"]
+font_size = 48
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 0.376471)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l6f3b"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_g0i78"]
+offsets = PackedFloat32Array(0, 0.482428, 0.811502)
+colors = PackedColorArray(2.06962e-06, 0.63338, 0.405128, 1, 3.42691e-05, 0.478109, 0.852577, 1, 0.233742, 0.399895, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kuroe"]
+gradient = SubResource("Gradient_g0i78")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_llesx"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(64, 64, 0)
+spread = 8.0
+initial_velocity_min = 597.82
+initial_velocity_max = 815.21
+angular_velocity_min = -15.66
+angular_velocity_max = -7.83
+gravity = Vector3(300, 0, 0)
+damping_min = 14.13
+damping_max = 50.0
+color = Color(0.364706, 0.364706, 0.364706, 1)
+color_ramp = SubResource("GradientTexture1D_kuroe")
+anim_offset_max = 1.0
+turbulence_enabled = true
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 3.3
+turbulence_influence_min = 0.03
+turbulence_influence_max = 0.05
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4il2o"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2tkla"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(64, 64, 0)
+spread = 8.0
+initial_velocity_min = 597.82
+initial_velocity_max = 815.21
+angular_velocity_min = -15.66
+angular_velocity_max = -7.83
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+gravity = Vector3(300, 0, 0)
+damping_min = 79.17
+damping_max = 88.59
+scale_min = 0.01
+scale_max = 0.05
+color = Color(2, 2, 2, 1)
+color_ramp = SubResource("GradientTexture1D_kuroe")
+anim_offset_max = 1.0
+turbulence_enabled = true
+turbulence_noise_strength = 16.96
+turbulence_noise_scale = 5.53
+turbulence_influence_min = 0.03
+turbulence_influence_max = 0.05
+
+[node name="Main" type="Node"]
+script = ExtResource("1_dq3ap")
+menu_background_map = ExtResource("2_n74gn")
+
+[node name="UiSounds" parent="." instance=ExtResource("2_l6pfj")]
+root_path = NodePath("../UI")
+
+[node name="Grain" type="ColorRect" parent="."]
+visible = false
+material = ExtResource("4_p1mb3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuShadow" type="NinePatchRect" parent="UI"]
+modulate = Color(1, 1, 1, 0.615686)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 383.0
+offset_bottom = 213.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_pqygy")
+patch_margin_left = 256
+patch_margin_top = 256
+patch_margin_right = 256
+patch_margin_bottom = 256
+
+[node name="MainMenu" parent="UI" instance=ExtResource("3_lxic1")]
+visible = false
+layout_mode = 1
+
+[node name="PlayerAuthMenu" parent="UI" instance=ExtResource("2_6k72l")]
+layout_mode = 1
+
+[node name="Welcome" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("5_ca744")
+bus = &"Announcer"
+
+[node name="Music" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("9_lw2a7")
+max_polyphony = 2
+bus = &"Music"
+
+[node name="PreAlphaDisclaimer" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_gc0di")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+color = Color(0.109804, 0.0588235, 0, 0.27451)
+script = ExtResource("22_34xkh")
+
+[node name="Panel" type="Panel" parent="UI/PreAlphaDisclaimer"]
+custom_minimum_size = Vector2(740, 380)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("17_1eswu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_7sg7b")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PreAlphaDisclaimer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PreAlphaDisclaimer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="UI/PreAlphaDisclaimer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "A word of caution before you dive in!"
+label_settings = SubResource("LabelSettings_4q2uo")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PreAlphaDisclaimer" type="Label" parent="UI/PreAlphaDisclaimer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_vertical = 3
+text = "This game is in PRE-ALPHA development stage.
+That means it has a long way to go before it can be considered \"ready\".
+Don't expect a complete or a seamless experience.
+
+Feedback and issue reports are welcome!
+If you'd like to join the discussion or help with the development - please visit:"
+label_settings = SubResource("LabelSettings_g3rsm")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LinkButton" type="LinkButton" parent="UI/PreAlphaDisclaimer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 0.447059, 0.156863, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.231373, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0.639216, 0.4, 1)
+theme_override_font_sizes/font_size = 24
+text = "code.libla.st"
+uri = "https://code.libla.st "
+
+[node name="Button" type="Button" parent="UI/PreAlphaDisclaimer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Got it"
+
+[node name="PreAlphaDisclaimer2" type="Label" parent="UI/PreAlphaDisclaimer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_vertical = 3
+text = "This message will not be shown again."
+label_settings = SubResource("LabelSettings_g3rsm")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TopBar" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 1.0
+offset_bottom = 41.0
+grow_horizontal = 2
+
+[node name="Version" type="RichTextLabel" parent="UI/TopBar"]
+clip_contents = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+focus_mode = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+bbcode_enabled = true
+text = "VERSION TEXT"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+context_menu_enabled = true
+shortcut_keys_enabled = false
+selection_enabled = true
+text_direction = 2
+script = ExtResource("7_nnn7t")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/TopBar/Version"]
+stream = ExtResource("9_t2ocr")
+volume_db = -1.48
+pitch_scale = 24.0
+bus = &"UI"
+
+[node name="NetworkStatus" type="HBoxContainer" parent="UI/TopBar"]
+layout_mode = 2
+script = ExtResource("8_05l6u")
+
+[node name="Icon" type="TextureRect" parent="UI/TopBar/NetworkStatus"]
+visible = false
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("8_oxyod")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Status" type="RichTextLabel" parent="UI/TopBar/NetworkStatus"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+bbcode_enabled = true
+text = "NETWORK STATUS TEXT"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="BottomBar" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="LiblastLink" type="LinkButton" parent="UI/BottomBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.858824, 0.439216, 0.0666667, 1)
+theme_override_colors/font_pressed_color = Color(0.917647, 0.980392, 0.176471, 1)
+theme_override_colors/font_hover_color = Color(1, 0.717647, 0, 1)
+text = "libla.st"
+script = ExtResource("9_gpe7i")
+
+[node name="Shadow" type="NinePatchRect" parent="UI/BottomBar/HBoxContainer/LiblastLink"]
+modulate = Color(1, 1, 1, 0.513726)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -30.0
+offset_right = 649.0
+offset_bottom = 482.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.124877, 0.157531)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_pqygy")
+patch_margin_left = 256
+patch_margin_top = 256
+patch_margin_right = 256
+patch_margin_bottom = 256
+metadata/_edit_layout_mode = 1
+
+[node name="MidDot" type="Label" parent="UI/BottomBar/HBoxContainer"]
+layout_mode = 2
+text = "·"
+
+[node name="YouTubeLink" type="LinkButton" parent="UI/BottomBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.858824, 0.439216, 0.0666667, 1)
+theme_override_colors/font_pressed_color = Color(0.917647, 0.980392, 0.176471, 1)
+theme_override_colors/font_hover_color = Color(1, 0.717647, 0, 1)
+text = "watch"
+script = ExtResource("9_gpe7i")
+url = "https://www.youtube.com/channel/UC1Oi1eXwdr8RlqIslyht5AQ"
+
+[node name="Shadow" type="NinePatchRect" parent="UI/BottomBar/HBoxContainer/YouTubeLink"]
+modulate = Color(1, 1, 1, 0.513726)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -30.0
+offset_right = 671.0
+offset_bottom = 482.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.124877, 0.157531)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_pqygy")
+patch_margin_left = 256
+patch_margin_top = 256
+patch_margin_right = 256
+patch_margin_bottom = 256
+metadata/_edit_layout_mode = 1
+
+[node name="MidDot2" type="Label" parent="UI/BottomBar/HBoxContainer"]
+layout_mode = 2
+text = "·"
+
+[node name="ChatLink" type="LinkButton" parent="UI/BottomBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.858824, 0.439216, 0.0666667, 1)
+theme_override_colors/font_pressed_color = Color(0.917647, 0.980392, 0.176471, 1)
+theme_override_colors/font_hover_color = Color(1, 0.717647, 0, 1)
+text = "chat"
+script = ExtResource("9_gpe7i")
+url = "https://chat.unfa.xyz/channel/liblast"
+
+[node name="Shadow" type="NinePatchRect" parent="UI/BottomBar/HBoxContainer/ChatLink"]
+modulate = Color(1, 1, 1, 0.513726)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -30.0
+offset_right = 565.5
+offset_bottom = 482.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.124877, 0.157531)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_pqygy")
+patch_margin_left = 256
+patch_margin_top = 256
+patch_margin_right = 256
+patch_margin_bottom = 256
+metadata/_edit_layout_mode = 1
+
+[node name="MidDot3" type="Label" parent="UI/BottomBar/HBoxContainer"]
+layout_mode = 2
+text = "·"
+
+[node name="ContributeLink" type="LinkButton" parent="UI/BottomBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.858824, 0.439216, 0.0666667, 1)
+theme_override_colors/font_pressed_color = Color(0.917647, 0.980392, 0.176471, 1)
+theme_override_colors/font_hover_color = Color(1, 0.717647, 0, 1)
+text = "contribute"
+script = ExtResource("9_gpe7i")
+url = "https://codeberg.org/Liblast/Liblast"
+
+[node name="Shadow" type="NinePatchRect" parent="UI/BottomBar/HBoxContainer/ContributeLink"]
+modulate = Color(1, 1, 1, 0.513726)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.5
+offset_top = -30.0
+offset_right = 909.5
+offset_bottom = 482.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.124877, 0.157531)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_pqygy")
+patch_margin_left = 256
+patch_margin_top = 256
+patch_margin_right = 256
+patch_margin_bottom = 256
+metadata/_edit_layout_mode = 1
+
+[node name="MidDot4" type="Label" parent="UI/BottomBar/HBoxContainer"]
+layout_mode = 2
+text = "·"
+
+[node name="DonateLink" type="LinkButton" parent="UI/BottomBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.858824, 0.439216, 0.0666667, 1)
+theme_override_colors/font_pressed_color = Color(0.917647, 0.980392, 0.176471, 1)
+theme_override_colors/font_hover_color = Color(1, 0.717647, 0, 1)
+text = "donate"
+script = ExtResource("9_gpe7i")
+url = "https://opencollective.com/liblast"
+
+[node name="Shadow" type="NinePatchRect" parent="UI/BottomBar/HBoxContainer/DonateLink"]
+modulate = Color(1, 1, 1, 0.513726)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -30.0
+offset_right = 724.5
+offset_bottom = 482.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.124877, 0.157531)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_pqygy")
+patch_margin_left = 256
+patch_margin_top = 256
+patch_margin_right = 256
+patch_margin_bottom = 256
+metadata/_edit_layout_mode = 1
+
+[node name="Quit" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -60.0
+offset_right = 320.0
+offset_bottom = -28.0
+grow_vertical = 0
+tooltip_text = "Hit F10 any time to quit immediatelly"
+shortcut_in_tooltip = false
+text = "Quit Game (F10)"
+metadata/_edit_use_anchors_ = true
+
+[node name="Muted" type="MarginContainer" parent="."]
+texture_filter = 4
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -192.0
+offset_bottom = 192.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Muted"]
+material = SubResource("CanvasItemMaterial_kdmhc")
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("11_h6meb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DisconnectedScreen" parent="." instance=ExtResource("17_c3kc7")]
+process_mode = 3
+process_priority = -1
+visible = false
+
+[node name="LoadingScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("18_nsgng")
+
+[node name="ColorRect" type="ColorRect" parent="LoadingScreen"]
+material = SubResource("ShaderMaterial_o7uxi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.9)
+
+[node name="CenterContainer" type="CenterContainer" parent="LoadingScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LoadingScreen/CenterContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="LoadingScreen/CenterContainer/MarginContainer"]
+show_behind_parent = true
+clip_children = 2
+custom_minimum_size = Vector2(400, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yx7rj")
+
+[node name="ProgressBar" type="ColorRect" parent="LoadingScreen/CenterContainer/MarginContainer/Panel"]
+material = SubResource("ShaderMaterial_q6gpt")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.462745, 0, 1)
+
+[node name="Label" type="Label" parent="LoadingScreen/CenterContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+text = "please wait..."
+label_settings = SubResource("LabelSettings_d3nse")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="LoadingScreen/CenterContainer"]
+modulate = Color(0.345098, 0.345098, 0.345098, 1)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="LoadingScreen/CenterContainer/MarginContainer2"]
+show_behind_parent = true
+clip_children = 1
+custom_minimum_size = Vector2(1200, 128)
+layout_mode = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="LoadingScreen/CenterContainer/MarginContainer2/Panel2"]
+material = SubResource("CanvasItemMaterial_l6f3b")
+position = Vector2(-97, 63)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_llesx")
+texture = ExtResource("19_7wsui")
+lifetime = 7.0
+visibility_rect = Rect2(-570.773, -965.858, 4668.67, 1770.8)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="LoadingScreen/CenterContainer/MarginContainer2/Panel2"]
+material = SubResource("CanvasItemMaterial_4il2o")
+position = Vector2(-97, 63)
+amount = 256
+process_material = SubResource("ParticleProcessMaterial_2tkla")
+texture = ExtResource("20_82icx")
+lifetime = 7.0
+visibility_rect = Rect2(-570.773, -965.858, 4668.67, 1770.8)
+
+[connection signal="visibility_changed" from="UI" to="." method="_on_ui_visibility_changed"]
+[connection signal="auth_menu_closed" from="UI/PlayerAuthMenu" to="." method="_on_auth_menu_closed"]
+[connection signal="pressed" from="UI/PreAlphaDisclaimer/Panel/MarginContainer/VBoxContainer/Button" to="UI/PreAlphaDisclaimer" method="_on_button_pressed"]
+[connection signal="mouse_entered" from="UI/BottomBar/HBoxContainer/LiblastLink" to="UI/BottomBar/HBoxContainer/LiblastLink" method="_on_liblast_link_mouse_entered"]
+[connection signal="mouse_exited" from="UI/BottomBar/HBoxContainer/LiblastLink" to="UI/BottomBar/HBoxContainer/LiblastLink" method="_on_liblast_link_mouse_exited"]
+[connection signal="pressed" from="UI/BottomBar/HBoxContainer/LiblastLink" to="UI/BottomBar/HBoxContainer/LiblastLink" method="_on_liblast_link_pressed"]
+[connection signal="pressed" from="UI/BottomBar/HBoxContainer/YouTubeLink" to="UI/BottomBar/HBoxContainer/YouTubeLink" method="_on_liblast_link_pressed"]
+[connection signal="pressed" from="UI/BottomBar/HBoxContainer/ChatLink" to="UI/BottomBar/HBoxContainer/ChatLink" method="_on_liblast_link_pressed"]
+[connection signal="mouse_entered" from="UI/BottomBar/HBoxContainer/ContributeLink" to="UI/BottomBar/HBoxContainer/ContributeLink" method="_on_liblast_link_mouse_entered"]
+[connection signal="mouse_exited" from="UI/BottomBar/HBoxContainer/ContributeLink" to="UI/BottomBar/HBoxContainer/ContributeLink" method="_on_liblast_link_mouse_exited"]
+[connection signal="pressed" from="UI/BottomBar/HBoxContainer/ContributeLink" to="UI/BottomBar/HBoxContainer/ContributeLink" method="_on_liblast_link_pressed"]
+[connection signal="pressed" from="UI/BottomBar/HBoxContainer/DonateLink" to="UI/BottomBar/HBoxContainer/DonateLink" method="_on_liblast_link_pressed"]
+[connection signal="pressed" from="UI/Quit" to="." method="_on_button_pressed"]

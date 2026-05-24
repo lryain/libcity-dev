@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo1sylcu38q4y"]
+
+[ext_resource type="PackedScene" uid="uid://d0fm7ea6poyja" path="res://Assets/Maps/AbandonnedShip/glb/corridor_segment.002.glb" id="1_y54df"]
+[ext_resource type="PackedScene" uid="uid://bnipo181h13fm" path="res://Assets/Maps/AbandonnedShip/glb/corridor_segment.002_decor.000.glb" id="2_jjg4p"]
+[ext_resource type="PackedScene" uid="uid://cnhg1w8xhxfjm" path="res://Assets/Maps/AbandonnedShip/glb/corridor_segment.002_collider.glb" id="3_douc2"]
+
+[node name="Corridor002" type="Node3D"]
+
+[node name="corridor_segment002" parent="." instance=ExtResource("1_y54df")]
+
+[node name="corridor_segment002_decor000" parent="." instance=ExtResource("2_jjg4p")]
+
+[node name="corridor_segment002_collider" parent="." instance=ExtResource("3_douc2")]
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 0)

@@ -1,0 +1,72 @@
+[gd_resource type="Theme" format=3 uid="uid://bjvlto2fhfxv4"]
+
+[ext_resource type="FontFile" uid="uid://vokxbnewve4p" path="res://Assets/Fonts/Liberation Sans/LiberationMono-Regular.ttf" id="1_3xtgp"]
+[ext_resource type="FontFile" uid="uid://c53he8uou2bnk" path="res://Assets/Fonts/Liberation Sans/LiberationMono-Bold.ttf" id="1_avwik"]
+[ext_resource type="FontFile" uid="uid://bpn7np75mdk26" path="res://Assets/Fonts/Liberation Sans/LiberationMono-BoldItalic.ttf" id="3_cppqe"]
+[ext_resource type="FontFile" uid="uid://bdnldomo477ja" path="res://Assets/Fonts/Liberation Sans/LiberationMono-Italic.ttf" id="4_vfg1t"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ck4ab"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_tkavu"]
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ah5x6"]
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ca36c"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0, 0, 0, 0.25098)
+border_width_bottom = 1
+border_color = Color(0.976471, 0.976471, 0.976471, 0.392157)
+border_blend = true
+corner_detail = 1
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_jh85t"]
+color = Color(0, 0, 0, 0)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_yr4wo"]
+color = Color(0, 0, 0, 0)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 0
+
+[resource]
+default_font = ExtResource("1_3xtgp")
+default_font_size = 10
+Fonts/fonts/large = ExtResource("1_avwik")
+Fonts/fonts/normal = ExtResource("1_3xtgp")
+LineEdit/fonts/font = ExtResource("1_3xtgp")
+LineEdit/styles/focus = SubResource("StyleBoxLine_ck4ab")
+LineEdit/styles/normal = SubResource("StyleBoxLine_tkavu")
+LineEdit/styles/read_only = SubResource("StyleBoxLine_ah5x6")
+MarginContainer/constants/margin_bottom = 4
+MarginContainer/constants/margin_left = 4
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 4
+Panel/styles/panel = SubResource("StyleBoxFlat_ca36c")
+Panel/styles/panel_fg = SubResource("StyleBoxFlat_ca36c")
+RichTextLabel/colors/selection_color = Color(1, 0.603922, 0.376471, 0.8)
+RichTextLabel/fonts/bold_font = ExtResource("1_avwik")
+RichTextLabel/fonts/bold_italics_font = ExtResource("3_cppqe")
+RichTextLabel/fonts/italics_font = ExtResource("4_vfg1t")
+RichTextLabel/fonts/normal_font = ExtResource("1_3xtgp")
+RichTextLabel/styles/focus = SubResource("StyleBoxLine_jh85t")
+RichTextLabel/styles/normal = SubResource("StyleBoxLine_yr4wo")

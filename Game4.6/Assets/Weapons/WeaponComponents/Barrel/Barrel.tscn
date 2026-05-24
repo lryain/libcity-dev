@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dttsuev2aug5r"]
+
+[ext_resource type="Script" path="res://Assets/Weapons/WeaponComponents/Barrel/Barrel.gd" id="1_f4of6"]
+
+[node name="Barrel" type="Node3D"]
+script = ExtResource("1_f4of6")
+
+[node name="ProjectileSpawner" type="Node3D" parent="."]

@@ -1,0 +1,261 @@
+[gd_scene load_steps=10 format=3 uid="uid://cby6b7yceqdh"]
+
+[ext_resource type="Script" path="res://Assets/Menu/GameMenu.gd" id="1_q001q"]
+[ext_resource type="Theme" uid="uid://ddtu7o1dbp0s8" path="res://Assets/Theme.tres" id="2_g2cmw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mm3b"]
+bg_color = Color(0.909804, 0.282353, 0.282353, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="FontVariation" id="FontVariation_gsgt1"]
+variation_embolden = 1.25
+
+[sub_resource type="LabelSettings" id="LabelSettings_2u0kn"]
+font = SubResource("FontVariation_gsgt1")
+
+[sub_resource type="FontVariation" id="FontVariation_cy8bm"]
+variation_embolden = 1.25
+spacing_glyph = 1
+spacing_top = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_ayf21"]
+font = SubResource("FontVariation_cy8bm")
+font_size = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wde4"]
+bg_color = Color(0.909804, 0.858824, 0.345098, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7fdl"]
+bg_color = Color(0.282353, 0.909804, 0.282353, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="GameMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q001q")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="HostSection" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HostSection"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="CenterContainer/VBoxContainer/HostSection/HBoxContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4mm3b")
+toggle_mode = true
+text = "HOST a local game"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HostSection"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/HostSection/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_g2cmw")
+text = "select map:"
+
+[node name="MapSelection" type="OptionButton" parent="CenterContainer/VBoxContainer/HostSection/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+item_count = 1
+popup/item_0/text = "EMPTY"
+popup/item_0/id = 0
+
+[node name="BotAmount" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HostSection"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/HostSection/BotAmount"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_g2cmw")
+text = " number of bots:"
+
+[node name="BotAmountLabel" type="Label" parent="CenterContainer/VBoxContainer/HostSection/BotAmount"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_g2cmw")
+text = "0"
+label_settings = SubResource("LabelSettings_2u0kn")
+horizontal_alignment = 1
+
+[node name="BotAmountSlider" type="HSlider" parent="CenterContainer/VBoxContainer/HostSection/BotAmount"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+max_value = 32.0
+tick_count = 33
+ticks_on_borders = true
+
+[node name="BotOptions" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HostSection"]
+layout_mode = 2
+alignment = 1
+
+[node name="BotsVsHumans" type="CheckButton" parent="CenterContainer/VBoxContainer/HostSection/BotOptions"]
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "bots and humans will always be put in oppposing teams,m aking the game co-op"
+text = "bots -vs- humans"
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/HostSection/BotOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BotsVacant" type="CheckButton" parent="CenterContainer/VBoxContainer/HostSection/BotOptions"]
+layout_mode = 2
+size_flags_horizontal = 4
+button_pressed = true
+text = "bots only fill vacant places"
+
+[node name="MapLoadingProgress" type="ProgressBar" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="HostStatus" type="Label" parent="CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "game host status"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="JoinLocalSection" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/JoinLocalSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_g2cmw")
+text = "Local Network Discovery"
+label_settings = SubResource("LabelSettings_ayf21")
+horizontal_alignment = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/JoinLocalSection"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/JoinLocalSection/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_g2cmw")
+text = "select local game"
+
+[node name="JoinLocalDropdown" type="OptionButton" parent="CenterContainer/VBoxContainer/JoinLocalSection/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+item_count = 1
+selected = 0
+popup/item_0/text = "Someone (0.0.0.0)"
+popup/item_0/id = 0
+
+[node name="JoinLocal" type="Button" parent="CenterContainer/VBoxContainer/JoinLocalSection"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1wde4")
+toggle_mode = true
+text = "JOIN a local game"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/JoinLocalSection"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="JoinSection" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/JoinSection"]
+layout_mode = 2
+
+[node name="Join" type="Button" parent="CenterContainer/VBoxContainer/JoinSection/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x7fdl")
+toggle_mode = true
+text = "JOIN a remote game"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/JoinSection"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/JoinSection/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_g2cmw")
+text = "select game server"
+
+[node name="HostDropdown" type="OptionButton" parent="CenterContainer/VBoxContainer/JoinSection/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "unfa.xyz"
+popup/item_0/id = 0
+popup/item_1/text = "localhost"
+popup/item_1/id = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/JoinSection"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/JoinSection/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("2_g2cmw")
+text = "or specify custom server"
+
+[node name="HostAddress" type="LineEdit" parent="CenterContainer/VBoxContainer/JoinSection/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "IP address"
+virtual_keyboard_enabled = false
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/HostSection/HBoxContainer4/Host" to="." method="_on_host_toggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/HostSection/HBoxContainer3/MapSelection" to="." method="_on_map_selection_item_selected"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/HostSection/BotAmount/BotAmountSlider" to="." method="_on_bot_amount_slider_value_changed"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/HostSection/BotOptions/BotsVsHumans" to="." method="_on_bots_vs_humans_toggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/HostSection/BotOptions/BotsVacant" to="." method="_on_bots_vacant_toggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/JoinLocalSection/JoinLocal" to="." method="_on_join_local_toggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/JoinSection/HBoxContainer/Join" to="." method="_on_join_toggled"]
+[connection signal="text_changed" from="CenterContainer/VBoxContainer/JoinSection/HBoxContainer3/HostAddress" to="." method="_on_host_address_text_changed"]

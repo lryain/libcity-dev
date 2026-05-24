@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://8ow6ek75e0pr"]
+
+[ext_resource type="PackedScene" uid="uid://d048mpbvf4t7l" path="res://Assets/Characters/CharacterController.tscn" id="1_lhq1o"]
+[ext_resource type="Script" path="res://Assets/Characters/CharacterControllerPlayer.gd" id="2_u0ltb"]
+
+[node name="CharacterController" instance=ExtResource("1_lhq1o")]
+script = ExtResource("2_u0ltb")
+mouse_sensitivity = 0.0025

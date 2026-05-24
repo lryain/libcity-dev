@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8xrjeikcjedp"]
+
+[ext_resource type="Script" path="res://Assets/UI/DisconnectedScreen.gd" id="1_hspmg"]
+[ext_resource type="Theme" uid="uid://ddtu7o1dbp0s8" path="res://Assets/Theme.tres" id="3_3lowm"]
+[ext_resource type="Material" uid="uid://dep8chn43tmhx" path="res://Assets/UI/DisconnectedScreenDistortionEffect.tres" id="4_3i3fn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v325w"]
+font_size = 48
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 0.376471)
+shadow_offset = Vector2(3, 3)
+
+[node name="DisconnectedScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hspmg")
+
+[node name="Grain" type="ColorRect" parent="."]
+material = ExtResource("4_3i3fn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+text = "connection lost"
+label_settings = SubResource("LabelSettings_v325w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackToMenu" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_3lowm")
+text = "back to menu"
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]

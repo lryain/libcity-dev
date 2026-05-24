@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk4ewf2w3wf27"]
+
+[ext_resource type="PackedScene" uid="uid://hsgjfrfh10ho" path="res://Assets/Maps/_Map.tscn" id="1_8vy5h"]
+[ext_resource type="Material" uid="uid://dyqrjclo20bbv" path="res://Assets/Materials/Generic/PerforatedSteel_01_Hotspot.tres" id="2_c348e"]
+[ext_resource type="Material" uid="uid://d3yxscs8wuxnp" path="res://Assets/Materials/Generic/Rock_01_Tileable.tres" id="2_ogh22"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_abeto"]
+
+[node name="Map" instance=ExtResource("1_8vy5h")]
+
+[node name="AnimationTree" parent="Music" index="1"]
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_abeto")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Geometry/Prototype" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 14, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Geometry/Prototype" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 25, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Geometry/Prototype" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5476, 16.8705, -39.2196)
+radius = 24.0
+height = 247.307
+sides = 64
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Geometry/Prototype" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 129.215, -2.18512, 0)
+calculate_tangents = false
+size = Vector3(128, 2, 128)
+material = ExtResource("2_c348e")
+
+[node name="CSGBox3D" parent="Geometry/Prototype" index="4"]
+size = Vector3(128, 2, 128)
+material = ExtResource("2_ogh22")
+
+[node name="CollisionShape3D" parent="SpecialCollision/KillFloor" index="0"]
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lighting" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.1778, 3.02368, 23.0666)
+light_energy = 64.0
+omni_range = 64.0
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="Lighting" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.328, 31.5417, 23.0666)
+light_energy = 64.0
+omni_range = 64.0
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="Lighting" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 167.5, 5.05591, 62.2172)
+light_energy = 64.0
+omni_range = 64.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lighting" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.3483, 4.95049, 12.1195)
+light_color = Color(0.945098, 1, 0, 1)
+light_energy = 64.0
+omni_range = 128.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Lighting" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0454, 4.95049, 53.6551)
+light_color = Color(0.105882, 0.788235, 1, 1)
+light_energy = 64.0
+omni_range = 128.0
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Lighting" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.54, 4.95049, -44.9165)
+light_color = Color(1, 0, 0.12549, 1)
+light_energy = 64.0
+omni_range = 128.0
+
+[editable path="SpecialCollision/KillFloor"]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://5e5onwnqdbky"]
+
+[ext_resource type="Script" path="res://Assets/Badges/Badge.gd" id="1_27dr3"]
+[ext_resource type="Texture2D" uid="uid://ca7k00ha8ropv" path="res://Assets/Badges/Textures/Badge_Moderator.png" id="2_10ea1"]
+
+[resource]
+script = ExtResource( "1_27dr3" )
+display_name = "Server Moderator"
+description = "moderates the server you're currently playing on"
+texture = ExtResource( "2_10ea1" )
+priority = 1

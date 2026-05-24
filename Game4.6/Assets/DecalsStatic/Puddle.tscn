@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk1wgcptqyxmk"]
+
+[ext_resource type="Texture2D" uid="uid://4fe0w7db5jy7" path="res://Assets/Decals/Puddle_Albedo.png" id="1_l38n8"]
+[ext_resource type="Texture2D" uid="uid://bw47ok2363v8p" path="res://Assets/Decals/Puddle_Normal.png" id="2_wur0t"]
+[ext_resource type="Texture2D" uid="uid://daphvbx7ktd4p" path="res://Assets/Decals/Puddle_ORM.png" id="3_yfbgs"]
+
+[node name="Puddle" type="Decal"]
+transform = Transform3D(0.965926, 3.60267e-09, -0.258819, -0.258819, -3.45404e-08, -0.965926, 1.73827e-08, 1, -3.83592e-08, -1.30654, 0.350086, -3.57002)
+extents = Vector3(2, 1, 2)
+texture_albedo = ExtResource("1_l38n8")
+texture_normal = ExtResource("2_wur0t")
+texture_orm = ExtResource("3_yfbgs")
+albedo_mix = 0.5
+cull_mask = 1

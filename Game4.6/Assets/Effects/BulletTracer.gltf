@@ -1,0 +1,126 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.7.23",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Tracer"
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                1,
+                1,
+                1
+            ],
+            "name" : "BulletTracerMaterial",
+            "pbrMetallicRoughness" : {}
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Sphere",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2,
+                        "COLOR_0" : 3
+                    },
+                    "indices" : 4,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 15,
+            "max" : [
+                0.08660250902175903,
+                0.07499998807907104,
+                0.10000002384185791
+            ],
+            "min" : [
+                -0.08660256862640381,
+                -0.07499998807907104,
+                -12.261317253112793
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 15,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 15,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 15,
+            "normalized" : true,
+            "type" : "VEC4"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5123,
+            "count" : 90,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 180,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 180,
+            "byteOffset" : 180
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 120,
+            "byteOffset" : 360
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 120,
+            "byteOffset" : 480
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 180,
+            "byteOffset" : 600
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 780,
+            "uri" : "data:application/octet-stream;base64,qFyxPcjMzDGQp/m9oFEMPRAKc73AJzA8sFwxPZiZmb2Qp/m9mFEMvRAKc73IJzA8sFwxvZiZmb2Qp/m9mFGMvVCwELLQJzA8sFyxvcjMzLGQp/m90MxMstDMTKVbLkTBAAAAANDMTKXQzMw9mFEMvRAKcz3YJzA8sFwxvZiZmT2Qp/m9oFEMPRAKcz3IJzA8sFwxPZiZmT2Qp/m9mFGMPYBbmbLAJzA8AAAAAAAAAACeYsjAANJ/PwAAAAAuwRY93vnuPp71Tr9vjbc+ANL/PruLXb8uwRY93vnuvp71Tr9vjbc+ANL/vruLXb8uwRY93vluvwAAAABvjbc+ANJ/vwAAAAAuwRY9AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIA/3vnuvp71Tj9vjbc+ANL/vruLXT8uwRY93vnuPp71Tj9vjbc+ANL/PruLXT8uwRY93vluPwAAAABvjbc+AAAAAAAAAAAAAIC/AACAP4pnez8IojI/0iZ+Pw8BQD+KZ3s/8buaPtImfj9OAIA+imd7P/Hh1T3SJn4/AAAAAIpnez/pAAA/AAAAAOkAAD8AAIA/8buaPtImfj9OAIA+imd7PwiiMj/SJn4/DwFAP4pnez/4RGU/0iZ+P+kAAD++fPg+E04TThNO/////////////xNOE04TTv////////////8TThNOE07/////////////E04TThNO//8AAAAAAAD///////////////////////8TThNOE07/////////////E04TThNO/////////////wAAAAAAAP//BwAAAAIAAAANAAEAAAABAAIADQAIAAEABwACAAQAAgABAAMAAgADAAQAAQAIAAMABwAEAAYABAADAAUABAAFAAYAAwAIAAUABwAGAAoABgAFAAkABgAJAAoABQAIAAkABwAKAAwACgAJAAsACgALAAwACQAIAAsABwAMAAAADAALAA0ADAANAAAACwAIAA0ABgAKAA4ADAAAAA4ABAAGAA4ACgAMAA4AAgAEAA4AAAACAA4A"
+        }
+    ]
+}

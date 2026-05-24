@@ -1,0 +1,355 @@
+[gd_scene load_steps=32 format=3 uid="uid://bnxua7de0567h"]
+
+[ext_resource type="PackedScene" uid="uid://did231ce5cp4e" path="res://Assets/Weapons/WeaponTypes/ShootingWeapon/ShootingWeapon.tscn" id="1_vo8x7"]
+[ext_resource type="Script" path="res://Assets/Weapons/WeaponTypes/HitscanShootingWeapon/HitscanShootingWeapon.gd" id="2_dwe62"]
+[ext_resource type="PackedScene" uid="uid://dld8q8hkh4rje" path="res://Assets/Weapons/WeaponComponents/Barrel/HitscanBarrel.tscn" id="3_qaijd"]
+[ext_resource type="AudioStream" uid="uid://ciyuc8xbnl7u8" path="res://Assets/SFX/Weapons_Handgun_Shot_01_C.wav" id="4_37njk"]
+[ext_resource type="AudioStream" uid="uid://d1mcwbcsbwce8" path="res://Assets/SFX/Weapons_Handgun_Shot_01_A.wav" id="4_igjhy"]
+[ext_resource type="Script" path="res://Assets/Weapons/WeaponComponents/Barrel/HitscanBarrel.gd" id="4_wf35g"]
+[ext_resource type="AudioStream" uid="uid://ce6yavh7d8ofe" path="res://Assets/SFX/Weapons_Handgun_Shot_01_B.wav" id="5_h6fbq"]
+
+[sub_resource type="Animation" id="Animation_qybl5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0185394, 0, -8.10382e-10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.52917e-22, -3.14159, -1.5708)]
+}
+
+[sub_resource type="Animation" id="Animation_t008g"]
+resource_name = "Reload"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.8, 1.4, 1.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0185394, 0, -8.10382e-10), Vector3(-0.0258754, -0.0998151, 0.000705886), Vector3(0.0185394, -0.156687, -8.14153e-10), Vector3(0.0185394, -0.156687, -0.0370591), Vector3(0.0185394, -0.156687, -0.0241138), Vector3(0.0379066, -0.00870857, 3.23906e-09), Vector3(0.0185394, 0, -8.10382e-10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.4, 1.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-2.52917e-22, -3.14159, -1.5708), Vector3(0.747647, -2.65513, -2.28992), Vector3(0.640859, -2.7666, -2.05879), Vector3(-1.16319e-07, -3.14159, -1.4248), Vector3(-2.52917e-22, -3.14159, -1.5708)]
+}
+
+[sub_resource type="Animation" id="Animation_wg88r"]
+resource_name = "Shoot"
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.125, 0.425),
+"transitions": PackedFloat32Array(1.7411, -1.68179, 0.435275, 1),
+"update": 0,
+"values": [Vector3(0.0185394, 0, -8.10382e-10), Vector3(0.0514706, 0, -8.10382e-10), Vector3(0.0730145, -0.0348179, -8.10382e-10), Vector3(0.0185394, 0, -8.10382e-10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.125, 0.425),
+"transitions": PackedFloat32Array(1.86607, -2, 0.353553, 1),
+"update": 0,
+"values": [Vector3(-2.52917e-22, -3.14159, -1.5708), Vector3(-2.52917e-22, -3.14159, -1.5708), Vector3(-2.56542e-08, -3.14159, -1.40007), Vector3(-2.52917e-22, -3.14159, -1.5708)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vn3vh"]
+_data = {
+"RESET": SubResource("Animation_qybl5"),
+"Reload": SubResource("Animation_t008g"),
+"Shoot": SubResource("Animation_wg88r")
+}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_27kpf"]
+frequency = 0.075
+fractal_octaves = 7
+fractal_lacunarity = 4.0
+fractal_gain = 0.086
+fractal_weighted_strength = 0.38
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 30.404
+domain_warp_fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hfkm3"]
+width = 400
+height = 600
+invert = true
+in_3d_space = true
+seamless = true
+as_normal_map = true
+bump_strength = 0.2
+noise = SubResource("FastNoiseLite_27kpf")
+
+[sub_resource type="Gradient" id="Gradient_753hw"]
+colors = PackedColorArray(0.28125, 0.28125, 0.28125, 1, 0.507812, 0.507812, 0.507812, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dq12m"]
+width = 400
+height = 600
+seamless = true
+color_ramp = SubResource("Gradient_753hw")
+noise = SubResource("FastNoiseLite_27kpf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbonr"]
+albedo_color = Color(0.266667, 0.266667, 0.266667, 1)
+roughness = 0.95
+roughness_texture = SubResource("NoiseTexture2D_dq12m")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_hfkm3")
+uv1_scale = Vector3(2, 2, 2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_00q42"]
+material = SubResource("StandardMaterial3D_xbonr")
+radial_segments = 16
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jw2gv"]
+material = SubResource("StandardMaterial3D_xbonr")
+top_radius = 0.2
+bottom_radius = 0.2
+radial_segments = 16
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w40kx"]
+width = 400
+height = 600
+invert = true
+in_3d_space = true
+seamless = true
+as_normal_map = true
+bump_strength = 0.2
+noise = SubResource("FastNoiseLite_27kpf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7wbnx"]
+albedo_color = Color(0.647059, 0.537255, 0.427451, 1)
+metallic = 1.0
+roughness = 0.95
+roughness_texture = SubResource("NoiseTexture2D_dq12m")
+emission = Color(0.0705882, 0.670588, 1, 1)
+emission_operator = 1
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_w40kx")
+
+[sub_resource type="SphereMesh" id="SphereMesh_7ounn"]
+material = SubResource("StandardMaterial3D_7wbnx")
+radial_segments = 24
+rings = 12
+
+[sub_resource type="Gradient" id="Gradient_xanyi"]
+offsets = PackedFloat32Array(0.122867, 0.573379)
+colors = PackedColorArray(0.28125, 0.28125, 0.28125, 1, 0.507812, 0.507812, 0.507812, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xuqko"]
+frequency = 0.075
+fractal_octaves = 7
+fractal_lacunarity = 4.0
+fractal_gain = 1.0
+fractal_weighted_strength = 0.38
+domain_warp_enabled = true
+domain_warp_type = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ghbmc"]
+width = 400
+height = 600
+seamless = true
+color_ramp = SubResource("Gradient_xanyi")
+noise = SubResource("FastNoiseLite_xuqko")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_po424"]
+metallic = 1.0
+roughness_texture = SubResource("NoiseTexture2D_ghbmc")
+uv1_scale = Vector3(2, 2, 2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qvd0t"]
+material = SubResource("StandardMaterial3D_po424")
+top_radius = 0.3
+height = 1.0
+radial_segments = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7khu0"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wblpv"]
+material = SubResource("StandardMaterial3D_7khu0")
+top_radius = 0.3
+bottom_radius = 0.4
+height = 0.001
+radial_segments = 16
+rings = 1
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i6irq"]
+albedo_color = Color(0.266667, 0.266667, 0.266667, 1)
+roughness = 0.95
+roughness_texture = SubResource("NoiseTexture2D_dq12m")
+
+[sub_resource type="BoxMesh" id="BoxMesh_eovsk"]
+material = SubResource("StandardMaterial3D_i6irq")
+size = Vector3(2.5, 1, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gothb"]
+size = Vector3(0.5, 0.3, 0.1)
+
+[node name="Weapon" instance=ExtResource("1_vo8x7")]
+script = ExtResource("2_dwe62")
+damage_amount = 10
+full_auto = true
+
+[node name="Barrels" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.340744, 0.0584221, -9.42051e-05)
+
+[node name="Barrel1" parent="Barrels" index="0" instance=ExtResource("3_qaijd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.178502, 0, 0)
+script = ExtResource("4_wf35g")
+penetrating = false
+inaccuracy = 1.0
+slide_path = NodePath("../../Slides/Slide1")
+
+[node name="ShootSound" parent="Barrels/Barrel1/ProjectileSpawner" index="0"]
+stream = ExtResource("4_igjhy")
+volume_db = 8.0
+unit_size = 3.0
+max_polyphony = 2
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Barrels/Barrel1/ProjectileSpawner" index="2"]
+stream = ExtResource("5_h6fbq")
+unit_size = 9.0
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Barrels/Barrel1/ProjectileSpawner" index="3"]
+stream = ExtResource("4_37njk")
+volume_db = -2.0
+unit_size = 14.0
+
+[node name="Slide1" parent="Slides" index="0"]
+rollback_time = 0.065
+
+[node name="Magazine1" parent="Magazines" index="0"]
+clip_size = 160
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+root_node = NodePath("../Model")
+autoplay = "RESET"
+libraries = {
+"": SubResource("AnimationLibrary_vn3vh")
+}
+
+[node name="Model" type="Node3D" parent="." index="4"]
+transform = Transform3D(3.78861e-07, -0.104658, -2.65327e-07, -0.104658, -3.78861e-07, 2.64698e-23, -9.60481e-13, 2.65327e-07, -0.104658, 0.0185394, 0, -8.10382e-10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model" index="0"]
+transform = Transform3D(1, -4.54771e-13, 1.73472e-18, 4.54724e-13, 1, -6.82121e-13, -3.46945e-18, 6.82121e-13, 1, -0.569762, 3.29987, 5.17484e-06)
+layers = 2
+mesh = SubResource("CylinderMesh_00q42")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Model" index="1"]
+transform = Transform3D(1, -7.95815e-13, 9.54098e-18, 2.27371e-12, 0.3, -2.04636e-12, -1.04083e-17, 7.38964e-13, 1, -0.569752, 0.636919, -1.57624e-06)
+layers = 2
+mesh = SubResource("CylinderMesh_00q42")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Model" index="2"]
+transform = Transform3D(0.999999, -1.13689e-12, 3.46945e-18, 1.13685e-12, 0.999999, -1.81899e-12, -1.04083e-17, 1.81899e-12, 0.999999, -0.199881, 2.53302, 3.23073e-06)
+layers = 2
+mesh = SubResource("CylinderMesh_00q42")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Model" index="3"]
+transform = Transform3D(8.61768e-12, 3.50064e-06, 0.955492, -2.38058e-06, -0.955492, 3.50064e-06, 0.955492, -2.38058e-06, -1.83187e-15, -0.832155, 1.33826, 2.0181e-07)
+layers = 2
+mesh = SubResource("CylinderMesh_jw2gv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Model" index="4"]
+transform = Transform3D(8.61768e-12, 3.50064e-06, 0.955492, -2.38058e-06, -0.955492, 3.50064e-06, 0.955492, -2.38058e-06, -1.83344e-15, -0.516496, 1.33826, 2.01812e-07)
+layers = 2
+mesh = SubResource("CylinderMesh_jw2gv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Model" index="5"]
+transform = Transform3D(8.61768e-12, 3.50064e-06, 0.955492, -2.38059e-06, -0.955492, 3.50064e-06, 0.955492, -2.38059e-06, -1.83892e-15, 0.10252, 3.21516, 4.96009e-06)
+layers = 2
+mesh = SubResource("CylinderMesh_jw2gv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Model" index="6"]
+transform = Transform3D(0.979242, 3.58765e-06, -9.80153e-12, 3.58765e-06, -0.979242, 2.48256e-06, -9.77754e-13, -2.48256e-06, -0.979242, -0.430086, 1.20494, 2.20375e-06)
+layers = 2
+mesh = SubResource("SphereMesh_7ounn")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Model" index="7"]
+transform = Transform3D(0.802474, -9.09513e-13, 1.73472e-18, 9.09476e-13, 0.802474, -2.50111e-12, -5.20417e-18, 2.50111e-12, 0.802474, -0.569762, 4.49545, 5.42732e-06)
+layers = 2
+mesh = SubResource("CylinderMesh_qvd0t")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Model" index="8"]
+transform = Transform3D(0.4, -4.54757e-13, 4.33681e-19, 4.54738e-13, 0.4, -5.68434e-13, -4.33681e-19, 5.68434e-13, 0.4, -0.569761, 4.90814, 4.50811e-06)
+layers = 2
+mesh = SubResource("CylinderMesh_wblpv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Model" index="9"]
+transform = Transform3D(0.556106, 0.321068, -2.11758e-22, -0.321068, 0.556106, 7.10543e-15, 4.44089e-14, -3.55271e-15, 0.642136, -0.0539741, 0.643935, 1.2888e-07)
+layers = 2
+mesh = SubResource("BoxMesh_eovsk")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Model" index="10"]
+transform = Transform3D(0.556106, 0.321068, 1.73472e-18, -0.321068, 0.556106, -1.59162e-12, -9.09495e-13, 1.25056e-12, 0.642136, -1.00181, 4.08894, 3.05518e-06)
+layers = 2
+mesh = SubResource("BoxMesh_gothb")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Model" index="11"]
+transform = Transform3D(0.556106, 0.321068, -2.11758e-22, -0.321068, 0.556106, 7.10543e-15, 6.03961e-14, -3.55271e-15, 0.642136, -1.00181, 0.688916, -0.0624459)
+layers = 2
+mesh = SubResource("BoxMesh_gothb")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Model" index="12"]
+transform = Transform3D(0.556106, 0.321068, -2.11758e-22, -0.321068, 0.556106, 7.10543e-15, 6.03961e-14, -3.55271e-15, 0.642136, -1.00181, 0.688916, 0.0550641)
+layers = 2
+mesh = SubResource("BoxMesh_gothb")
+skeleton = NodePath("../..")
+
+[editable path="Barrels/Barrel1"]

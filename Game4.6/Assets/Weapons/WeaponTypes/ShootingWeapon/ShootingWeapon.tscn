@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://did231ce5cp4e"]
+
+[ext_resource type="PackedScene" uid="uid://djb02qng4cqsf" path="res://Assets/Weapons/WeaponTypes/Generic/Weapon.tscn" id="1_kxmcr"]
+[ext_resource type="Script" path="res://Assets/Weapons/WeaponTypes/ShootingWeapon/ShootingWeapon.gd" id="2_bty63"]
+[ext_resource type="PackedScene" uid="uid://wqv8bhorthgx" path="res://Assets/Weapons/WeaponComponents/Magazine/Magazine.tscn" id="4_oc1im"]
+[ext_resource type="PackedScene" uid="uid://bbx6fxghsdy38" path="res://Assets/Weapons/WeaponComponents/Slide/Slide.tscn" id="4_srihc"]
+
+[node name="Weapon" instance=ExtResource("1_kxmcr")]
+script = ExtResource("2_bty63")
+
+[node name="Barrels" type="Node3D" parent="." index="0"]
+
+[node name="Slides" type="Node3D" parent="." index="1"]
+
+[node name="Slide1" parent="Slides" index="0" instance=ExtResource("4_srihc")]
+magazine_path = NodePath("../../Magazines/Magazine1")
+
+[node name="Magazines" type="Node3D" parent="." index="2"]
+
+[node name="Magazine1" parent="Magazines" index="0" instance=ExtResource("4_oc1im")]

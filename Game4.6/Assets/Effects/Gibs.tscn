@@ -1,0 +1,197 @@
+[gd_scene load_steps=23 format=3 uid="uid://egphnvwk6cg"]
+
+[ext_resource type="Script" path="res://Assets/Effects/Gibs.gd" id="1_o0guu"]
+[ext_resource type="Texture2D" uid="uid://pnh872qjk0oy" path="res://Assets/Effects/Flame.png" id="2_2ahev"]
+[ext_resource type="PackedScene" uid="uid://c5cwnfuw4go1b" path="res://Assets/Audio/SoundPlayer.tscn" id="2_3tb4k"]
+[ext_resource type="Texture2D" uid="uid://djny4vk6xkldu" path="res://Assets/Effects/BloodParticles_albedo.png" id="2_fjaay"]
+[ext_resource type="AudioStream" uid="uid://xv1jp0gql8tc" path="res://Assets/SFX/Player_Death_01.wav" id="3_hmhtq"]
+
+[sub_resource type="Gradient" id="Gradient_tjffd"]
+offsets = PackedFloat32Array(0, 0.874302, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture_07eoi"]
+gradient = SubResource("Gradient_tjffd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticlesMaterial_jcugi"]
+lifetime_randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 0.44
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 10.0
+angular_velocity_min = -15.0
+angular_velocity_max = 15.0
+damping_min = 0.1
+damping_max = 0.2
+scale_min = 0.5
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture_07eoi")
+collision_use_scale = true
+sub_emitter_mode = 1
+sub_emitter_frequency = 15.0
+sub_emitter_keep_velocity = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nvuyc"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.0235294, 0, 1)
+roughness = 0.14
+normal_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_ctp33"]
+material = SubResource("StandardMaterial3D_nvuyc")
+radius = 0.1
+height = 0.2
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Gradient" id="Gradient_xkpfx"]
+offsets = PackedFloat32Array(0, 0.0336134, 0.72479, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.968509, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_363yk"]
+gradient = SubResource("Gradient_xkpfx")
+width = 128
+
+[sub_resource type="Curve" id="Curve_rpme7"]
+_data = [Vector2(0, 0.5), 0.0, 0.887726, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_76rnk"]
+curve = SubResource("Curve_rpme7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticlesMaterial_c7p0y"]
+lifetime_randomness = 0.4
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+angular_velocity_min = -5.0
+angular_velocity_max = 5.0
+damping_min = 6.0
+damping_max = 9.0
+scale_curve = SubResource("CurveTexture_76rnk")
+color_ramp = SubResource("GradientTexture1D_363yk")
+hue_variation_min = -0.05
+anim_offset_max = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_co45s"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0.0117647, 1)
+albedo_texture = ExtResource("2_fjaay")
+roughness = 0.17
+normal_scale = 0.34
+refraction_scale = 0.02
+refraction_texture = ExtResource("2_fjaay")
+refraction_texture_channel = 3
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_tnuem"]
+material = SubResource("StandardMaterial3D_co45s")
+
+[sub_resource type="Gradient" id="Gradient_ftxfe"]
+offsets = PackedFloat32Array(0, 0.121495, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ou20n"]
+gradient = SubResource("Gradient_ftxfe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticlesMaterial_6gu8h"]
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 0.1
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+angular_velocity_min = -5.0
+angular_velocity_max = 5.0
+gravity = Vector3(0, -1, 0)
+damping_min = 10.0
+damping_max = 14.0
+scale_min = 4.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_76rnk")
+color_ramp = SubResource("GradientTexture1D_ou20n")
+hue_variation_min = -0.05
+anim_offset_max = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u05mr"]
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.129412, 0, 0, 1)
+albedo_texture = ExtResource("2_2ahev")
+billboard_mode = 3
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ho3xr"]
+material = SubResource("StandardMaterial3D_u05mr")
+
+[node name="GibbsEffect" type="Node3D"]
+process_priority = 1
+process_physics_priority = 1
+script = ExtResource("1_o0guu")
+
+[node name="Gibs" type="GPUParticles3D" parent="."]
+layers = 2
+emitting = false
+amount = 16
+sub_emitter = NodePath("Blood2")
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 0
+collision_base_size = 0.1
+visibility_aabb = AABB(-4, -3.55666, -4, 8, 4.42876, 8)
+process_material = SubResource("ParticlesMaterial_jcugi")
+draw_pass_1 = SubResource("SphereMesh_ctp33")
+
+[node name="Blood2" type="GPUParticles3D" parent="Gibs"]
+layers = 2
+emitting = false
+amount = 1024
+lifetime = 3.0
+randomness = 0.22
+fixed_fps = 0
+interpolate = false
+fract_delta = false
+draw_order = 3
+process_material = SubResource("ParticlesMaterial_c7p0y")
+draw_pass_1 = SubResource("QuadMesh_tnuem")
+
+[node name="Blood" type="GPUParticles3D" parent="."]
+layers = 2
+emitting = false
+amount = 16
+lifetime = 8.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.22
+fixed_fps = 0
+process_material = SubResource("ParticlesMaterial_6gu8h")
+draw_pass_1 = SubResource("QuadMesh_ho3xr")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="SoundPlayer" parent="." instance=ExtResource("2_3tb4k")]
+SoundClip = "res://Assets/SFX/Player_Death_01.wav"
+AutoPlay = true
+
+[node name="AudioStreamPlayer3D" parent="SoundPlayer" index="0"]
+stream = ExtResource("3_hmhtq")
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="SoundPlayer"]

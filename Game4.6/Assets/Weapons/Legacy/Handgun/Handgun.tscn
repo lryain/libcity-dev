@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://blhggccubvroj"]
+
+[ext_resource type="PackedScene" uid="uid://djb02qng4cqsf" path="res://Assets/Weapons/WeaponTypes/Generic/Weapon.tscn" id="1_fpucm"]
+[ext_resource type="PackedScene" uid="uid://2h6xvopq206h" path="res://Assets/Weapons/Legacy/Handgun/Handgun.gltf" id="2_0ysys"]
+[ext_resource type="PackedScene" uid="uid://eerqpr05s6d4" path="res://Assets/Effects/BulletTracer.tscn" id="2_u1c26"]
+
+[node name="Weapon" instance=ExtResource("1_fpucm")]
+animation_speed = 2.5
+projectile_or_tracer_scene = ExtResource("2_u1c26")
+weapon_damage = 15
+
+[node name="Handgun" parent="." index="0" instance=ExtResource("2_0ysys")]
+
+[node name="Static" parent="Handgun/Handgun_Armature/Skeleton3D" index="0"]
+layers = 4
+
+[node name="Hand" parent="Handgun/HandArmature/Skeleton3D2" index="0"]
+layers = 4
+
+[node name="BulletSource" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.332005, 0.125336, 0)
+
+[editable path="Handgun"]
+[editable path="SFX/Shoot A"]
+[editable path="SFX/Shoot B"]
+[editable path="SFX/Shoot C"]

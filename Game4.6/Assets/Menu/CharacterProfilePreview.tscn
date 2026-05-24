@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://dy6s6ghk6m3ft"]
+
+[ext_resource type="Script" path="res://Assets/MapComponents/Rotator.gd" id="1_dpnir"]
+[ext_resource type="PackedScene" uid="uid://dd6oll1sm7uxf" path="res://Assets/Characters/Character.tscn" id="2_glh4i"]
+[ext_resource type="Script" path="res://Assets/Characters/CharacterProfile.gd" id="4_e7irv"]
+
+[sub_resource type="Gradient" id="Gradient_g6jv2"]
+offsets = PackedFloat32Array(0.5, 0.7, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.416067, 1, 1, 1, 0.407843)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5tynm"]
+gradient = SubResource("Gradient_g6jv2")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_50hcu"]
+transparency = 2
+alpha_scissor_threshold = 0.754
+alpha_antialiasing_mode = 0
+shading_mode = 2
+specular_mode = 2
+albedo_texture = SubResource("GradientTexture2D_5tynm")
+metallic = 0.99
+metallic_specular = 1.0
+roughness = 0.32
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m5so5"]
+material = SubResource("StandardMaterial3D_50hcu")
+size = Vector2(4, 4)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_erkg1"]
+data = PackedVector3Array(8, 0, 8, -8, 0, 8, 8, 0, -8, -8, 0, 8, -8, 0, -8, 8, 0, -8)
+
+[sub_resource type="Resource" id="Resource_4c6kl"]
+resource_local_to_scene = true
+script = ExtResource("4_e7irv")
+display_name = "Bot 1"
+display_color = Color(0.368627, 0.360784, 0.380392, 1)
+avatar_hash = PackedByteArray()
+fov = 90
+badges = Array[int]([1])
+voice = "res://Assets/Characters/CharacterVoices/Default.tres"
+voice_pitch = 1.0
+
+[node name="CharacterProfilePreview" type="Node3D"]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.34347, 0.862821, -0.370902, -0.0798261, 0.42032, 0.903858, 0.935765, -0.280841, 0.213243, 3.60943, 4.1488, 0)
+light_angular_distance = 1.5
+light_bake_mode = 1
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_max_distance = 15.0
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00201488, 0.00769317, -0.00368786)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_m5so5")
+skeleton = NodePath("")
+
+[node name="StaticBody3d" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(0.999941, -0.00287952, -0.0104796, 0.00307046, 0.999829, 0.0182529, 0.0104252, -0.018284, 0.999779, 0, 0, 0)
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="Floor/StaticBody3d"]
+shape = SubResource("ConcavePolygonShape3D_erkg1")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(-0.861629, 0.26745, -0.431353, 0, 0.849893, 0.526956, 0.507538, 0.45404, -0.732292, -2.171, 3.423, -3.677)
+v_offset = 0.083
+current = true
+fov = 34.0
+near = 1.0
+far = 25.0
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="Camera"]
+transform = Transform3D(-0.861629, -1.78814e-07, 0.507538, 0.13136, 0.965926, 0.223006, -0.490244, 0.258819, -0.83227, -1.998, -4.575, -5.035)
+layers = 7
+update_mode = 1
+max_distance = 8.2
+size = Vector3(8, 8, 8)
+origin_offset = Vector3(-1.99, 0, 0)
+box_projection = true
+enable_shadows = true
+cull_mask = 7
+ambient_color = Color(0, 1, 0, 1)
+ambient_color_energy = 8.0
+
+[node name="Marker3d" type="Marker3D" parent="."]
+script = ExtResource("1_dpnir")
+speed = 0.2
+
+[node name="Character" parent="Marker3d" instance=ExtResource("2_glh4i")]
+profile = SubResource("Resource_4c6kl")

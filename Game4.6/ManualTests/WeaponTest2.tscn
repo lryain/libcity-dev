@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxu32uxc8uebl"]
+
+[ext_resource type="Script" path="res://ManualTests/WeaponTest.gd" id="1_vnhtt"]
+[ext_resource type="Environment" uid="uid://cf1ns7bxijudy" path="res://Assets/Environments/DefaultMedium.tres" id="2_ljpjq"]
+[ext_resource type="PackedScene" uid="uid://bhbo3gsii2qo8" path="res://Assets/Weapons/WeaponTypes/ProjectileShootingWeapon/ProjectileShootingWeapon.tscn" id="3_a2anj"]
+[ext_resource type="Material" uid="uid://bsck7xbq7ry6m" path="res://Assets/Materials/Maps/Dev/Dev_Gray.tres" id="4_w2r6b"]
+
+[node name="WeaponTest" type="Node3D"]
+script = ExtResource("1_vnhtt")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_ljpjq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.893497, -0.270764, 0.358261, -0.272449, 0.307341, 0.911764, -0.356981, -0.912266, 0.200839, 0, 0.718386, 1.13394)
+light_energy = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.317, 0, 9)
+current = true
+fov = 41.6
+near = 0.01
+
+[node name="Weapon" parent="." instance=ExtResource("3_a2anj")]
+projectile_velocity = 5.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3764, 0, 0)
+material_override = ExtResource("4_w2r6b")
+use_collision = true
+size = Vector3(2, 2, 2)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

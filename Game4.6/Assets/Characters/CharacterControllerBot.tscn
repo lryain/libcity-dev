@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnqhw0onkw11v"]
+
+[ext_resource type="PackedScene" uid="uid://d048mpbvf4t7l" path="res://Assets/Characters/CharacterController.tscn" id="1_284wb"]
+[ext_resource type="Script" path="res://Assets/Characters/CharacterControllerBot.gd" id="2_o3jwb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tbawi"]
+frequency = 0.075
+fractal_octaves = 10
+fractal_lacunarity = 0.905
+fractal_gain = 1.179
+fractal_ping_pong_strength = 2.512
+cellular_distance_function = 3
+cellular_jitter = 1.28
+cellular_return_type = 4
+domain_warp_enabled = true
+domain_warp_amplitude = 50.0
+domain_warp_frequency = 0.002
+domain_warp_fractal_type = 2
+domain_warp_fractal_octaves = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gjbon"]
+radius = 3.0
+
+[node name="CharacterController" node_paths=PackedStringArray("nav_agent") instance=ExtResource("1_284wb")]
+script = ExtResource("2_o3jwb")
+noise = SubResource("FastNoiseLite_tbawi")
+nav_agent = NodePath("NavigationAgent3D")
+metadata/_edit_lock_ = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="0"]
+path_desired_distance = 3.0
+path_max_distance = 10.01
+path_metadata_flags = 0
+avoidance_enabled = true
+radius = 2.0
+neighbor_distance = 15.0
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="." index="1"]
+wait_time = 0.25
+autostart = true
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="." index="2"]
+transform = Transform3D(0.999999, -0.00100467, -0.0013457, 0.00102099, 0.999925, 0.0121884, 0.00133335, -0.0121898, 0.999925, 0, 0.00347751, 0)
+shape = SubResource("SphereShape3D_gjbon")
+target_position = Vector3(0, 0, -50)
+collision_mask = 8
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="3"]
+transform = Transform3D(0.999999, -0.00100467, -0.0013457, 0.00102099, 0.999925, 0.0121884, 0.00133335, -0.0121898, 0.999925, 0, 0.00347751, 0)
+target_position = Vector3(0, 0, -50)
+collision_mask = 8
+
+[node name="LedgeRay" type="RayCast3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, -1)
+target_position = Vector3(0, 0, -5)
+
+[node name="StepRay" type="RayCast3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.08616e-07, 0, -2.08616e-07, 1, 0, -1.2, 0)
+target_position = Vector3(0, 0, -3)
+
+[node name="LeftRay" type="RayCast3D" parent="." index="6"]
+transform = Transform3D(-4.37114e-08, -2.08616e-07, 1, 0, 1, 2.08616e-07, -1, 9.11891e-15, -4.37114e-08, 0, -1.2, 0)
+target_position = Vector3(0, 0, -2)
+
+[node name="RightRay" type="RayCast3D" parent="." index="7"]
+transform = Transform3D(1.31134e-07, 2.08616e-07, -1, 2.25857e-22, 1, 2.08616e-07, 1, -2.73567e-14, 1.31134e-07, 0, -1.2, 0)
+target_position = Vector3(0, 0, -2)
+
+[node name="ClearanceRay" type="RayCast3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.08616e-07, 0, -2.08616e-07, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0, -3)
+
+[node name="FallRay" type="RayCast3D" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.08616e-07, 0, -2.08616e-07, 1, 0, 0, 0)
+target_position = Vector3(0, -10, 0)
+
+[connection signal="link_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_link_reached"]
+[connection signal="waypoint_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_waypoint_reached"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

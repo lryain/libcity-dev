@@ -1,0 +1,282 @@
+[gd_scene load_steps=23 format=3 uid="uid://n3ktc2gomi2p"]
+
+[ext_resource type="Script" path="res://Assets/MapComponents/SpawnPoint.gd" id="1_gr60o"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mjwxn"]
+height = 4.0
+radius = 2.0
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_4injq"]
+output_port_for_preview = 0
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1)]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_iyu5e"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_h25th"]
+default_input_values = [0, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_qpmp5"]
+default_input_values = [0, 0.0, 1, 64.0, 2, 0.0]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_xke0p"]
+default_input_values = [0, 0.0, 1, 4.0]
+operator = 2
+
+[sub_resource type="VisualShaderNodeStep" id="VisualShaderNodeStep_o8nyy"]
+default_input_values = [0, 0.5, 1, 0.0]
+
+[sub_resource type="VisualShaderNodeIntParameter" id="VisualShaderNodeIntParameter_7iscc"]
+parameter_name = "selector"
+qualifier = 2
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_xvl2e"]
+constant = 0.5
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_0385r"]
+parameter_name = "team_color_0"
+qualifier = 1
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_ic0j2"]
+parameter_name = "team_color_1"
+qualifier = 1
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_6xe7g"]
+parameter_name = "team_color_2"
+qualifier = 1
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_uyraa"]
+constant = Color(1, 0, 0, 1)
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_vfsq3"]
+size = Vector2(578, 757)
+expression = "switch (selector) {
+	case 0:
+		output = team_any;
+		break;
+	case 1:
+		output = team_1;
+		break;
+	case 2:
+		output = team_2;
+		break;
+	case 3:
+		output = team_none;
+		break;
+}"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ku64m"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_31e35"]
+output_port_for_preview = 0
+default_input_values = [0, 0.0, 1, 0.5, 2, 0.5]
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_soi0e"]
+function = 0
+
+[sub_resource type="VisualShader" id="VisualShader_gfijv"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_never, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled;
+
+global uniform vec4 team_color_0 : source_color;
+global uniform vec4 team_color_1 : source_color;
+global uniform vec4 team_color_2 : source_color;
+instance uniform int selector = 0;
+
+
+
+void fragment() {
+// Input:11
+	vec2 n_out11p0 = UV;
+
+
+// VectorDecompose:12
+	float n_out12p0 = n_out11p0.x;
+	float n_out12p1 = n_out11p0.y;
+
+
+// FloatOp:14
+	float n_in14p0 = 0.00000;
+	float n_in14p1 = 4.00000;
+	float n_out14p0 = n_in14p0 * n_in14p1;
+
+
+// MultiplyAdd:13
+	float n_in13p1 = 64.00000;
+	float n_out13p0 = fma(n_out12p1, n_in13p1, n_out14p0);
+
+
+// FloatFunc:9
+	float n_out9p0 = sin(n_out13p0);
+
+
+// MultiplyAdd:8
+	float n_in8p1 = 0.50000;
+	float n_in8p2 = 0.50000;
+	float n_out8p0 = fma(n_out9p0, n_in8p1, n_in8p2);
+
+
+// Step:15
+	float n_in15p0 = 0.50000;
+	float n_out15p0 = step(n_in15p0, n_out8p0);
+
+
+// ColorParameter:2
+	vec4 n_out2p0 = team_color_0;
+
+
+// ColorParameter:3
+	vec4 n_out3p0 = team_color_1;
+
+
+// ColorParameter:4
+	vec4 n_out4p0 = team_color_2;
+
+
+// ColorConstant:5
+	vec4 n_out5p0 = vec4(1.000000, 0.000000, 0.000000, 1.000000);
+
+
+// IntParameter:16
+	int n_out16p0 = selector;
+
+
+	vec3 n_out6p0;
+// Expression:6
+	n_out6p0 = vec3(0.0, 0.0, 0.0);
+	{
+		switch (n_out16p0) {
+			case 0:
+				n_out6p0 = vec3(n_out2p0.xyz);
+				break;
+			case 1:
+				n_out6p0 = vec3(n_out3p0.xyz);
+				break;
+			case 2:
+				n_out6p0 = vec3(n_out4p0.xyz);
+				break;
+			case 3:
+				n_out6p0 = vec3(n_out5p0.xyz);
+				break;
+		}
+	}
+
+
+// VectorOp:10
+	vec3 n_out10p0 = vec3(n_out15p0) * n_out6p0;
+
+
+// FloatConstant:17
+	float n_out17p0 = 0.500000;
+
+
+// Output:0
+	ALBEDO = n_out10p0;
+	ALPHA = n_out17p0;
+
+
+}
+"
+graph_offset = Vector2(-1215.81, -213.549)
+modes/depth_draw = 2
+flags/unshaded = true
+flags/shadows_disabled = true
+nodes/fragment/0/position = Vector2(1840, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_0385r")
+nodes/fragment/2/position = Vector2(-660, 100)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorParameter_ic0j2")
+nodes/fragment/3/position = Vector2(-660, 360)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorParameter_6xe7g")
+nodes/fragment/4/position = Vector2(-640, 580)
+nodes/fragment/5/node = SubResource("VisualShaderNodeColorConstant_uyraa")
+nodes/fragment/5/position = Vector2(-600, 800)
+nodes/fragment/6/node = SubResource("VisualShaderNodeExpression_vfsq3")
+nodes/fragment/6/position = Vector2(-160, 380)
+nodes/fragment/6/size = Vector2(578, 757)
+nodes/fragment/6/input_ports = "0,4,team_any;1,4,team_1;2,4,team_2;3,4,team_none;4,1,selector;"
+nodes/fragment/6/output_ports = "0,4,output;"
+nodes/fragment/6/expression = "switch (selector) {
+	case 0:
+		output = team_any;
+		break;
+	case 1:
+		output = team_1;
+		break;
+	case 2:
+		output = team_2;
+		break;
+	case 3:
+		output = team_none;
+		break;
+}"
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_ku64m")
+nodes/fragment/7/position = Vector2(-1120, -40)
+nodes/fragment/8/node = SubResource("VisualShaderNodeMultiplyAdd_31e35")
+nodes/fragment/8/position = Vector2(140, -140)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_soi0e")
+nodes/fragment/9/position = Vector2(-60, -60)
+nodes/fragment/10/node = SubResource("VisualShaderNodeVectorOp_4injq")
+nodes/fragment/10/position = Vector2(780, 100)
+nodes/fragment/11/node = SubResource("VisualShaderNodeInput_iyu5e")
+nodes/fragment/11/position = Vector2(-1000, -260)
+nodes/fragment/12/node = SubResource("VisualShaderNodeVectorDecompose_h25th")
+nodes/fragment/12/position = Vector2(-700, -280)
+nodes/fragment/13/node = SubResource("VisualShaderNodeMultiplyAdd_qpmp5")
+nodes/fragment/13/position = Vector2(-259.2, -99.6)
+nodes/fragment/14/node = SubResource("VisualShaderNodeFloatOp_xke0p")
+nodes/fragment/14/position = Vector2(-600, -80)
+nodes/fragment/15/node = SubResource("VisualShaderNodeStep_o8nyy")
+nodes/fragment/15/position = Vector2(460, -160)
+nodes/fragment/16/node = SubResource("VisualShaderNodeIntParameter_7iscc")
+nodes/fragment/16/position = Vector2(-580, 1020)
+nodes/fragment/17/node = SubResource("VisualShaderNodeFloatConstant_xvl2e")
+nodes/fragment/17/position = Vector2(1500, 360)
+nodes/fragment/connections = PackedInt32Array(2, 0, 6, 0, 3, 0, 6, 1, 4, 0, 6, 2, 5, 0, 6, 3, 9, 0, 8, 0, 10, 0, 0, 0, 11, 0, 12, 0, 13, 0, 9, 0, 12, 1, 13, 0, 14, 0, 13, 2, 8, 0, 15, 1, 15, 0, 10, 0, 6, 0, 10, 1, 16, 0, 6, 4, 17, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ikrjp"]
+render_priority = 0
+shader = SubResource("VisualShader_gfijv")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xjekx"]
+material = SubResource("ShaderMaterial_ikrjp")
+top_radius = 0.0
+bottom_radius = 1.0
+radial_segments = 16
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_war6f"]
+material = SubResource("ShaderMaterial_ikrjp")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 0.01
+radial_segments = 32
+rings = 1
+cap_bottom = false
+
+[node name="SpawnPoint" type="Marker3D"]
+script = ExtResource("1_gr60o")
+project_to_floor = false
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_mjwxn")
+
+[node name="SpawnPointMarker" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0116482, 0.0118284, -0.00626945)
+instance_shader_parameters/selector = 0
+mesh = SubResource("CylinderMesh_xjekx")
+
+[node name="SpawnPointMarkerFloor" type="MeshInstance3D" parent="SpawnPointMarker"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0194509, 0.0103926, -0.949639)
+instance_shader_parameters/selector = 0
+mesh = SubResource("CylinderMesh_war6f")
+skeleton = NodePath("../..")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -1,0 +1,130 @@
+[gd_scene load_steps=8 format=3 uid="uid://b87g2ujxtiqxl"]
+
+[ext_resource type="Shader" uid="uid://q2dsocfv4nid" path="res://Assets/HUD/Console.tres" id="1_63um5"]
+[ext_resource type="Script" path="res://Assets/HUD/Console.gd" id="1_tjrya"]
+[ext_resource type="Theme" uid="uid://bjvlto2fhfxv4" path="res://Assets/HUD/ConsoleTheme.tres" id="2_kixsu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xg20n"]
+shader = ExtResource("1_63um5")
+
+[sub_resource type="Animation" id="Animation_nfor3"]
+resource_name = "ConsoleOpenTest"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:anchor_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.75]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.75, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_eahh7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:anchor_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2hn0r"]
+_data = {
+"ConsoleOpenTest": SubResource("Animation_nfor3"),
+"RESET": SubResource("Animation_eahh7")
+}
+
+[node name="Console" type="Panel"]
+process_mode = 3
+light_mask = 0
+material = SubResource("ShaderMaterial_xg20n")
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+theme = ExtResource("2_kixsu")
+script = ExtResource("1_tjrya")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../VBoxContainer")
+libraries = {
+"": SubResource("AnimationLibrary_2hn0r")
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 1
+
+[node name="History" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+mouse_force_pass_scroll_events = false
+theme = ExtResource("2_kixsu")
+bbcode_enabled = true
+scroll_following = true
+context_menu_enabled = true
+selection_enabled = true
+deselect_on_focus_loss_enabled = false
+
+[node name="Editor" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+auto_translate = false
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
+theme = ExtResource("2_kixsu")
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+placeholder_text = ">"
+virtual_keyboard_enabled = false
+deselect_on_focus_loss_enabled = false
+flat = true
+caret_blink = true
+caret_force_displayed = true
+
+[connection signal="focus_entered" from="VBoxContainer/History" to="." method="_on_history_focus_entered"]
+[connection signal="meta_clicked" from="VBoxContainer/History" to="." method="_on_history_meta_clicked"]
+[connection signal="mouse_exited" from="VBoxContainer/History" to="." method="_on_history_mouse_exited"]
+[connection signal="focus_exited" from="VBoxContainer/Editor" to="." method="_on_editor_focus_exited"]
+[connection signal="text_changed" from="VBoxContainer/Editor" to="." method="_on_editor_text_changed"]
+[connection signal="text_submitted" from="VBoxContainer/Editor" to="." method="_on_editor_text_submitted"]

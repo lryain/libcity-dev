@@ -1,0 +1,188 @@
+[gd_scene load_steps=20 format=3 uid="uid://b34cc1e74rcl5"]
+
+[ext_resource type="Material" uid="uid://cn1nvy72eu4in" path="res://Assets/Materials/Effects/Smoke.tres" id="1_8o20u"]
+[ext_resource type="PackedScene" uid="uid://bd0fawhucx8yw" path="res://Assets/Effects/ImpactExplosion.tscn" id="1_a51r1"]
+[ext_resource type="AudioStream" uid="uid://bquhms2v4vi4o" path="res://Assets/SFX/Weapons_Handgun_Shot_02_B.wav" id="2_lxwci"]
+
+[sub_resource type="Gradient" id="Gradient_us3gf"]
+offsets = PackedFloat32Array(0.00304878, 1)
+colors = PackedColorArray(0, 0.861572, 1, 1, 0, 0.163426, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lsr6v"]
+gradient = SubResource("Gradient_us3gf")
+
+[sub_resource type="Gradient" id="Gradient_3dewy"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0640244, 0.945122, 0.996951)
+colors = PackedColorArray(0, 0, 0, 1, 32, 32, 32, 1, 8, 8, 8, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ufkbg"]
+gradient = SubResource("Gradient_3dewy")
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qr5oa"]
+lifetime_randomness = 1.0
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+damping_min = 1.25
+damping_max = 1.7
+scale_min = 0.01
+scale_max = 0.05
+color_ramp = SubResource("GradientTexture1D_ufkbg")
+color_initial_ramp = SubResource("GradientTexture1D_lsr6v")
+turbulence_enabled = true
+turbulence_noise_strength = 0.1
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.03
+collision_mode = 1
+collision_friction = 0.8
+collision_bounce = 0.8
+
+[sub_resource type="Curve" id="Curve_jj02r"]
+_data = [Vector2(0, 0), 0.0, 25.7273, 0, 0, Vector2(0.114841, 1), -0.921574, -0.921574, 0, 0, Vector2(1, 0), -1.25778, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_y25br"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4cvq4"]
+gradient = SubResource("Gradient_y25br")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f7e45"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(3, 3, 3, 1)
+albedo_texture = SubResource("GradientTexture2D_4cvq4")
+texture_filter = 1
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+use_particle_trails = true
+proximity_fade_distance = 0.1
+distance_fade_min_distance = 25.0
+distance_fade_max_distance = 50.0
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_cfxgi"]
+material = SubResource("StandardMaterial3D_f7e45")
+shape = 0
+size = 0.5
+sections = 3
+section_length = 0.04
+curve = SubResource("Curve_jj02r")
+
+[sub_resource type="Gradient" id="Gradient_dxgyd"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0750708, 0.252125, 0.487252, 0.675637, 1)
+colors = PackedColorArray(0.984375, 0.984375, 0.984375, 0, 1, 1, 1, 1, 0.891613, 0.891613, 0.891613, 0.712098, 0.779191, 0.779191, 0.779191, 0.413476, 0.68846, 0.68846, 0.68846, 0.172472, 0.623529, 0.623529, 0.623529, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ynhdy"]
+gradient = SubResource("Gradient_dxgyd")
+
+[sub_resource type="Curve" id="Curve_y0pod"]
+max_value = 2.0
+_data = [Vector2(0, 0.181818), 0.0, 0.576284, 0, 0, Vector2(0.375857, 0.6), 1.65682, 1.65682, 0, 0, Vector2(1, 2), 4.1026, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mtrqk"]
+curve = SubResource("Curve_y0pod")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_celv1"]
+particle_flag_rotate_y = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 8, 0)
+damping_min = 3.0
+damping_max = 5.0
+attractor_interaction_enabled = false
+scale_min = 6.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_mtrqk")
+color = Color(0.258824, 0.258824, 0.258824, 1)
+color_ramp = SubResource("GradientTexture1D_ynhdy")
+turbulence_enabled = true
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.01
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_vfui0"]
+material = ExtResource("1_8o20u")
+size = Vector2(0.5, 0.5)
+
+[node name="GibFX" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.933368, 0)
+
+[node name="Impact2" parent="." instance=ExtResource("1_a51r1")]
+
+[node name="Smoke" parent="Impact2/GpuParticles/Tracers" index="0"]
+visible = false
+
+[node name="AudioStreamPlayer3D" parent="Impact2/SoundPlayer" index="0"]
+bus = &"SFX"
+
+[node name="Decal" parent="Impact2" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.06581e-14, 0, -1.06581e-14, 1, 0.0145645, -0.167163, -0.0109339)
+size = Vector3(2, 6, 2)
+
+[node name="Sparks" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, -6.68479e-11, -7.27596e-12, 5.52518e-11, 1, -2.32831e-10, 0, 2.32831e-10, 1, 0, 0, 0)
+layers = 2
+emitting = false
+amount = 128
+lifetime = 3.0
+one_shot = true
+speed_scale = 1.3
+explosiveness = 0.91
+randomness = 1.0
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_qr5oa")
+draw_pass_1 = SubResource("RibbonTrailMesh_cfxgi")
+
+[node name="Smoke" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 3
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.57
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_celv1")
+draw_pass_1 = SubResource("QuadMesh_vfui0")
+
+[node name="GibSFX" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00154817, 0)
+stream = ExtResource("2_lxwci")
+volume_db = 4.0
+max_db = 5.0
+pitch_scale = 0.6
+autoplay = true
+max_distance = 15.0
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]
+
+[editable path="Impact2"]
+[editable path="Impact2/SoundPlayer"]

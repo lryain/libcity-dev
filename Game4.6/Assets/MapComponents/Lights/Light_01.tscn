@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=3 uid="uid://dmnhbjpohmqkh"]
+
+[ext_resource type="PackedScene" uid="uid://b8w7ao52r1xer" path="res://Assets/Effects/Halo.tscn" id="1_ediiu"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v5cyn"]
+points = PackedVector3Array(0.0847117, -0.144436, 0.262618, -0.0341584, -0.145629, -0.273355, -0.0336787, -0.13515, -0.269515, -0.262619, -0.144438, 0.0847094, 0.158817, 0.141727, 0.0584838, -0.167233, 0.14183, 0.0250453, 0.26264, -0.144431, -0.0846526, 0.0584993, 0.141767, -0.158794, -0.058518, 0.141762, 0.158789, -0.210608, -0.143615, -0.176895, -0.0829172, 0.140588, -0.149219, -0.143523, -0.143932, 0.236364, 0.245097, -0.144074, 0.126743, 0.14351, -0.14394, -0.236377, 0.149243, 0.140598, -0.0828479, 0.0829174, 0.140623, 0.149205, -0.258445, -0.117114, -0.0666485, -0.149213, 0.140599, -0.0829, -0.124511, 0.140747, 0.116161, -0.0341584, -0.145629, 0.273354, 0.273362, -0.145644, 0.034146, 0.203603, -0.144613, 0.186629, -0.143524, -0.143933, -0.236365, 0.0083244, 0.125135, 0.175684, 0.175692, 0.125128, -0.0082806, 0.203604, -0.144613, -0.18663, -0.236394, -0.143921, 0.143479, 0.0666485, -0.117113, -0.258445, -0.00834504, 0.125134, -0.175682, -0.273357, -0.14563, -0.0341428, 0.116217, 0.140741, -0.124476, 0.124502, 0.14076, 0.116172)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hfb0a"]
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xaeoe"]
+height = 256
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_hfb0a")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_je6uh"]
+metallic = 1.0
+roughness = 0.31
+normal_enabled = true
+normal_scale = 0.05
+normal_texture = SubResource("NoiseTexture2D_xaeoe")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u4a43"]
+material = SubResource("StandardMaterial3D_je6uh")
+top_radius = 0.169
+bottom_radius = 0.278
+height = 0.292
+radial_segments = 24
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g32yb"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gloc1"]
+material = SubResource("StandardMaterial3D_g32yb")
+top_radius = 0.148
+bottom_radius = 0.128
+height = 0.001
+radial_segments = 24
+cap_bottom = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_y0og4"]
+size = Vector2(2, 2)
+
+[sub_resource type="Gradient" id="Gradient_ki7q6"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0174129, 0.124378, 0.201493, 0.343284, 0.450249, 0.567164, 0.689055, 0.850746, 1)
+colors = PackedColorArray(2, 2, 2, 1, 0.985075, 0.985075, 0.985075, 1, 0.500439, 0.500439, 0.500439, 1, 0.247924, 0.247924, 0.247924, 1, 0.120634, 0.120634, 0.120634, 1, 0.0580323, 0.0580323, 0.0580323, 1, 0.0304474, 0.0304474, 0.0304474, 1, 0.0187759, 0.0187759, 0.0187759, 1, 0.00932661, 0.00932661, 0.00932661, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5y8sa"]
+gradient = SubResource("Gradient_ki7q6")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h58xe"]
+transparency = 1
+blend_mode = 1
+no_depth_test = true
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.5
+emission_operator = 1
+emission_texture = SubResource("GradientTexture2D_5y8sa")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+point_size = 89.7
+proximity_fade_distance = 0.25
+
+[node name="SpotLight3D" type="SpotLight3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -40, 7.31913, 23)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 25.0
+spot_angle = 63.2551
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.154958)
+collision_layer = 513
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_v5cyn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.154958)
+mesh = SubResource("CylinderMesh_u4a43")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.00713634)
+mesh = SubResource("CylinderMesh_gloc1")
+
+[node name="Halo" parent="." instance=ExtResource("1_ediiu")]
+transform = Transform3D(1.00895, 0, 0, 0, 1.00895, 0, 0, 0, 1.00895, 0, 0, -0.0139747)
+visible = false
+transparency = 0.75
+mesh = SubResource("QuadMesh_y0og4")
+surface_material_override/0 = SubResource("StandardMaterial3D_h58xe")
+halo_alpha = 0.25

@@ -1,0 +1,147 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://xtekx2acksgw"]
+
+[sub_resource type="VisualShaderNodeIntConstant" id="VisualShaderNodeIntConstant_i1dci"]
+constant = 512
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_hsj8n"]
+size = Vector2(1140, 680)
+expression = "vec2 index_uv = floor(vec2(uv.x * columns, uv.y * rows));
+vec2 fract_uv = fract(vec2(uv.x * columns, uv.y * rows));
+
+float minimum_dist = 1.0;  
+vec2 minimum_point;
+float dist = 0.0;
+vec2 point;
+vec2 neighbor;
+vec2 diff;
+
+for (int y= -1; y <= 1; y++) {
+	for (int x= -1; x <= 1; x++) {
+		neighbor = vec2(float(x),float(y));
+		point = vec2(fract(sin(dot(index_uv + neighbor, vec2(12.98981, 78.511))) * 41078.5452123)) * 1.5;
+		diff = neighbor + point - (fract_uv * 3.0);
+		dist = length(diff);
+		
+		if(dist < minimum_dist) {
+			minimum_dist = dist;
+			minimum_point = point;
+		}
+	}
+}
+
+output = max(1.0 - pow(dist * 2.0, pow(point.x * point.y / 2.4, 16.0)), 0.0);"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_5f2vt"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeIntConstant" id="VisualShaderNodeIntConstant_8n1py"]
+constant = 1024
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_nj7e1"]
+input_name = "eyedir"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_add, depth_draw_never, cull_back, diffuse_lambert, specular_disabled, unshaded, shadows_disabled, fog_disabled;
+
+
+
+
+void fragment() {
+// Input:4
+	vec2 n_out4p0 = UV;
+
+
+// IntConstant:5
+	int n_out5p0 = 1024;
+
+
+// IntConstant:16
+	int n_out16p0 = 512;
+
+
+	float n_out3p0;
+// Expression:3
+	n_out3p0 = 0.0;
+	{
+		vec2 index_uv = floor(vec2(n_out4p0.x * float(n_out5p0), n_out4p0.y * float(n_out16p0)));
+		vec2 fract_uv = fract(vec2(n_out4p0.x * float(n_out5p0), n_out4p0.y * float(n_out16p0)));
+		
+		float minimum_dist = 1.0;  
+		vec2 minimum_point;
+		float dist = 0.0;
+		vec2 point;
+		vec2 neighbor;
+		vec2 diff;
+		
+		for (int y= -1; y <= 1; y++) {
+			for (int x= -1; x <= 1; x++) {
+				neighbor = vec2(float(x),float(y));
+				point = vec2(fract(sin(dot(index_uv + neighbor, vec2(12.98981, 78.511))) * 41078.5452123)) * 1.5;
+				diff = neighbor + point - (fract_uv * 3.0);
+				dist = length(diff);
+				
+				if(dist < minimum_dist) {
+					minimum_dist = dist;
+					minimum_point = point;
+				}
+			}
+		}
+		
+		n_out3p0 = max(1.0 - pow(dist * 2.0, pow(point.x * point.y / 2.4, 16.0)), 0.0);
+	}
+
+
+// Output:0
+	ALBEDO = vec3(n_out3p0);
+
+
+}
+"
+graph_offset = Vector2(-1171.62, -311.628)
+modes/blend = 1
+modes/depth_draw = 2
+modes/specular = 2
+flags/unshaded = true
+flags/shadows_disabled = true
+flags/fog_disabled = true
+nodes/fragment/0/position = Vector2(500, 320)
+nodes/fragment/3/node = SubResource("VisualShaderNodeExpression_hsj8n")
+nodes/fragment/3/position = Vector2(-960, 300)
+nodes/fragment/3/size = Vector2(1140, 680)
+nodes/fragment/3/input_ports = "0,3,uv;1,0,columns;2,0,rows;"
+nodes/fragment/3/output_ports = "0,0,output;"
+nodes/fragment/3/expression = "vec2 index_uv = floor(vec2(uv.x * columns, uv.y * rows));
+vec2 fract_uv = fract(vec2(uv.x * columns, uv.y * rows));
+
+float minimum_dist = 1.0;  
+vec2 minimum_point;
+float dist = 0.0;
+vec2 point;
+vec2 neighbor;
+vec2 diff;
+
+for (int y= -1; y <= 1; y++) {
+	for (int x= -1; x <= 1; x++) {
+		neighbor = vec2(float(x),float(y));
+		point = vec2(fract(sin(dot(index_uv + neighbor, vec2(12.98981, 78.511))) * 41078.5452123)) * 1.5;
+		diff = neighbor + point - (fract_uv * 3.0);
+		dist = length(diff);
+		
+		if(dist < minimum_dist) {
+			minimum_dist = dist;
+			minimum_point = point;
+		}
+	}
+}
+
+output = max(1.0 - pow(dist * 2.0, pow(point.x * point.y / 2.4, 16.0)), 0.0);"
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_5f2vt")
+nodes/fragment/4/position = Vector2(-1360, 240)
+nodes/fragment/5/node = SubResource("VisualShaderNodeIntConstant_8n1py")
+nodes/fragment/5/position = Vector2(-1200, 440)
+nodes/fragment/16/node = SubResource("VisualShaderNodeIntConstant_i1dci")
+nodes/fragment/16/position = Vector2(-1200, 580)
+nodes/fragment/connections = PackedInt32Array(5, 0, 3, 1, 4, 0, 3, 0, 3, 0, 0, 0, 16, 0, 3, 2)
+nodes/sky/2/node = SubResource("VisualShaderNodeInput_nj7e1")
+nodes/sky/2/position = Vector2(-100, 220)

@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4igwv2hiy6vq"]
+
+[ext_resource type="PackedScene" uid="uid://ct2cmoinu4os1" path="res://Assets/HUD/HUD.tscn" id="1_5ck4u"]
+[ext_resource type="Script" path="res://ManualTests/CharacterTest.gd" id="1_31ycp"]
+[ext_resource type="PackedScene" uid="uid://dd6oll1sm7uxf" path="res://Assets/Characters/Character.tscn" id="2_yvkm0"]
+[ext_resource type="Script" path="res://Assets/Characters/CharacterProfile.gd" id="5_7bwon"]
+[ext_resource type="PackedScene" uid="uid://bnqhw0onkw11v" path="res://Assets/Characters/CharacterControllerBot.tscn" id="5_6517f"]
+[ext_resource type="PackedScene" uid="uid://cecrabjd5w6lo" path="res://Assets/Maps/MapC.tscn" id="7_udie5"]
+
+[sub_resource type="Resource" id="Resource_aovsj"]
+resource_local_to_scene = true
+script = ExtResource("5_7bwon")
+display_name = "Bot 1"
+display_color = Color(0.662745, 0.662745, 0.662745, 1)
+avatar_hash = null
+fov = 90
+badges = Array[int]([1])
+voice = "res://Assets/Characters/CharacterVoices/Default.tres"
+voice_pitch = 1.0
+
+[sub_resource type="Resource" id="Resource_hmvlh"]
+resource_local_to_scene = true
+script = ExtResource("5_7bwon")
+display_name = "Player"
+display_color = Color(0.662745, 0.662745, 0.662745, 1)
+avatar_hash = null
+fov = 90
+badges = Array[int]([7, 2])
+voice = "res://Assets/Characters/CharacterVoices/Default.tres"
+voice_pitch = 1.0
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00177145, 0.00616503, -0.000609875)
+script = ExtResource("1_31ycp")
+
+[node name="HUD" parent="." instance=ExtResource("1_5ck4u")]
+
+[node name="CharacterBot" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00201488, 0.00769317, -3.36058)
+profile = SubResource("Resource_aovsj")
+controller_scene = ExtResource("5_6517f")
+
+[node name="CharacterPlayer" parent="." instance=ExtResource("2_yvkm0")]
+profile = SubResource("Resource_hmvlh")
+
+[node name="Map" parent="." instance=ExtResource("7_udie5")]

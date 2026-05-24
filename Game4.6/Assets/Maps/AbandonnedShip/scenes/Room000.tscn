@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://unvvaeau1im5"]
+
+[ext_resource type="PackedScene" uid="uid://c46dxlgxt0qk5" path="res://Assets/Maps/AbandonnedShip/glb/room.000.glb" id="1_bau0o"]
+[ext_resource type="PackedScene" uid="uid://cpgon8lu42se5" path="res://Assets/Maps/AbandonnedShip/glb/room.000_collider.glb" id="2_wlcg2"]
+[ext_resource type="PackedScene" uid="uid://c2exm0eu6cw2y" path="res://Assets/Maps/AbandonnedShip/glb/ramp.000.glb" id="3_3id4r"]
+[ext_resource type="PackedScene" uid="uid://b26ucmalj5oym" path="res://Assets/Maps/AbandonnedShip/glb/crate_2m.glb" id="4_4s2bt"]
+[ext_resource type="PackedScene" uid="uid://utm5psfwdixr" path="res://Assets/Maps/AbandonnedShip/scenes/SlidingDoor.tscn" id="5_jdam3"]
+
+[node name="Room000" type="Node3D"]
+
+[node name="room000" parent="." instance=ExtResource("1_bau0o")]
+
+[node name="room000_collider" parent="." instance=ExtResource("2_wlcg2")]
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 9.41179)
+distance_fade_enabled = true
+omni_range = 5.57221
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 3.07329)
+distance_fade_enabled = true
+omni_range = 5.57221
+
+[node name="ramp000" parent="." instance=ExtResource("3_3id4r")]
+
+[node name="crate_2m" parent="." instance=ExtResource("4_4s2bt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99897, -1, 5.78188)
+
+[node name="crate_2m4" parent="." instance=ExtResource("4_4s2bt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99897, -1, 7.82595)
+
+[node name="crate_2m5" parent="." instance=ExtResource("4_4s2bt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99897, 1, 6.9671)
+
+[node name="crate_2m2" parent="." instance=ExtResource("4_4s2bt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0597421, -1, 6.56832)
+
+[node name="crate_2m3" parent="." instance=ExtResource("4_4s2bt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0597421, 1, 6.56832)
+
+[node name="SlidingDoor" parent="." instance=ExtResource("5_jdam3")]

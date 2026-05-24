@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://diygidlppkijr"]
+
+[ext_resource type="Shader" uid="uid://c7dlwrqw2ua6k" path="res://Assets/Shaders/Characters/CharacterBodyShader.tres" id="1_jumx3"]
+[ext_resource type="Texture2D" uid="uid://cdfnb881kunjh" path="res://Assets/Characters/CharacterHeavy_ID_Mask_Processed.png" id="2_u1vli"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jumx3")
+shader_parameter/Texture2DParameter = ExtResource("2_u1vli")

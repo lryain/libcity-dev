@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctjx5jnjcbrjn"]
+
+[ext_resource type="PackedScene" uid="uid://86ctsdepxypg" path="res://Assets/Maps/DM1-2.tscn" id="1_m6ai6"]
+[ext_resource type="PackedScene" uid="uid://c87lmf2xgyvhx" path="res://Assets/Characters/Character.tscn" id="2_yvkm0"]
+[ext_resource type="PackedScene" uid="uid://bnqhw0onkw11v" path="res://Assets/Characters/CharacterControllerBot.tscn" id="3_cffl5"]
+[ext_resource type="Resource" uid="uid://dykxdnc5v6e4l" path="res://Assets/Characters/CharacterProfiles/DefaultPlayer.tres" id="4_dnied"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Map" parent="." instance=ExtResource("1_m6ai6")]
+
+[node name="CharacterBot" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.0228, 6, -2.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot4" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21.0228, 6, -1.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot5" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22.0228, 6, -1.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot6" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20.0228, 6, -1.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot2" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22.0228, 6, -2.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot3" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20.0228, 6, -2.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot7" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24.0228, 6, -2.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot8" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24.0228, 6, -1.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot9" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 25.0228, 6, -1.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot10" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 23.0228, 6, -1.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot11" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 25.0228, 6, -2.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot12" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 23.0228, 6, -2.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot13" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18.0228, 6, -2.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot14" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18.0228, 6, -1.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot15" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 19.0228, 6, -1.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot16" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17.0228, 6, -1.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot17" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 19.0228, 6, -2.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterBot18" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17.0228, 6, -2.02027)
+controller_scene = ExtResource("3_cffl5")
+
+[node name="CharacterPlayer" parent="." instance=ExtResource("2_yvkm0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0208, 6.00769, 2.97604)
+profile = ExtResource("4_dnied")

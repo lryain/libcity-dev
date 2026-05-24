@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://dfpvock5x3boq"]
+
+[ext_resource type="Script" path="res://Assets/Pickups/Pickup.gd" id="1_qmx5x"]
+[ext_resource type="PackedScene" uid="uid://7lwvj5rrt4ah" path="res://Assets/Pickups/HealthPack.gltf" id="2_rbsfl"]
+[ext_resource type="AudioStream" uid="uid://bkcpcs3vgddlo" path="res://Assets/SFX/Pickups_Respawn.wav" id="3_1s6to"]
+[ext_resource type="AudioStream" uid="uid://cmrarxtnon5q2" path="res://Assets/SFX/Pickups_HealthPack.wav" id="4_c7brq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sgwee"]
+radius = 0.152814
+
+[sub_resource type="Gradient" id="Gradient_rvbko"]
+offsets = PackedFloat32Array(0, 0.181579, 0.313158, 0.452632, 0.771053, 1)
+colors = PackedColorArray(0, 0, 0, 1, 4, 4, 4, 1, 1.37311, 1.37311, 1.37311, 1, 1.01119, 1.01119, 1.01119, 1, 0.784566, 0.784566, 0.784566, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c7cwh"]
+gradient = SubResource("Gradient_rvbko")
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticlesMaterial_6bbxh"]
+emission_shape = 2
+emission_sphere_radius = 0.75
+direction = Vector3(0, 0, 0)
+spread = 0.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -7.27
+radial_accel_max = -4.25
+tangential_accel_min = 6.82
+tangential_accel_max = 8.81
+color = Color(0, 0.486275, 1, 1)
+color_ramp = SubResource("GradientTexture1D_c7cwh")
+hue_variation_min = -0.14
+hue_variation_max = 0.07
+
+[sub_resource type="Gradient" id="Gradient_ki7q6"]
+offsets = PackedFloat32Array(0, 0.0696517, 0.154229, 0.241294, 0.320896, 0.425373, 0.537313, 0.634328, 0.756219, 1)
+colors = PackedColorArray(2, 2, 2, 1, 0.985075, 0.985075, 0.985075, 1, 0.500439, 0.500439, 0.500439, 1, 0.247924, 0.247924, 0.247924, 1, 0.120634, 0.120634, 0.120634, 1, 0.0580323, 0.0580323, 0.0580323, 1, 0.0304474, 0.0304474, 0.0304474, 1, 0.0187759, 0.0187759, 0.0187759, 1, 0.00932661, 0.00932661, 0.00932661, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5y8sa"]
+gradient = SubResource("Gradient_ki7q6")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glwlv"]
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_5y8sa")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_gnio4"]
+material = SubResource("StandardMaterial3D_glwlv")
+
+[node name="Pickup" type="Area3D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_qmx5x")
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_sgwee")
+
+[node name="HealthPack" parent="." instance=ExtResource("2_rbsfl")]
+transform = Transform3D(1, 0, 0, 0, 0.485451, -0.874264, 0, 0.874264, 0.485451, 0, 0, -0.0173343)
+
+[node name="Respawn" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_1s6to")
+max_db = -4.0
+
+[node name="Pickup" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_c7brq")
+
+[node name="RespawnParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 128
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticlesMaterial_6bbxh")
+draw_pass_1 = SubResource("QuadMesh_gnio4")
+
+[connection signal="body_entered" from="." to="." method="_on_pickup_body_entered"]
+
+[editable path="HealthPack"]

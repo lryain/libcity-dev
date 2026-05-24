@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cuunwjceapjlw"]
+
+[ext_resource type="Script" path="res://Assets/Badges/Badge.gd" id="1_u2gdx"]
+[ext_resource type="Texture2D" uid="uid://cynkws1dpe2ss" path="res://Assets/Badges/Textures/Badge_PreAlpha.png" id="2_8hpql"]
+
+[resource]
+script = ExtResource( "1_u2gdx" )
+display_name = "Pre-Alpha Tester"
+description = "registered the account during the pre-alpha testing phase of the game"
+texture = ExtResource( "2_8hpql" )
+priority = 24

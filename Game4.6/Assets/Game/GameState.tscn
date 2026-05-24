@@ -1,0 +1,274 @@
+[gd_scene load_steps=11 format=3 uid="uid://djt582563swlm"]
+
+[ext_resource type="Script" path="res://Assets/Game/GameState.gd" id="1_g5fg1"]
+[ext_resource type="Script" path="res://Assets/UI/Lobby.gd" id="2_ll8hj"]
+[ext_resource type="PackedScene" uid="uid://ct2cmoinu4os1" path="res://Assets/HUD/HUD.tscn" id="2_lrwwk"]
+[ext_resource type="Script" path="res://Assets/Game/CharacterSpawner.gd" id="3_07wmw"]
+[ext_resource type="Script" path="res://Assets/Game/Resources.gd" id="5_ctyg8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yv8jb"]
+font_size = 96
+
+[sub_resource type="InputEventKey" id="InputEventKey_vgfl6"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_pnb11"]
+events = [SubResource("InputEventKey_vgfl6")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ymkyc"]
+font_size = 32
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_0qp7v"]
+properties/0/path = NodePath(".:map_path")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:match_timer_seconds")
+properties/1/spawn = false
+properties/1/replication_mode = 0
+properties/2/path = NodePath(".:scores_by_team")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="GameState" type="Node3D" groups=["GameStates"]]
+process_mode = 3
+script = ExtResource("1_g5fg1")
+
+[node name="Lobby" type="Control" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ll8hj")
+
+[node name="Panel" type="Panel" parent="Lobby"]
+modulate = Color(0.196078, 0.196078, 0.196078, 0.788235)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -167.0
+offset_right = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HostPanel" type="Panel" parent="Lobby"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -156.0
+offset_top = -142.0
+offset_right = 157.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="Lobby/HostPanel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 9.0
+offset_right = 110.0
+offset_bottom = 48.0
+text = "start now"
+
+[node name="TimeLimit" type="HSlider" parent="Lobby/HostPanel/Button"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 144.0
+offset_top = 74.0
+offset_right = 289.0
+offset_bottom = 97.0
+min_value = 1.0
+max_value = 30.0
+value = 10.0
+
+[node name="Label" type="Label" parent="Lobby/HostPanel/Button/TimeLimit"]
+layout_mode = 0
+offset_left = -149.0
+offset_top = -1.0
+offset_right = -75.0
+offset_bottom = 21.0
+text = "Time Limit"
+
+[node name="Value" type="Label" parent="Lobby/HostPanel/Button/TimeLimit"]
+layout_mode = 0
+offset_left = -69.0
+offset_top = -1.0
+offset_right = 5.0
+offset_bottom = 21.0
+text = "10 min"
+
+[node name="ScoreLimit" type="HSlider" parent="Lobby/HostPanel/Button"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 141.0
+offset_top = 95.0
+offset_right = 289.0
+offset_bottom = 119.0
+min_value = 1.0
+max_value = 20.0
+value = 10.0
+
+[node name="Label" type="Label" parent="Lobby/HostPanel/Button/ScoreLimit"]
+layout_mode = 0
+offset_left = -146.0
+offset_top = -1.0
+offset_right = -65.0
+offset_bottom = 21.0
+text = "Score Limit"
+
+[node name="Value" type="Label" parent="Lobby/HostPanel/Button/ScoreLimit"]
+layout_mode = 0
+offset_left = -56.0
+offset_right = 25.0
+offset_bottom = 22.0
+text = "250"
+
+[node name="Label" type="Label" parent="Lobby"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.0
+offset_top = 32.0
+offset_right = 130.0
+offset_bottom = 173.0
+grow_horizontal = 2
+text = "Lobby"
+label_settings = SubResource("LabelSettings_yv8jb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ready" type="Label" parent="Lobby/Label"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 275.0
+offset_right = 215.0
+offset_bottom = 317.0
+text = "1/8 players ready"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Countdown" type="Label" parent="Lobby/Label"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 187.0
+offset_right = 215.0
+offset_bottom = 229.0
+text = "15 seconds"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountdownHeader" type="Label" parent="Lobby/Label/Countdown"]
+layout_mode = 0
+offset_top = -25.0
+offset_right = 178.0
+offset_bottom = 17.0
+text = "new match starts in"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Lobby/Label"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 397.0
+offset_right = 258.0
+offset_bottom = 463.0
+focus_mode = 0
+toggle_mode = true
+shortcut = SubResource("Shortcut_pnb11")
+text = "I'm READY!"
+
+[node name="Ready2" type="Label" parent="Lobby/Label/Button"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = 33.0
+offset_right = 89.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "press SPACE to toggle"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ready" type="Label" parent="Lobby/Label/Button"]
+modulate = Color(0.490196, 1, 0.482353, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.5
+offset_top = -82.0
+offset_right = 118.5
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You are READY!"
+label_settings = SubResource("LabelSettings_ymkyc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NotReady" type="Label" parent="Lobby/Label/Button"]
+modulate = Color(1, 0.196078, 0.223529, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.5
+offset_top = -82.0
+offset_right = 142.5
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You are NOT ready!"
+label_settings = SubResource("LabelSettings_ymkyc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HUD" parent="." instance=ExtResource("2_lrwwk")]
+unique_name_in_owner = true
+visible = false
+
+[node name="GameStateSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.1
+replication_config = SubResource("SceneReplicationConfig_0qp7v")
+
+[node name="CharacterSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Assets/Characters/Character.tscn")
+spawn_path = NodePath("../CharactersRoot")
+script = ExtResource("3_07wmw")
+
+[node name="CharactersRoot" type="Node3D" parent="."]
+process_mode = 1
+
+[node name="SpawnRoot" type="Node3D" parent="."]
+process_mode = 1
+
+[node name="Resources" type="Node" parent="."]
+script = ExtResource("5_ctyg8")
+
+[connection signal="pressed" from="Lobby/HostPanel/Button" to="Lobby" method="_on_button_pressed"]
+[connection signal="value_changed" from="Lobby/HostPanel/Button/TimeLimit" to="Lobby" method="_on_time_limit_value_changed"]
+[connection signal="value_changed" from="Lobby/HostPanel/Button/ScoreLimit" to="Lobby" method="_on_score_limit_value_changed"]
+[connection signal="toggled" from="Lobby/Label/Button" to="Lobby" method="_on_button_toggled"]

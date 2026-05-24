@@ -1,0 +1,75 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://doojw145fy1c8"
+path="res://.godot/imported/level_geometry.gltf-35a7dbed5a6f321b656c6382ba2839a5.scn"
+
+[deps]
+
+source_file="res://Assets/Maps/TrainingRing/level_geometry.gltf"
+dest_files=["res://.godot/imported/level_geometry.gltf-35a7dbed5a6f321b656c6382ba2839a5.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=2
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path="res://Assets/Maps/MapImporter.gd"
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"Emitter_White_01": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/Generic/Emitter_White_01.tres",
+"use_external/path": "uid://bt1i6omr5rhty"
+},
+"PerforatedSteel_01_Hotspot": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/Generic/PerforatedSteel_01_Hotspot/PerforatedSteel_01_Hotspot.tres",
+"use_external/path": "uid://cgvpxyt4b0jmn"
+},
+"Rock_01_Tileable": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/Generic/Rock_01_Tileable/RedRock.tres",
+"use_external/path": "res://Assets/Materials/Generic/Rock_01_Tileable/RedRock.tres"
+},
+"Steel_01_Hotspot": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/Generic/Steel_01_Hotspot/Steel_01_Hotspot.tres",
+"use_external/path": "res://Assets/Materials/Generic/Steel_01_Hotspot/Steel_01_Hotspot.tres"
+},
+"Steel_01_Trims": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/Generic/Steel_01_Trims/Steel_01_Trims.tres",
+"use_external/path": "res://Assets/Materials/Generic/Steel_01_Trims/Steel_01_Trims.tres"
+},
+"Wood_01_Hotspot": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/Generic/Wood_01_Hotspot/Wood_01_Hotspot.tres",
+"use_external/path": "res://Assets/Materials/Generic/Wood_01_Hotspot/Wood_01_Hotspot.tres"
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

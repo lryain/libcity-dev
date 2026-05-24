@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://utm5psfwdixr"]
+
+[ext_resource type="PackedScene" uid="uid://cwcxhd8hhshpe" path="res://Assets/Maps/AbandonnedShip/glb/sliding_door_L.glb" id="1_78615"]
+[ext_resource type="Script" path="res://Assets/Maps/AbandonnedShip/glb/sliding_door.gd" id="2_06b1o"]
+[ext_resource type="PackedScene" uid="uid://cxl5wyxiy3h75" path="res://Assets/Maps/AbandonnedShip/glb/sliding_door_collider.glb" id="2_xbvnj"]
+[ext_resource type="PackedScene" uid="uid://btu5jv3qssa5y" path="res://Assets/Maps/AbandonnedShip/glb/sliding_door_R.glb" id="3_10qge"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w2tly"]
+
+[node name="SlidingDoor" type="Node3D"]
+
+[node name="sliding_door_L" parent="." instance=ExtResource("1_78615")]
+script = ExtResource("2_06b1o")
+
+[node name="sliding_door_collider_L" parent="sliding_door_L" instance=ExtResource("2_xbvnj")]
+visible = false
+
+[node name="sliding_door_R" parent="." instance=ExtResource("3_10qge")]
+script = ExtResource("2_06b1o")
+slide_distance = -1.3
+
+[node name="sliding_door_collider_R" parent="sliding_door_R" instance=ExtResource("2_xbvnj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
+
+[node name="TriggerArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TriggerArea"]
+transform = Transform3D(2.544, 0, 0, 0, 2.544, 0, 0, 0, 5.494, 0, 1.466, 0)
+shape = SubResource("BoxShape3D_w2tly")
+
+[connection signal="body_entered" from="TriggerArea" to="sliding_door_L" method="_on_trigger_area_body_entered"]
+[connection signal="body_entered" from="TriggerArea" to="sliding_door_R" method="_on_trigger_area_body_entered"]
+[connection signal="body_exited" from="TriggerArea" to="sliding_door_L" method="_on_trigger_area_body_exited"]
+[connection signal="body_exited" from="TriggerArea" to="sliding_door_R" method="_on_trigger_area_body_exited"]

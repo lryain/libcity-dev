@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://0d1x0qqhgww2"]
+
+[ext_resource type="Script" path="res://ManualTests/MultiplayerTestLauncher.gd" id="1_e3o1g"]
+[ext_resource type="Texture2D" uid="uid://hkdkatwc414j" path="res://Assets/Badges/Textures/Badge_Admin.png" id="1_ii30p"]
+[ext_resource type="Texture2D" uid="uid://boqp0b6pyospf" path="res://Assets/Badges/Textures/Badge_Bot.png" id="2_kyw56"]
+[ext_resource type="Texture2D" uid="uid://pav2n1oxxs7b" path="res://Assets/Badges/Textures/Badge_Error.png" id="4_5cao4"]
+
+[node name="MultiplayerTestLauncher" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e3o1g")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Server" type="CheckButton" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "spawn a SERVER
+"
+icon = ExtResource("1_ii30p")
+alignment = 1
+
+[node name="Client" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+text = "spawn a CLIENT"
+icon = ExtResource("2_kyw56")
+flat = true
+
+[node name="KillClients" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+text = "Terminate All Clients"
+icon = ExtResource("4_5cao4")
+flat = true
+expand_icon = true
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Server" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Client" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/KillClients" to="." method="_on_kill_clients_pressed"]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://0011man6ywhe"]
+
+[ext_resource type="Script" path="res://Assets/Badges/Badge.gd" id="1_u2gdx"]
+[ext_resource type="Texture2D" uid="uid://c7r1y5c8s86jw" path="res://Assets/Badges/Textures/Badge_Developer.png" id="2_lx1p1"]
+
+[resource]
+script = ExtResource( "1_u2gdx" )
+display_name = "Liblast Developer"
+description = "member of the Liblast development team"
+texture = ExtResource( "2_lx1p1" )
+priority = 10

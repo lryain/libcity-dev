@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5cwnfuw4go1b"]
+
+[ext_resource type="Script" path="res://Assets/Audio/SoundPlayer.gd" id="1_uq1fs"]
+
+[node name="SoundPlayer" type="Node3D"]
+script = ExtResource("1_uq1fs")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+unit_size = 6.0
+attenuation_filter_cutoff_hz = 20000.0
+attenuation_filter_db = 0.0

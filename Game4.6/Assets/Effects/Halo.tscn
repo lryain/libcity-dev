@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8w7ao52r1xer"]
+
+[ext_resource type="Script" path="res://Assets/Effects/Halo.gd" id="1_p0egj"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_n03u8"]
+
+[sub_resource type="Gradient" id="Gradient_ki7q6"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0174129, 0.124378, 0.201493, 0.343284, 0.450249, 0.567164, 0.689055, 0.850746, 1)
+colors = PackedColorArray(2, 2, 2, 1, 0.985075, 0.985075, 0.985075, 1, 0.500439, 0.500439, 0.500439, 1, 0.247924, 0.247924, 0.247924, 1, 0.120634, 0.120634, 0.120634, 1, 0.0580323, 0.0580323, 0.0580323, 1, 0.0304474, 0.0304474, 0.0304474, 1, 0.0187759, 0.0187759, 0.0187759, 1, 0.00932661, 0.00932661, 0.00932661, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5y8sa"]
+gradient = SubResource("Gradient_ki7q6")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m4tm"]
+transparency = 1
+blend_mode = 1
+no_depth_test = true
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.5
+emission_operator = 1
+emission_texture = SubResource("GradientTexture2D_5y8sa")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+point_size = 89.7
+proximity_fade_distance = 0.25
+
+[node name="Halo" type="MeshInstance3D"]
+transform = Transform3D(1.00895, 0, 0, 0, 1.00895, 0, 0, 0, 1.00895, 0, 0, 0)
+layers = 16
+cast_shadow = 0
+mesh = SubResource("QuadMesh_n03u8")
+surface_material_override/0 = SubResource("StandardMaterial3D_3m4tm")
+script = ExtResource("1_p0egj")
+hide_show_time = 0.05
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+layers = 31
+aabb = AABB(-0.005, -0.005, -0.005, 0.01, 0.01, 0.01)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

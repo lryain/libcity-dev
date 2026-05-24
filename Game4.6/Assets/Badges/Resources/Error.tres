@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://duqhy5ihkpdab"]
+
+[ext_resource type="Script" path="res://Assets/Badges/Badge.gd" id="1_15216"]
+[ext_resource type="Texture2D" uid="uid://pav2n1oxxs7b" path="res://Assets/Badges/Textures/Badge_Error.png" id="2_fwd4g"]
+
+[resource]
+script = ExtResource("1_15216")
+display_name = "ERROR"
+description = "something isn't right..."
+texture = ExtResource("2_fwd4g")
+priority = -1000

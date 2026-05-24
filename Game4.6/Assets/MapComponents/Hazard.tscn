@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbob7ksc8vhq7"]
+
+[ext_resource type="Script" path="res://Assets/MapComponents/Hazard.gd" id="1_i63m1"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xm32e"]
+
+[node name="Hazard" type="Area3D"]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("1_i63m1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("WorldBoundaryShape3D_xm32e")
+
+[connection signal="body_entered" from="." to="." method="_on_Hazard_body_entered"]

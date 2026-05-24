@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://n7402x4rugb6"]
+
+[ext_resource type="Script" path="res://Assets/Badges/Badge.gd" id="1_u2gdx"]
+[ext_resource type="Texture2D" uid="uid://cybss4id7tppk" path="res://Assets/Badges/Textures/Badge_DayOne.png" id="2_b5xjc"]
+
+[resource]
+script = ExtResource( "1_u2gdx" )
+display_name = "Day One"
+description = "created an account within 24 hours of the 1.0 Liblast release"
+texture = ExtResource( "2_b5xjc" )
+priority = 5

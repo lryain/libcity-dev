@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://blibyxmgkf4ot"]
+
+[ext_resource type="PackedScene" uid="uid://djb02qng4cqsf" path="res://Assets/Weapons/WeaponTypes/Generic/Weapon.tscn" id="1_x28sf"]
+[ext_resource type="PackedScene" uid="uid://dx38b0cvdsjpt" path="res://Assets/Weapons/Legacy/RocketLauncher/RocketLauncher.gltf" id="2_a04bi"]
+[ext_resource type="PackedScene" uid="uid://b4ydanmrcnq48" path="res://Assets/Weapons/Legacy/RocketLauncher/Rocket.tscn" id="2_y7bv4"]
+[ext_resource type="PackedScene" uid="uid://e1080jfertui" path="res://Assets/Weapons/Legacy/RocketLauncher/RocketLauncher_LOD1.gltf" id="3_enu6y"]
+[ext_resource type="AudioStream" uid="uid://bpuw5fx04a7n0" path="res://Assets/SFX/Weapons_RocketLauncher_Shot_01_A.wav" id="4_ni7bd"]
+[ext_resource type="AudioStream" uid="uid://c3es208ntginf" path="res://Assets/SFX/Weapons_RocketLauncher_Shot_01_B.wav" id="5_vbe1t"]
+[ext_resource type="AudioStream" uid="uid://c1fv01sc4dy5w" path="res://Assets/SFX/Weapons_RocketLauncher_Shot_01_C.wav" id="6_n223q"]
+
+[node name="Weapon" instance=ExtResource("1_x28sf")]
+transform = Transform3D(1.0005, 0, 0, 0, 1.0005, 0, 0, 0, 1.0005, 0, 0, 0)
+animation_speed = 0.3
+weapon_type = 1
+projectile_or_tracer_scene = ExtResource("2_y7bv4")
+weapon_damage = 25
+
+[node name="RocketLauncher" parent="." index="0" instance=ExtResource("2_a04bi")]
+
+[node name="RocketLauncher_LOD1" parent="." index="1" instance=ExtResource("3_enu6y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0067192, 0)
+
+[node name="RL_LOD1" parent="RocketLauncher_LOD1" index="0"]
+visibility_range_begin = 4.0
+visibility_range_begin_margin = 0.25
+
+[node name="Shoot A" parent="SFX" index="0"]
+SoundClip = "res://Assets/SFX/Weapons_RocketLauncher_Shot_01_A.wav"
+
+[node name="AudioStreamPlayer3D" parent="SFX/Shoot A" index="0"]
+stream = ExtResource("4_ni7bd")
+
+[node name="Shoot B" parent="SFX" index="1"]
+SoundClip = "res://Assets/SFX/Weapons_RocketLauncher_Shot_01_B.wav"
+
+[node name="AudioStreamPlayer3D" parent="SFX/Shoot B" index="0"]
+stream = ExtResource("5_vbe1t")
+
+[node name="Shoot C" parent="SFX" index="2"]
+SoundClip = "res://Assets/SFX/Weapons_RocketLauncher_Shot_01_C.wav"
+
+[node name="AudioStreamPlayer3D" parent="SFX/Shoot C" index="0"]
+stream = ExtResource("6_n223q")
+
+[editable path="RocketLauncher_LOD1"]
+[editable path="SFX/Shoot A"]
+[editable path="SFX/Shoot B"]
+[editable path="SFX/Shoot C"]

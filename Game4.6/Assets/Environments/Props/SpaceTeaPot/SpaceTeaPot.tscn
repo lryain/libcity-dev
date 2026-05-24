@@ -1,0 +1,135 @@
+[gd_scene load_steps=12 format=3 uid="uid://cj00jrbgcsetw"]
+
+[ext_resource type="PackedScene" uid="uid://bd15jrrc15amf" path="res://Assets/Environments/Props/SpaceTeaPot/SpaceTeaPot.gltf" id="1_qufa5"]
+[ext_resource type="Material" uid="uid://bist2mv03egaf" path="res://Assets/Environments/Props/SpaceTeaPot/SpaceTeaPotMaterial.tres" id="2_j12cx"]
+[ext_resource type="Texture2D" uid="uid://ds153lgkh3q2" path="res://Assets/Materials/Effects/Smoke_albedo.png" id="3_fexty"]
+
+[sub_resource type="Gradient" id="Gradient_6ngfk"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.021611, 0.100196, 0.19057, 0.335953, 0.599214, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.869794, 0.58476, 1, 1, 0.771139, 0.274615, 1, 1, 0.567664, 0.14629, 1, 0.597656, 0.139252, 0.0856396, 1, 0.160405, 0.0309314, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ow60b"]
+gradient = SubResource("Gradient_6ngfk")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_cnekk"]
+max_value = 2.0
+_data = [Vector2(0, 0.0995195), 0.0, 3.01171, 0, 0, Vector2(1, 2), 1.32527, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_imf00"]
+curve = SubResource("Curve_cnekk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ski7q"]
+emission_shape = 1
+emission_sphere_radius = 0.05
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 10.851
+initial_velocity_min = 0.1
+initial_velocity_max = 0.3
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_imf00")
+color_ramp = SubResource("GradientTexture1D_ow60b")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btlvp"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(2, 2, 2, 1)
+albedo_texture = ExtResource("3_fexty")
+refraction_scale = 0.44
+texture_repeat = false
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_enabled = true
+proximity_fade_distance = 15.0
+distance_fade_min_distance = 0.5
+distance_fade_max_distance = 2.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_atkod"]
+material = SubResource("StandardMaterial3D_btlvp")
+size = Vector2(3, 3)
+
+[sub_resource type="GDScript" id="GDScript_m5hgf"]
+resource_name = "TeapotDamage.gd"
+script/source = "extends StaticBody3D
+
+@rpc(\"any_peer\", \"call_remote\") func hurt(_damage):
+	var attacker : Character
+	var damage : Damage
+	if _damage is Damage:
+		damage = _damage
+		if damage is DamageAttack:
+			#if damage.attacker is Node:
+			attacker = damage.attacker
+			#else:
+			#	attacker = GameState.characters_by_pid[damage.attacker_pid]
+#			print_debug(\"Local attacker is \", attacker)
+	elif _damage is Dictionary:
+		damage = dict_to_inst(_damage)
+		if damage is DamageAttack:
+			if MultiplayerState.game_state.characters_by_pid.has(damage.attacker_pid):
+				attacker = MultiplayerState.game_state.characters_by_pid[damage.attacker_pid]
+
+	# each point of damage ncreases the amount of lava spilled
+	#print(\"Moon got hurt: \", damage.damage_amount, \" by \", damage.attacker)
+	$\"../GPUParticles3D\".amount_ratio = min($\"../GPUParticles3D\".amount_ratio + damage.damage_amount * 0.001, 1.0)
+
+	# Send feedback for hurting the moon
+
+	#if $\"../GPUParticles3D\".amount_ratio > 0.25:
+		#if damage.attacker:
+			#var char = Character.new()
+			#char.profile = CharacterProfile.new()
+			#char.profile.display_name = \"The Moon\"
+			#char.profile.display_color = Color.WHITE
+			#damage.attacker.attack_hit_confirmation(false, char)
+
+func _on_timer_timeout() -> void:
+	# slowly get back to normal
+	$\"../GPUParticles3D\".amount_ratio = lerpf($\"../GPUParticles3D\".amount_ratio, 0, 0.1)
+
+	#print(\"Moon bleeds: \", $\"../GPUParticles3D\".amount_ratio)
+"
+
+[node name="SpaceTeaPot" instance=ExtResource("1_qufa5")]
+
+[node name="Sphere_005" parent="." index="0"]
+material_override = ExtResource("2_j12cx")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Sphere_005" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.126133, 0.126134, -0.0223549)
+amount = 32
+amount_ratio = 0.0
+lifetime = 25.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ski7q")
+draw_pass_1 = SubResource("QuadMesh_atkod")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sphere_005" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.365085, 0.0163062, 0.142052)
+layers = 64
+light_color = Color(1, 0.4, 0.188235, 1)
+light_energy = 1000.0
+light_size = 0.766
+light_specular = 0.05
+light_cull_mask = 4293918784
+omni_range = 1.817
+
+[node name="StaticBody3D" parent="Sphere_005" index="2"]
+transform = Transform3D(0.997944, 0, 0, 0, 0.997944, 0, 0, 0, 0.997944, 0, 0, 0)
+script = SubResource("GDScript_m5hgf")
+
+[node name="Timer" type="Timer" parent="." index="1"]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="Sphere_005/StaticBody3D" method="_on_timer_timeout"]

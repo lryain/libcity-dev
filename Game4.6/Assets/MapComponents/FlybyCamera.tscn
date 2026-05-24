@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://crbgijv7efp3t"]
+
+[ext_resource type="Script" path="res://Assets/MapComponents/FlybyCamera.gd" id="1_ctloj"]
+
+[sub_resource type="Curve3D" id="Curve3D_fmjfi"]
+bake_interval = 0.01
+_data = {
+"points": PackedVector3Array(-3.61301, -1.2626, -0.0541439, 3.61301, 1.2626, 0.0541439, -1.08997, -2.247, 4.54094, -1.753, -0.376711, 0.708252, 1.753, 0.376711, -0.708252, 4.30222, -0.358319, 3.96475, 0.0744696, -0.131996, 7.11625, -0.0744696, 0.131996, -7.11625, 5.51247, 0.956562, -10.0525, 3, 0, 0, -3, 0, 0, 0.800154, 2.71873, -23.8598, -0.00582504, -0.00325584, -11.015, 0.00582504, 0.00325584, 11.015, -8.84797, -3.98488, -12.5413, -5.358, -1.61576, -0.531696, 5.358, 1.61576, 0.531696, -1.08997, -2.247, 4.54094),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="BoxMesh" id="BoxMesh_yer3l"]
+
+[node name="FlybyCamera" type="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 16)
+curve = SubResource("Curve3D_fmjfi")
+script = ExtResource("1_ctloj")
+
+[node name="FlybyCameraFollow" type="PathFollow3D" parent="."]
+transform = Transform3D(0.0149842, 0, 0.999886, 0, 1, 0, -0.999886, 0, 0.0149842, -1.08997, -2.247, 4.54094)
+rotation_mode = 1
+use_model_front = true
+
+[node name="Pivot" type="Node3D" parent="FlybyCameraFollow"]
+top_level = true
+
+[node name="Camera" type="Camera3D" parent="FlybyCameraFollow/Pivot"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+current = true
+fov = 60.0
+
+[node name="MeshInstance3d" type="MeshInstance3D" parent="FlybyCameraFollow/Pivot/Camera"]
+visible = false
+mesh = SubResource("BoxMesh_yer3l")

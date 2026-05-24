@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c8h5tk43d8taq"]
+
+[ext_resource type="Script" path="res://Assets/Badges/Badge.gd" id="1_u2gdx"]
+[ext_resource type="Texture2D" uid="uid://b8jffd1fxms82" path="res://Assets/Badges/Textures/Badge_NoAuth.png" id="2_4vim6"]
+
+[resource]
+script = ExtResource("1_u2gdx")
+display_name = "Anonymous"
+description = "plays Liblast without an online account"
+texture = ExtResource("2_4vim6")
+priority = -1

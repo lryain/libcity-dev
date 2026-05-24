@@ -1,0 +1,11 @@
+[gd_resource type="ORMMaterial3D" load_steps=4 format=3]
+
+[ext_resource type="Texture2D" uid="uid://b5s2kusyspwj0" path="res://Assets/Materials/Generic/Rock_01_Tileable/RedRock_albedo.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cfn2dfc8o6c4v" path="res://Assets/Materials/Generic/Rock_01_Tileable/RedRock_orm.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b7ibf1586wdj" path="res://Assets/Materials/Generic/Rock_01_Tileable/RedRock_normal.png" id="3"]
+
+[resource]
+albedo_texture = ExtResource("1")
+orm_texture = ExtResource("2")
+normal_enabled = true
+normal_texture = ExtResource("3")

@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3 uid="uid://b15ym1ppc7tgl"]
+
+[ext_resource type="Script" path="res://ManualTests/PackageTest.gd" id="1_m4edk"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m4edk")
+
+[node name="Create RSA Key" type="Button" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 22.0
+offset_right = 208.0
+offset_bottom = 95.0
+text = "CREATE RSA KEY"
+
+[node name="Load RSA Key" type="Button" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 104.0
+offset_right = 208.0
+offset_bottom = 177.0
+text = "LOAD RSA KEY"
+
+[node name="Save" type="Button" parent="."]
+layout_mode = 0
+offset_left = 324.0
+offset_top = 30.0
+offset_right = 499.0
+offset_bottom = 103.0
+text = "SAVE PACK"
+
+[node name="Compress" type="CheckBox" parent="Save"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 126.0
+offset_right = 175.0
+offset_bottom = 163.0
+text = "COMPRESS"
+
+[node name="Sign" type="CheckBox" parent="Save"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 85.0
+offset_right = 176.0
+offset_bottom = 122.0
+text = "SIGN"
+
+[node name="Load" type="Button" parent="."]
+layout_mode = 0
+offset_left = 524.0
+offset_top = 32.0
+offset_right = 699.0
+offset_bottom = 105.0
+text = "LOAD PACK"
+
+[node name="TextureRect" type="TextureRect" parent="Load"]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 9.0
+offset_right = 251.0
+offset_bottom = 49.0
+
+[node name="MetadataLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 228.0
+offset_right = 698.0
+offset_bottom = 643.0
+
+[connection signal="pressed" from="Create RSA Key" to="." method="_on_create_rsa_key_pressed"]
+[connection signal="pressed" from="Load RSA Key" to="." method="_on_load_rsa_key_pressed"]
+[connection signal="pressed" from="Save" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Load" to="." method="_on_load_pressed"]

@@ -1,0 +1,282 @@
+[gd_scene load_steps=22 format=3 uid="uid://q2v25tb2hhok"]
+
+[ext_resource type="PackedScene" uid="uid://cf7ct78ijfw4j" path="res://Assets/Maps/MenuBackgrounMap.tscn" id="1_alrxj"]
+[ext_resource type="PackedScene" uid="uid://crbgijv7efp3t" path="res://Assets/MapComponents/FlybyCamera.tscn" id="2_yuafq"]
+[ext_resource type="Environment" uid="uid://cf1ns7bxijudy" path="res://Assets/Environments/DefaultMedium.tres" id="4_q604i"]
+
+[sub_resource type="GDScript" id="GDScript_j86k7"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	get_viewport().scaling_3d_scale = min(0.5 * Settings.get_var(&\"render_scale\"), 0.75)
+	get_viewport().scaling_3d_mode = Viewport.SCALING_3D_MODE_BILINEAR
+	get_viewport().use_taa = true
+	# put the camera somewhere else every time
+	$\"../FlybyCamera\".get_node(\"FlybyCameraFollow\").progress_ratio = randf_range(0, 1)
+	
+	# skip interpolating to the target place
+	$\"../FlybyCamera\".get_node(\"FlybyCameraFollow\").get_node(\"Pivot\").global_transform\\
+	= $\"../FlybyCamera\".get_node(\"FlybyCameraFollow\").global_transform
+	
+#	if not Settings.get_var(\"menu_background_bots\"):
+#		$\"../Bots\".queue_free()
+	get_viewport().vrs_texture = load(\"res://Assets/Menu/UiVrsMask.tres\")
+	get_viewport().vrs_mode = Viewport.VRS_TEXTURE
+	Engine.max_fps = 45
+#	MultiplayerState.role_changed.connect(queue_free.unbind(1))
+
+func _exit_tree() -> void:
+	get_viewport().vrs_mode = Viewport.VRS_DISABLED
+	get_viewport().scaling_3d_scale = 1 * Settings.get_var(&\"render_scale\")
+	get_viewport().use_taa = false
+	Engine.max_fps = Settings.get_var(&\"render_fps_max\")
+
+
+func _process(delta) -> void:
+	$\"../AudioListener3D\".make_current()
+#	if Globals.game_state:
+#		queue_free()
+"
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_yhnht"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 5.0
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_1yvl2"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sfp20"]
+height = 22.9768
+radius = 3.6
+
+[sub_resource type="QuadMesh" id="QuadMesh_nqixt"]
+size = Vector2(4, 4)
+
+[sub_resource type="Gradient" id="Gradient_ki7q6"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0174129, 0.124378, 0.201493, 0.343284, 0.450249, 0.567164, 0.689055, 0.850746, 1)
+colors = PackedColorArray(2, 2, 2, 1, 0.985075, 0.985075, 0.985075, 1, 0.500439, 0.500439, 0.500439, 1, 0.247924, 0.247924, 0.247924, 1, 0.120634, 0.120634, 0.120634, 1, 0.0580323, 0.0580323, 0.0580323, 1, 0.0304474, 0.0304474, 0.0304474, 1, 0.0187759, 0.0187759, 0.0187759, 1, 0.00932661, 0.00932661, 0.00932661, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5y8sa"]
+gradient = SubResource("Gradient_ki7q6")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0swd"]
+transparency = 1
+blend_mode = 1
+no_depth_test = true
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(0.247059, 0.270588, 0.988235, 1)
+emission_energy_multiplier = 0.5
+emission_operator = 1
+emission_texture = SubResource("GradientTexture2D_5y8sa")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+point_size = 89.7
+proximity_fade_distance = 0.25
+
+[sub_resource type="QuadMesh" id="QuadMesh_1h8cv"]
+size = Vector2(4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytwn2"]
+transparency = 1
+blend_mode = 1
+no_depth_test = true
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(0, 0.243137, 0.988235, 1)
+emission_energy_multiplier = 0.5
+emission_operator = 1
+emission_texture = SubResource("GradientTexture2D_5y8sa")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+point_size = 89.7
+proximity_fade_distance = 0.25
+
+[sub_resource type="QuadMesh" id="QuadMesh_cts3r"]
+size = Vector2(2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b03nx"]
+transparency = 1
+blend_mode = 1
+no_depth_test = true
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(0.960784, 0.207843, 0, 1)
+emission_energy_multiplier = 0.5
+emission_operator = 1
+emission_texture = SubResource("GradientTexture2D_5y8sa")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+point_size = 89.7
+proximity_fade_distance = 0.25
+
+[sub_resource type="QuadMesh" id="QuadMesh_kg70t"]
+size = Vector2(2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67oug"]
+transparency = 1
+blend_mode = 1
+no_depth_test = true
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(0.960784, 0.207843, 0, 1)
+emission_energy_multiplier = 0.5
+emission_operator = 1
+emission_texture = SubResource("GradientTexture2D_5y8sa")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+point_size = 89.7
+proximity_fade_distance = 0.25
+
+[sub_resource type="QuadMesh" id="QuadMesh_shfgx"]
+size = Vector2(2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_usei4"]
+transparency = 1
+blend_mode = 1
+no_depth_test = true
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(0, 1, 0.298039, 1)
+emission_energy_multiplier = 0.5
+emission_operator = 1
+emission_texture = SubResource("GradientTexture2D_5y8sa")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+point_size = 89.7
+proximity_fade_distance = 0.25
+
+[sub_resource type="QuadMesh" id="QuadMesh_78c8p"]
+size = Vector2(2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b6ym6"]
+transparency = 1
+blend_mode = 1
+no_depth_test = true
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(0, 1, 0.298039, 1)
+emission_energy_multiplier = 0.5
+emission_operator = 1
+emission_texture = SubResource("GradientTexture2D_5y8sa")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+point_size = 89.7
+proximity_fade_distance = 0.25
+
+[node name="Map" groups=["MenuBackground"] instance=ExtResource("1_alrxj")]
+
+[node name="AudioListener3D" type="AudioListener3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 190.912, 0)
+current = true
+
+[node name="SpecialLogic" type="Node" parent="." index="1"]
+script = SubResource("GDScript_j86k7")
+
+[node name="FlybyCamera" parent="." index="2" instance=ExtResource("2_yuafq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 13.3914)
+speed = 0.33
+
+[node name="FlybyCameraFollow" parent="FlybyCamera" index="0"]
+transform = Transform3D(0.0149842, 0, 0.999887, 0, 1, 0, -0.999887, 0, 0.0149842, -1.08997, -2.247, 4.54094)
+
+[node name="Camera" parent="FlybyCamera/FlybyCameraFollow/Pivot" index="0"]
+attributes = SubResource("CameraAttributesPractical_yhnht")
+
+[node name="AnimationTree" parent="Music" index="1"]
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_1yvl2")
+
+[node name="StaticBody3D" parent="SpecialCollision" index="1"]
+collision_layer = 1
+
+[node name="CollisionShape3D5" parent="SpecialCollision/StaticBody3D" index="1"]
+shape = SubResource("CylinderShape3D_sfp20")
+disabled = true
+
+[node name="EnergyBeam" parent="Particles" index="0"]
+layers = 2
+
+[node name="WorldEnvironment" parent="Lighting" index="0"]
+environment = ExtResource("4_q604i")
+
+[node name="Rotator" parent="Lights" index="0"]
+speed = 0.05
+
+[node name="Halo" parent="Decoration" index="0"]
+visible = false
+mesh = SubResource("QuadMesh_nqixt")
+surface_material_override/0 = SubResource("StandardMaterial3D_l0swd")
+
+[node name="Halo2" parent="Decoration" index="1"]
+visible = false
+mesh = SubResource("QuadMesh_1h8cv")
+surface_material_override/0 = SubResource("StandardMaterial3D_ytwn2")
+
+[node name="Halo3" parent="Decoration" index="2"]
+visible = false
+mesh = SubResource("QuadMesh_cts3r")
+surface_material_override/0 = SubResource("StandardMaterial3D_b03nx")
+
+[node name="Halo4" parent="Decoration" index="3"]
+visible = false
+mesh = SubResource("QuadMesh_kg70t")
+surface_material_override/0 = SubResource("StandardMaterial3D_67oug")
+
+[node name="Halo5" parent="Decoration" index="4"]
+visible = false
+mesh = SubResource("QuadMesh_shfgx")
+surface_material_override/0 = SubResource("StandardMaterial3D_usei4")
+
+[node name="Halo6" parent="Decoration" index="5"]
+visible = false
+mesh = SubResource("QuadMesh_78c8p")
+surface_material_override/0 = SubResource("StandardMaterial3D_b6ym6")
+
+[node name="ReflectionProbe2" parent="ReflectionProbes" index="0"]
+cull_mask = 1
+
+[editable path="FlybyCamera"]
+[editable path="SpecialCollision/KillFloor"]

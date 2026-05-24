@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://lcbtsn5spl6m"]
+
+[ext_resource type="PackedScene" uid="uid://djb02qng4cqsf" path="res://Assets/Weapons/WeaponTypes/Generic/Weapon.tscn" id="1_k0apw"]
+[ext_resource type="PackedScene" uid="uid://d2h54wenp5mor" path="res://Assets/Weapons/Legacy/GrenadeLauncher/GrenadeLauncher.gltf" id="2_3v2b8"]
+[ext_resource type="Script" path="res://Assets/Weapons/Legacy/GrenadeLauncher/GrenadeLauncher.gd" id="2_3ww4w"]
+[ext_resource type="PackedScene" uid="uid://eerqpr05s6d4" path="res://Assets/Effects/BulletTracer.tscn" id="3_8kcys"]
+
+[node name="Weapon" instance=ExtResource("1_k0apw")]
+script = ExtResource("2_3ww4w")
+projectile_or_tracer_scene = ExtResource("3_8kcys")
+
+[node name="GrenadeLauncher" parent="." index="0" instance=ExtResource("2_3v2b8")]
+
+[node name="Static" parent="GrenadeLauncher/Handgun_Armature/Skeleton3D" index="0"]
+layers = 4
+
+[node name="GrenadeSpawner" type="MultiplayerSpawner" parent="." index="2"]
+_spawnable_scenes = PackedStringArray("res://Assets/Weapons/GrenadeLauncher/Grenade.gltf")
+
+[editable path="GrenadeLauncher"]
+[editable path="SFX/Shoot A"]
+[editable path="SFX/Shoot B"]
+[editable path="SFX/Shoot C"]

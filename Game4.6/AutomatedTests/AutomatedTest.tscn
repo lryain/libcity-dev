@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://r42b6sxiv8yg"]
+
+[ext_resource type="Script" path="res://AutomatedTests/AutomatedTest.gd" id="1_ix5tq"]
+
+[node name="AutomatedTest" type="Node3D"]
+script = ExtResource("1_ix5tq")

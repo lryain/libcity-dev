@@ -1,0 +1,16 @@
+[gd_resource type="ORMMaterial3D" load_steps=4 format=3 uid="uid://2trv2yebx21f"]
+
+[ext_resource type="Texture2D" uid="uid://dhq507hghwbpr" path="res://Assets/Materials/Maps/Dev/Dev_albedo_8.png" id="1_jfciy"]
+[ext_resource type="Texture2D" uid="uid://ceqlxxp2f04o7" path="res://Assets/Materials/Maps/Dev/Dev_normal.png" id="2_yv7rb"]
+[ext_resource type="Texture2D" uid="uid://on3cnja7e0qs" path="res://Assets/Materials/Maps/Dev/Dev_orm.png" id="3_hd688"]
+
+[resource]
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource( "1_jfciy" )
+orm_texture = ExtResource( "3_hd688" )
+normal_enabled = true
+normal_texture = ExtResource( "2_yv7rb" )
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 100.0
+texture_filter = 5

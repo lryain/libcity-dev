@@ -1,0 +1,563 @@
+[gd_scene load_steps=15 format=3 uid="uid://c5vskwfhxmmeh"]
+
+[ext_resource type="PackedScene" uid="uid://dggxalmj76h44" path="res://Assets/Maps/AbandonnedShip/glb/room.001.glb" id="1_1og28"]
+[ext_resource type="PackedScene" uid="uid://bbob7ksc8vhq7" path="res://Assets/MapComponents/Hazard.tscn" id="1_p37t3"]
+[ext_resource type="PackedScene" uid="uid://cysbmqjg71dmt" path="res://Assets/Maps/AbandonnedShip/glb/room.001_collider.glb" id="2_yisbj"]
+[ext_resource type="PackedScene" uid="uid://b2vvhnfh6rdic" path="res://Assets/Maps/AbandonnedShip/glb/guardrail_8m.glb" id="3_csbi5"]
+[ext_resource type="PackedScene" uid="uid://g0kuq08s1hw4" path="res://Assets/Maps/AbandonnedShip/glb/guardrail_4m.glb" id="4_0kn7e"]
+[ext_resource type="PackedScene" uid="uid://s6eera8vimdp" path="res://Assets/Maps/AbandonnedShip/glb/room_001_catwalk.000.glb" id="5_r1j21"]
+[ext_resource type="PackedScene" uid="uid://do4jf0hqxfyux" path="res://Assets/Maps/AbandonnedShip/glb/room.001_lift.glb" id="7_4gkqd"]
+[ext_resource type="PackedScene" uid="uid://cw737p76kaorq" path="res://Assets/Maps/AbandonnedShip/glb/cratefront_2m.glb" id="7_pyp21"]
+[ext_resource type="Script" path="res://Assets/MapComponents/lift.gd" id="8_7slp7"]
+[ext_resource type="PackedScene" uid="uid://dkcr8ij88ao5t" path="res://Assets/Maps/AbandonnedShip/glb/room.001_fan.glb" id="8_h70v5"]
+[ext_resource type="PackedScene" uid="uid://bks740rebwdw8" path="res://Assets/Maps/AbandonnedShip/glb/room.001_fan_blades.glb" id="9_a4m87"]
+[ext_resource type="Script" path="res://Assets/Maps/AbandonnedShip/glb/room.001_fan_blades.gd" id="10_fs2t8"]
+[ext_resource type="PackedScene" uid="uid://utm5psfwdixr" path="res://Assets/Maps/AbandonnedShip/scenes/SlidingDoor.tscn" id="13_mxl1r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d3qmp"]
+
+[node name="Room001" type="Node3D"]
+
+[node name="SpecialCollision" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="KillFloor" parent="SpecialCollision" instance=ExtResource("1_p37t3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -64, 0)
+
+[node name="CollisionShape3D" parent="SpecialCollision/KillFloor" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 55.2072, 0)
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="room001" parent="Geometry" instance=ExtResource("1_1og28")]
+
+[node name="room001_collider" parent="Geometry" instance=ExtResource("2_yisbj")]
+visible = false
+
+[node name="guardrail_8m" parent="Geometry" instance=ExtResource("3_csbi5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="guardrail_8m3" parent="Geometry" instance=ExtResource("3_csbi5")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 6.9703, 0, 7.08441)
+
+[node name="guardrail_8m4" parent="Geometry" instance=ExtResource("3_csbi5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.81851, 0, 0.0980082)
+
+[node name="guardrail_4m" parent="Geometry" instance=ExtResource("4_0kn7e")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5.60066, 0, 8.50534)
+
+[node name="Crates" type="Node3D" parent="Geometry"]
+
+[node name="cratefront_2m" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.52171, 10.0579)
+
+[node name="cratefront_2m2" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.45249, 10.0579)
+
+[node name="cratefront_2m5" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 11.5218, 10.0579)
+
+[node name="cratefront_2m6" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 4.45249, 10.0579)
+
+[node name="cratefront_2m3" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 6.52171, 10.0579)
+
+[node name="cratefront_2m4" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 9.45281, 10.0579)
+
+[node name="cratefront_2m7" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5218, 10.0579)
+
+[node name="cratefront_2m8" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.45281, 10.0579)
+
+[node name="cratefront_2m9" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 6.52171, 10.0579)
+
+[node name="cratefront_2m10" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 9.45281, 10.0579)
+
+[node name="cratefront_2m16" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 14.4528, 10.0579)
+
+[node name="cratefront_2m17" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4528, 10.0579)
+
+[node name="cratefront_2m18" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 14.4528, 10.0579)
+
+[node name="cratefront_2m11" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 11.5218, 10.0579)
+
+[node name="cratefront_2m13" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 16.5218, 10.0579)
+
+[node name="cratefront_2m14" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.5218, 10.0579)
+
+[node name="cratefront_2m15" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 16.5218, 10.0579)
+
+[node name="cratefront_2m12" parent="Geometry/Crates" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 4.45249, 10.0579)
+
+[node name="Crates2" type="Node3D" parent="Geometry"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="cratefront_2m" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.52171, 10.0579)
+
+[node name="cratefront_2m2" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.45249, 10.0579)
+
+[node name="cratefront_2m5" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 11.5218, 10.0579)
+
+[node name="cratefront_2m6" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 4.45249, 10.0579)
+
+[node name="cratefront_2m3" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 6.52171, 10.0579)
+
+[node name="cratefront_2m4" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 9.45281, 10.0579)
+
+[node name="cratefront_2m7" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5218, 10.0579)
+
+[node name="cratefront_2m8" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.45281, 10.0579)
+
+[node name="cratefront_2m9" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 6.52171, 10.0579)
+
+[node name="cratefront_2m10" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 9.45281, 10.0579)
+
+[node name="cratefront_2m16" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 14.4528, 10.0579)
+
+[node name="cratefront_2m17" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4528, 10.0579)
+
+[node name="cratefront_2m18" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 14.4528, 10.0579)
+
+[node name="cratefront_2m11" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 11.5218, 10.0579)
+
+[node name="cratefront_2m13" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 16.5218, 10.0579)
+
+[node name="cratefront_2m14" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.5218, 10.0579)
+
+[node name="cratefront_2m15" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 16.5218, 10.0579)
+
+[node name="cratefront_2m12" parent="Geometry/Crates2" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 4.45249, 10.0579)
+
+[node name="Crates4" type="Node3D" parent="Geometry"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="cratefront_2m" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.52171, 10.0579)
+
+[node name="cratefront_2m2" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.45249, 10.0579)
+
+[node name="cratefront_2m5" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 11.5218, 10.0579)
+
+[node name="cratefront_2m6" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 4.45249, 10.0579)
+
+[node name="cratefront_2m3" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 6.52171, 10.0579)
+
+[node name="cratefront_2m4" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 9.45281, 10.0579)
+
+[node name="cratefront_2m7" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5218, 10.0579)
+
+[node name="cratefront_2m8" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.45281, 10.0579)
+
+[node name="cratefront_2m9" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 6.52171, 10.0579)
+
+[node name="cratefront_2m10" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 9.45281, 10.0579)
+
+[node name="cratefront_2m16" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 14.4528, 10.0579)
+
+[node name="cratefront_2m17" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4528, 10.0579)
+
+[node name="cratefront_2m18" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 14.4528, 10.0579)
+
+[node name="cratefront_2m11" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 11.5218, 10.0579)
+
+[node name="cratefront_2m13" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 16.5218, 10.0579)
+
+[node name="cratefront_2m14" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.5218, 10.0579)
+
+[node name="cratefront_2m15" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 16.5218, 10.0579)
+
+[node name="cratefront_2m12" parent="Geometry/Crates4" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 4.45249, 10.0579)
+
+[node name="Crates5" type="Node3D" parent="Geometry"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="cratefront_2m" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.52171, 10.0579)
+
+[node name="cratefront_2m2" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.45249, 10.0579)
+
+[node name="cratefront_2m5" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 11.5218, 10.0579)
+
+[node name="cratefront_2m6" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 4.45249, 10.0579)
+
+[node name="cratefront_2m3" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 6.52171, 10.0579)
+
+[node name="cratefront_2m4" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 9.45281, 10.0579)
+
+[node name="cratefront_2m7" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5218, 10.0579)
+
+[node name="cratefront_2m8" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.45281, 10.0579)
+
+[node name="cratefront_2m9" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 6.52171, 10.0579)
+
+[node name="cratefront_2m10" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 9.45281, 10.0579)
+
+[node name="cratefront_2m16" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 14.4528, 10.0579)
+
+[node name="cratefront_2m17" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4528, 10.0579)
+
+[node name="cratefront_2m18" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 14.4528, 10.0579)
+
+[node name="cratefront_2m11" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 11.5218, 10.0579)
+
+[node name="cratefront_2m13" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 16.5218, 10.0579)
+
+[node name="cratefront_2m14" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.5218, 10.0579)
+
+[node name="cratefront_2m15" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 16.5218, 10.0579)
+
+[node name="cratefront_2m12" parent="Geometry/Crates5" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 4.45249, 10.0579)
+
+[node name="Crates6" type="Node3D" parent="Geometry"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 0, 0)
+
+[node name="cratefront_2m" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.52171, 10.0579)
+
+[node name="cratefront_2m2" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.45249, 10.0579)
+
+[node name="cratefront_2m5" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 11.5218, 10.0579)
+
+[node name="cratefront_2m6" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 4.45249, 10.0579)
+
+[node name="cratefront_2m3" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 6.52171, 10.0579)
+
+[node name="cratefront_2m4" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 9.45281, 10.0579)
+
+[node name="cratefront_2m7" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5218, 10.0579)
+
+[node name="cratefront_2m8" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.45281, 10.0579)
+
+[node name="cratefront_2m9" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 6.52171, 10.0579)
+
+[node name="cratefront_2m10" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 9.45281, 10.0579)
+
+[node name="cratefront_2m16" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 14.4528, 10.0579)
+
+[node name="cratefront_2m17" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4528, 10.0579)
+
+[node name="cratefront_2m18" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 14.4528, 10.0579)
+
+[node name="cratefront_2m11" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 11.5218, 10.0579)
+
+[node name="cratefront_2m13" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 16.5218, 10.0579)
+
+[node name="cratefront_2m14" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.5218, 10.0579)
+
+[node name="cratefront_2m15" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 16.5218, 10.0579)
+
+[node name="cratefront_2m12" parent="Geometry/Crates6" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 4.45249, 10.0579)
+
+[node name="Crates7" type="Node3D" parent="Geometry"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0)
+
+[node name="cratefront_2m" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.52171, 10.0579)
+
+[node name="cratefront_2m2" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.45249, 10.0579)
+
+[node name="cratefront_2m5" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 11.5218, 10.0579)
+
+[node name="cratefront_2m6" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 4.45249, 10.0579)
+
+[node name="cratefront_2m3" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 6.52171, 10.0579)
+
+[node name="cratefront_2m4" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 9.45281, 10.0579)
+
+[node name="cratefront_2m7" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5218, 10.0579)
+
+[node name="cratefront_2m8" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.45281, 10.0579)
+
+[node name="cratefront_2m9" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 6.52171, 10.0579)
+
+[node name="cratefront_2m10" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 9.45281, 10.0579)
+
+[node name="cratefront_2m16" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 14.4528, 10.0579)
+
+[node name="cratefront_2m17" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4528, 10.0579)
+
+[node name="cratefront_2m18" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 14.4528, 10.0579)
+
+[node name="cratefront_2m11" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 11.5218, 10.0579)
+
+[node name="cratefront_2m13" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 16.5218, 10.0579)
+
+[node name="cratefront_2m14" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.5218, 10.0579)
+
+[node name="cratefront_2m15" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 16.5218, 10.0579)
+
+[node name="cratefront_2m12" parent="Geometry/Crates7" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 4.45249, 10.0579)
+
+[node name="Crates8" type="Node3D" parent="Geometry"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="cratefront_2m" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.52171, 10.0579)
+
+[node name="cratefront_2m2" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.45249, 10.0579)
+
+[node name="cratefront_2m5" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 11.5218, 10.0579)
+
+[node name="cratefront_2m6" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 4.45249, 10.0579)
+
+[node name="cratefront_2m3" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 6.52171, 10.0579)
+
+[node name="cratefront_2m4" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 9.45281, 10.0579)
+
+[node name="cratefront_2m7" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5218, 10.0579)
+
+[node name="cratefront_2m8" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.45281, 10.0579)
+
+[node name="cratefront_2m9" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 6.52171, 10.0579)
+
+[node name="cratefront_2m10" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 9.45281, 10.0579)
+
+[node name="cratefront_2m16" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 14.4528, 10.0579)
+
+[node name="cratefront_2m17" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4528, 10.0579)
+
+[node name="cratefront_2m18" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 14.4528, 10.0579)
+
+[node name="cratefront_2m11" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 11.5218, 10.0579)
+
+[node name="cratefront_2m13" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 16.5218, 10.0579)
+
+[node name="cratefront_2m14" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.5218, 10.0579)
+
+[node name="cratefront_2m15" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 16.5218, 10.0579)
+
+[node name="cratefront_2m12" parent="Geometry/Crates8" instance=ExtResource("7_pyp21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09951, 4.45249, 10.0579)
+
+[node name="Catwalks" type="Node3D" parent="Geometry"]
+
+[node name="room_001_catwalk000" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 9.978)
+
+[node name="room_001_catwalk001" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 7.055, 4, 7.055)
+
+[node name="room_001_catwalk002" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.978, 4, 0)
+
+[node name="room_001_catwalk003" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 7.055, 4, -7.055)
+
+[node name="room_001_catwalk004" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 4, -9.978)
+
+[node name="room_001_catwalk005" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -7.055, 4, -7.055)
+
+[node name="room_001_catwalk006" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.978, 4, 0)
+
+[node name="room_001_catwalk007" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -7.055, 4, 7.055)
+
+[node name="room_001_catwalk008" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 9, 9.978)
+
+[node name="room_001_catwalk009" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 7.055, 9, 7.055)
+
+[node name="room_001_catwalk010" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.978, 9, 0)
+
+[node name="room_001_catwalk011" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 7.055, 9, -7.055)
+
+[node name="room_001_catwalk012" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 9, -9.978)
+
+[node name="room_001_catwalk013" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -7.055, 9, -7.055)
+
+[node name="room_001_catwalk014" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.978, 9, 0)
+
+[node name="room_001_catwalk015" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -7.055, 9, 7.055)
+
+[node name="room_001_catwalk016" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 14, 9.978)
+
+[node name="room_001_catwalk017" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 7.055, 14, 7.055)
+
+[node name="room_001_catwalk018" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.978, 14, 0)
+
+[node name="room_001_catwalk019" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 7.055, 14, -7.055)
+
+[node name="room_001_catwalk020" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 14, -9.978)
+
+[node name="room_001_catwalk021" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -7.055, 14, -7.055)
+
+[node name="room_001_catwalk022" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.978, 14, 0)
+
+[node name="room_001_catwalk023" parent="Geometry/Catwalks" instance=ExtResource("5_r1j21")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -7.055, 14, 7.055)
+
+[node name="Fan" type="Node3D" parent="Geometry"]
+
+[node name="room001_fan" parent="Geometry/Fan" instance=ExtResource("8_h70v5")]
+
+[node name="room001_fan_blades" parent="Geometry/Fan" instance=ExtResource("9_a4m87")]
+script = ExtResource("10_fs2t8")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.65702, 0)
+omni_range = 26.7902
+
+[node name="Lift" type="Node3D" parent="."]
+script = ExtResource("8_7slp7")
+steps = [0.0, 4.0, 9.0, 14.0]
+
+[node name="room001_lift" parent="Lift" instance=ExtResource("7_4gkqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.3719)
+
+[node name="TriggerArea" type="Area3D" parent="Lift"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617134, -11.3577)
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lift/TriggerArea"]
+transform = Transform3D(2.476, 0, 0, 0, 2.476, 0, 0, 0, 2.476, 0, 0.797328, 0)
+shape = SubResource("BoxShape3D_d3qmp")
+
+[node name="SlidingDoor" parent="." instance=ExtResource("13_mxl1r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14, 0, 0)
+
+[node name="SlidingDoor2" parent="." instance=ExtResource("13_mxl1r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14, 0, -18)
+
+[node name="SlidingDoor3" parent="." instance=ExtResource("13_mxl1r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.9266, 0, 1)
+
+[connection signal="body_entered" from="Lift/TriggerArea" to="Lift" method="_on_trigger_area_body_entered"]
+[connection signal="body_exited" from="Lift/TriggerArea" to="Lift" method="_on_trigger_area_body_exited"]
+
+[editable path="SpecialCollision/KillFloor"]

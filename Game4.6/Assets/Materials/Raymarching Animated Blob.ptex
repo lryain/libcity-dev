@@ -1,0 +1,419 @@
+{
+	"connections": [
+		{
+			"from": "sdf3d_sphere",
+			"from_port": 0,
+			"to": "sdf3d_translate_3_3",
+			"to_port": 0
+		},
+		{
+			"from": "sdf3d_fbm",
+			"from_port": 0,
+			"to": "sdf3d_smoothboolean",
+			"to_port": 0
+		},
+		{
+			"from": "sdf3d_translate_3_3",
+			"from_port": 0,
+			"to": "sdf3d_rotate_2",
+			"to_port": 0
+		},
+		{
+			"from": "sdf3d_rotate_2",
+			"from_port": 0,
+			"to": "sdf3d_fbm",
+			"to_port": 0
+		},
+		{
+			"from": "tex3d_distort_2",
+			"from_port": 0,
+			"to": "tex3d_blend_2",
+			"to_port": 1
+		},
+		{
+			"from": "tex3d_blend_2",
+			"from_port": 0,
+			"to": "tex3d_colorize_3",
+			"to_port": 0
+		},
+		{
+			"from": "tex3d_blend_2",
+			"from_port": 0,
+			"to": "tex3d_colorize_2",
+			"to_port": 0
+		},
+		{
+			"from": "tex3d_blend_2",
+			"from_port": 0,
+			"to": "tex3d_colorize_4",
+			"to_port": 0
+		},
+		{
+			"from": "tex3d_fbm_2",
+			"from_port": 0,
+			"to": "tex3d_rotate",
+			"to_port": 0
+		},
+		{
+			"from": "tex3d_rotate",
+			"from_port": 0,
+			"to": "tex3d_distort_2",
+			"to_port": 0
+		},
+		{
+			"from": "tex3d_rotate",
+			"from_port": 0,
+			"to": "tex3d_blend_2",
+			"to_port": 0
+		},
+		{
+			"from": "tex3d_fbm_3",
+			"from_port": 0,
+			"to": "tex3d_rotate_2",
+			"to_port": 0
+		},
+		{
+			"from": "tex3d_rotate_2",
+			"from_port": 0,
+			"to": "tex3d_distort_2",
+			"to_port": 1
+		},
+		{
+			"from": "sdf3d_sphere_2",
+			"from_port": 0,
+			"to": "sdf3d_smoothboolean",
+			"to_port": 1
+		},
+		{
+			"from": "sdf3d_smoothboolean",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 0
+		},
+		{
+			"from": "tex3d_colorize_3",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 1
+		},
+		{
+			"from": "tex3d_colorize_2",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 3
+		},
+		{
+			"from": "tex3d_colorize_4",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 2
+		}
+	],
+	"label": "Graph",
+	"longdesc": "",
+	"name": "@@288",
+	"node_position": {
+		"x": 0,
+		"y": 0
+	},
+	"nodes": [
+		{
+			"export_paths": {
+
+			},
+			"name": "Material",
+			"node_position": {
+				"x": 603,
+				"y": -24.999998
+			},
+			"parameters": {
+
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "material_raymarching"
+		},
+		{
+			"name": "sdf3d_sphere",
+			"node_position": {
+				"x": -1639,
+				"y": -364
+			},
+			"parameters": {
+				"r": "(sin($time*0.34)/22.0)+0.7"
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "sdf3d_sphere"
+		},
+		{
+			"name": "sdf3d_sphere_2",
+			"node_position": {
+				"x": -645,
+				"y": 364.999969
+			},
+			"parameters": {
+				"r": "(sin($time*0.4)/20.0)+0.9"
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "sdf3d_sphere"
+		},
+		{
+			"name": "sdf3d_smoothboolean",
+			"node_position": {
+				"x": -184,
+				"y": 161
+			},
+			"parameters": {
+				"k": 0.05,
+				"op": 1
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "sdf3d_smoothboolean"
+		},
+		{
+			"name": "sdf3d_translate_3_3",
+			"node_position": {
+				"x": -1351,
+				"y": -366
+			},
+			"parameters": {
+				"x": -0.88,
+				"y": 0,
+				"z": 0
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "sdf3d_translate"
+		},
+		{
+			"name": "sdf3d_fbm",
+			"node_position": {
+				"x": -691,
+				"y": -426
+			},
+			"parameters": {
+				"iterations": 2,
+				"mode": 0,
+				"scaling": 0.58,
+				"smoothness": 0.38
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "sdf3d_fbm"
+		},
+		{
+			"name": "sdf3d_rotate_2",
+			"node_position": {
+				"x": -1072,
+				"y": -391.5
+			},
+			"parameters": {
+				"ax": 0,
+				"ay": "$time*3.0",
+				"az": 0
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "sdf3d_rotate"
+		},
+		{
+			"name": "tex3d_fbm_2",
+			"node_position": {
+				"x": -1245.5,
+				"y": -86.500015
+			},
+			"parameters": {
+				"iterations": 3,
+				"noise": 0,
+				"persistence": 1,
+				"scale_x": 8,
+				"scale_y": 8,
+				"scale_z": 8
+			},
+			"seed": 0.432806,
+			"seed_locked": false,
+			"type": "tex3d_fbm"
+		},
+		{
+			"name": "tex3d_blend_2",
+			"node_position": {
+				"x": -263,
+				"y": -102.5
+			},
+			"parameters": {
+				"amount": 0.74475,
+				"blend_type": 10
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "tex3d_blend"
+		},
+		{
+			"name": "tex3d_distort_2",
+			"node_position": {
+				"x": -523,
+				"y": 98.5
+			},
+			"parameters": {
+				"Distort": 0.6
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "tex3d_distort"
+		},
+		{
+			"name": "tex3d_fbm_3",
+			"node_position": {
+				"x": -1167,
+				"y": 240.5
+			},
+			"parameters": {
+				"iterations": 7,
+				"noise": 0,
+				"persistence": 0.7,
+				"scale_x": 3,
+				"scale_y": 3,
+				"scale_z": 3
+			},
+			"seed": 0.81397,
+			"seed_locked": false,
+			"type": "tex3d_fbm"
+		},
+		{
+			"name": "tex3d_colorize_3",
+			"node_position": {
+				"x": 30,
+				"y": -106.5
+			},
+			"parameters": {
+				"g": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 0,
+							"g": 0,
+							"pos": 0.127273,
+							"r": 0
+						},
+						{
+							"a": 1,
+							"b": 0.628906,
+							"g": 0.628906,
+							"pos": 0.572727,
+							"r": 0.628906
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "tex3d_colorize"
+		},
+		{
+			"name": "tex3d_colorize_2",
+			"node_position": {
+				"x": 48,
+				"y": 56
+			},
+			"parameters": {
+				"g": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 0,
+							"g": 0,
+							"pos": 0,
+							"r": 0
+						},
+						{
+							"a": 1,
+							"b": 0.328125,
+							"g": 0.328125,
+							"pos": 0.176951,
+							"r": 0.328125
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "tex3d_colorize"
+		},
+		{
+			"name": "tex3d_colorize_4",
+			"node_position": {
+				"x": 43,
+				"y": -27
+			},
+			"parameters": {
+				"g": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 1,
+							"g": 1,
+							"pos": 0,
+							"r": 1
+						},
+						{
+							"a": 1,
+							"b": 0,
+							"g": 0,
+							"pos": 0.336364,
+							"r": 0
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "tex3d_colorize"
+		},
+		{
+			"name": "tex3d_rotate",
+			"node_position": {
+				"x": -792,
+				"y": -68.500008
+			},
+			"parameters": {
+				"ax": 0,
+				"ay": "$time*0.64",
+				"az": 0
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "tex3d_rotate"
+		},
+		{
+			"name": "tex3d_rotate_2",
+			"node_position": {
+				"x": -914.5,
+				"y": 254.5
+			},
+			"parameters": {
+				"ax": 0,
+				"ay": "$time*2.",
+				"az": "-$time*1.9"
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "tex3d_rotate"
+		}
+	],
+	"parameters": {
+
+	},
+	"seed": 0,
+	"seed_locked": false,
+	"shortdesc": "",
+	"type": "graph"
+}

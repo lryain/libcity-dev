@@ -1,0 +1,420 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfp7wv5asv7i7"]
+
+[ext_resource type="Script" path="res://Assets/Menu/VolumeSettings.gd" id="1_bbuwb"]
+[ext_resource type="Script" path="res://Assets/Menu/QualityOptionButton.gd" id="1_fq1kp"]
+[ext_resource type="Script" path="res://Assets/Menu/UserPreferences.gd" id="1_fr4li"]
+[ext_resource type="Script" path="res://Assets/Menu/RenderScaleSlider.gd" id="2_odj2d"]
+[ext_resource type="Script" path="res://Assets/Menu/Fullscreen.gd" id="2_wbyge"]
+[ext_resource type="Script" path="res://Assets/Menu/Particles.gd" id="3_aelvf"]
+[ext_resource type="Script" path="res://Assets/Menu/HeightMapping.gd" id="5_5u81l"]
+
+[sub_resource type="FontVariation" id="FontVariation_bfsuw"]
+variation_embolden = 1.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_x68ky"]
+font = SubResource("FontVariation_bfsuw")
+
+[sub_resource type="LabelSettings" id="LabelSettings_b5y3f"]
+font = SubResource("FontVariation_bfsuw")
+
+[sub_resource type="LabelSettings" id="LabelSettings_eh858"]
+font = SubResource("FontVariation_bfsuw")
+
+[node name="Preferences" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -305.0
+offset_top = -111.5
+offset_right = 305.0
+offset_bottom = 111.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Fullscreen" type="CheckButton" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+tooltip_text = "Toggle fullscreen at any time using the F11 key"
+text = "FULLSCREEN (F11)"
+script = ExtResource("2_wbyge")
+
+[node name="HSeparator5" type="HSeparator" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="RenderScale" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/RenderScale"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "RENDER SCALE"
+
+[node name="RenderScaleValueLabel" type="Label" parent="HBoxContainer/VBoxContainer2/RenderScale"]
+clip_contents = true
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "1.0"
+label_settings = SubResource("LabelSettings_x68ky")
+horizontal_alignment = 1
+
+[node name="ScalingMode" type="OptionButton" parent="HBoxContainer/VBoxContainer2/RenderScale"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "bilinear"
+popup/item_0/id = 0
+popup/item_1/text = "FSR 1.0"
+popup/item_1/id = 1
+popup/item_2/text = "FSR 2.2"
+popup/item_2/id = 2
+
+[node name="RenderScaleSlider" type="HSlider" parent="HBoxContainer/VBoxContainer2/RenderScale"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 2.0
+step = 0.05
+value = 1.0
+tick_count = 7
+ticks_on_borders = true
+script = ExtResource("2_odj2d")
+
+[node name="HSeparator4" type="HSeparator" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="EnvironmentPresets" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/EnvironmentPresets"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "ENVIRONMENT VISUALS"
+
+[node name="QualityOptionButton" type="OptionButton" parent="HBoxContainer/VBoxContainer2/EnvironmentPresets"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 6
+selected = 2
+popup/item_0/text = "Very Low"
+popup/item_0/id = 0
+popup/item_1/text = "Low"
+popup/item_1/id = 1
+popup/item_2/text = "Medium"
+popup/item_2/id = 2
+popup/item_3/text = "High"
+popup/item_3/id = 3
+popup/item_4/text = "Very High"
+popup/item_4/id = 4
+popup/item_5/text = "Extreme"
+popup/item_5/id = 5
+script = ExtResource("1_fq1kp")
+
+[node name="HSeparator3" type="HSeparator" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Particles" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 2
+script = ExtResource("3_aelvf")
+
+[node name="Fallback" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/Particles"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/Particles/Fallback"]
+layout_mode = 2
+text = "FALLBACK PARTICLE EFFECTS"
+
+[node name="ParticlesFallback" type="CheckButton" parent="HBoxContainer/VBoxContainer2/Particles/Fallback"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+alignment = 1
+
+[node name="Density" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/Particles"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/Particles/Density"]
+layout_mode = 2
+text = "PARTICLE AMOUNT"
+
+[node name="ParticleDensityValueLabel" type="Label" parent="HBoxContainer/VBoxContainer2/Particles/Density"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "1.0
+"
+label_settings = SubResource("LabelSettings_x68ky")
+horizontal_alignment = 1
+
+[node name="ParticleDensitySlider" type="HSlider" parent="HBoxContainer/VBoxContainer2/Particles/Density"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 2.0
+step = 0.1
+value = 1.0
+scrollable = false
+tick_count = 21
+ticks_on_borders = true
+
+[node name="HSeparator6" type="HSeparator" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="HeightMapping" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 2
+script = ExtResource("5_5u81l")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/HeightMapping"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="HBoxContainer/VBoxContainer2/HeightMapping/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HEIGHT MAPPING"
+
+[node name="HeightMappingQualityLabel" type="Label" parent="HBoxContainer/VBoxContainer2/HeightMapping"]
+clip_contents = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "QUALITY"
+label_settings = SubResource("LabelSettings_x68ky")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Quality" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/HeightMapping"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/HeightMapping/Quality"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+text = "QUALITY"
+uppercase = true
+
+[node name="HeightMappingQualitySlider" type="HSlider" parent="HBoxContainer/VBoxContainer2/HeightMapping/Quality"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 3.0
+scrollable = false
+tick_count = 4
+ticks_on_borders = true
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="UserPreferences" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("1_fr4li")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/UserPreferences"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/UserPreferences/HBoxContainer"]
+layout_mode = 2
+text = "MOUSE SENSITIVITY"
+
+[node name="MouseSensitivityValueLabel" type="Label" parent="HBoxContainer/VBoxContainer/UserPreferences/HBoxContainer"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "1.0
+"
+label_settings = SubResource("LabelSettings_b5y3f")
+horizontal_alignment = 1
+
+[node name="MouseSensitivitySlider" type="HSlider" parent="HBoxContainer/VBoxContainer/UserPreferences/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 5.0
+step = 0.05
+value = 1.0
+scrollable = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/UserPreferences"]
+layout_mode = 2
+
+[node name="MouseInvertY" type="CheckButton" parent="HBoxContainer/VBoxContainer/UserPreferences/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "INVERT VERTICAL"
+
+[node name="MouseInvertX" type="CheckButton" parent="HBoxContainer/VBoxContainer/UserPreferences/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "INVERT HORIZONTAL"
+
+[node name="HSeparator3" type="HSeparator" parent="HBoxContainer/VBoxContainer/UserPreferences"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/UserPreferences"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/UserPreferences/HBoxContainer2"]
+layout_mode = 2
+text = "FIELD OF VIEW"
+
+[node name="FovValueLabel" type="Label" parent="HBoxContainer/VBoxContainer/UserPreferences/HBoxContainer2"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "90°"
+label_settings = SubResource("LabelSettings_eh858")
+horizontal_alignment = 1
+
+[node name="FovSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/UserPreferences/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 60.0
+max_value = 150.0
+value = 90.0
+scrollable = false
+tick_count = 10
+ticks_on_borders = true
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="VolumeSettings" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("1_bbuwb")
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/VolumeSettings"]
+layout_mode = 2
+text = "AUDIO LEVELS"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer/VolumeSettings"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/VolumeSettings/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "master
+"
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="MasterSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/VolumeSettings/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -60.0
+max_value = 0.0
+scrollable = false
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/VolumeSettings/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "music"
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="MusicSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/VolumeSettings/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 11
+size_flags_vertical = 4
+min_value = -60.0
+max_value = 0.0
+scrollable = false
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer/VolumeSettings/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "SFX"
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="SfxSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/VolumeSettings/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 11
+size_flags_vertical = 4
+min_value = -60.0
+max_value = 0.0
+scrollable = false
+
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer/VolumeSettings/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "UI"
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="UiSlider" type="HSlider" parent="HBoxContainer/VBoxContainer/VolumeSettings/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 11
+size_flags_vertical = 4
+min_value = -60.0
+max_value = 0.0
+scrollable = false
+
+[connection signal="toggled" from="HBoxContainer/VBoxContainer2/Fullscreen" to="HBoxContainer/VBoxContainer2/Fullscreen" method="_on_toggled"]
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer2/RenderScale/ScalingMode" to="HBoxContainer/VBoxContainer2/RenderScale/RenderScaleSlider" method="_on_scaling_mode_item_selected"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer2/RenderScale/RenderScaleSlider" to="HBoxContainer/VBoxContainer2/RenderScale/RenderScaleSlider" method="_on_value_changed"]
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer2/EnvironmentPresets/QualityOptionButton" to="HBoxContainer/VBoxContainer2/EnvironmentPresets/QualityOptionButton" method="_on_item_selected"]
+[connection signal="toggled" from="HBoxContainer/VBoxContainer2/Particles/Fallback/ParticlesFallback" to="HBoxContainer/VBoxContainer/UserPreferences" method="_on_particles_fallback_toggled"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer2/Particles/Density/ParticleDensitySlider" to="HBoxContainer/VBoxContainer2/Particles" method="_on_particle_density_slider_value_changed"]
+[connection signal="toggled" from="HBoxContainer/VBoxContainer2/HeightMapping/HBoxContainer/CheckButton" to="HBoxContainer/VBoxContainer2/HeightMapping" method="_on_check_button_toggled"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer2/HeightMapping/Quality/HeightMappingQualitySlider" to="HBoxContainer/VBoxContainer2/HeightMapping" method="_on_height_mapping_quality_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/UserPreferences/HBoxContainer/MouseSensitivitySlider" to="HBoxContainer/VBoxContainer/UserPreferences" method="_on_mouse_sensitivity_slider_value_changed"]
+[connection signal="toggled" from="HBoxContainer/VBoxContainer/UserPreferences/HBoxContainer3/MouseInvertY" to="HBoxContainer/VBoxContainer/UserPreferences" method="_on_mouse_invert_y_toggled"]
+[connection signal="toggled" from="HBoxContainer/VBoxContainer/UserPreferences/HBoxContainer3/MouseInvertX" to="HBoxContainer/VBoxContainer/UserPreferences" method="_on_mouse_invert_x_toggled"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/UserPreferences/HBoxContainer2/FovSlider" to="HBoxContainer/VBoxContainer/UserPreferences" method="_on_fov_slider_value_changed"]
+[connection signal="visibility_changed" from="HBoxContainer/VBoxContainer/VolumeSettings" to="HBoxContainer/VBoxContainer/VolumeSettings" method="_on_visibility_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/VolumeSettings/GridContainer/MasterSlider" to="HBoxContainer/VBoxContainer/VolumeSettings" method="_master_volume_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/VolumeSettings/GridContainer/MusicSlider" to="HBoxContainer/VBoxContainer/VolumeSettings" method="_music_volume_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/VolumeSettings/GridContainer/SfxSlider" to="HBoxContainer/VBoxContainer/VolumeSettings" method="_sfx_volume_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/VolumeSettings/GridContainer/UiSlider" to="HBoxContainer/VBoxContainer/VolumeSettings" method="_ui_volume_changed"]

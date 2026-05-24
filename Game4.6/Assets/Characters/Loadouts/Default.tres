@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dwh8tk67l2b6s"]
+
+[ext_resource type="Script" path="res://Assets/Characters/Loadouts/CharacterLoadout.gd" id="1_oqgd3"]
+
+[resource]
+script = ExtResource("1_oqgd3")
+primary = 4
+secondary = 3
+tertiary = 2

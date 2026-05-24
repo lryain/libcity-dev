@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bknpb16tq2moi"]
+
+[ext_resource type="FontFile" uid="uid://dedcmqi18s2mk" path="res://Assets/Fonts/Liberation Sans/LiberationSans-Bold.ttf" id="1_g6x4l"]
+[ext_resource type="Script" path="res://Assets/Weapons/Damage/DamageLabel.gd" id="2_4vrjt"]
+
+[node name="DamageLabel" type="Label3D"]
+layers = 8
+pixel_size = 0.0005
+offset = Vector2(0, 16)
+billboard = 1
+double_sided = false
+no_depth_test = true
+fixed_size = true
+text = "DMG"
+font = ExtResource("1_g6x4l")
+font_size = 24
+outline_size = 10
+script = ExtResource("2_4vrjt")

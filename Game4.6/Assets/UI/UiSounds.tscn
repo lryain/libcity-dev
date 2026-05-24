@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdhbui4itcjky"]
+
+[ext_resource type="Script" path="res://Assets/UI/UiSounds.gd" id="1_tv30f"]
+
+[node name="UiSounds" type="Node"]
+script = ExtResource("1_tv30f")
+root_path = NodePath("")

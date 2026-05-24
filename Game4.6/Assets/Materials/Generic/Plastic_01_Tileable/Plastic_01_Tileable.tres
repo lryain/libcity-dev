@@ -1,0 +1,11 @@
+[gd_resource type="ORMMaterial3D" load_steps=4 format=3 uid="uid://b1exqerl5iuea"]
+
+[ext_resource type="Texture2D" uid="uid://dyydgw0ln3ayj" path="res://Assets/Materials/Generic/Plastic_01_Tileable/Plastic_01_Tileable_albedo.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://8ad6ilfqfmip" path="res://Assets/Materials/Generic/Plastic_01_Tileable/Plastic_01_Tileable_orm.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b5wcjsow2eajh" path="res://Assets/Materials/Generic/Plastic_01_Tileable/Plastic_01_Tileable_normal.png" id="3"]
+
+[resource]
+albedo_texture = ExtResource("1")
+orm_texture = ExtResource("2")
+normal_enabled = true
+normal_texture = ExtResource("3")

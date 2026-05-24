@@ -1,0 +1,41 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://dyqrjclo20bbv"]
+
+[ext_resource type="Shader" uid="uid://bfyy10hs04n2c" path="res://Assets/Shaders/Environment/Ubershader.tres" id="1_50887"]
+[ext_resource type="Texture2D" uid="uid://d4nmbyc2tsm8y" path="res://Assets/Materials/Generic/Paint_01_Tileable/Paint_01_Tileable_albedo.png" id="5_0dg1v"]
+[ext_resource type="Texture2D" uid="uid://bn582occtuyqw" path="res://Assets/Materials/Generic/Paint_01_Tileable/Paint_01_Tileable_normal.png" id="6_lfwsp"]
+[ext_resource type="Texture2D" uid="uid://cld8caejothj6" path="res://Assets/Materials/Generic/Paint_01_Tileable/Paint_01_Tileable_orm.png" id="7_hndsf"]
+[ext_resource type="Texture2D" uid="uid://c2f6fur2ula0l" path="res://Assets/Materials/Generic/Rock_01_Tileable/RedRock_warp.png" id="8_gvkrg"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_50887")
+shader_parameter/HeightMappingEnabled = null
+shader_parameter/HeightScale = 0.25
+shader_parameter/HeightOcclusionLayersRange = Vector2(4, 16)
+shader_parameter/HeightMappingOcclusion = false
+shader_parameter/Scale = 32.0
+shader_parameter/WarpScale = 0.0
+shader_parameter/WarpAmount = 0.0
+shader_parameter/BaseColorOver = Color(0.60933, 0.60933, 0.60933, 1)
+shader_parameter/MacroWarpAmount = 0.0
+shader_parameter/MacroRotation = 0.0
+shader_parameter/ScaleMacro1 = 0.0
+shader_parameter/ScaleMacro2 = 0.0
+shader_parameter/BaseColorMacro = 0.0
+shader_parameter/OverlayWarpAmount = 0.0
+shader_parameter/OverlayScale = 0.0
+shader_parameter/Overlay_Macro_Mask = 1.0
+shader_parameter/Overlay_Mask_Input_Remap = Vector2(0, 1)
+shader_parameter/OverlayAmount = 0.0
+shader_parameter/RoughnessMacro = 0.0
+shader_parameter/NormalMacro = 0.0
+shader_parameter/NormalDepth = 1.0
+shader_parameter/AlphaScissor = false
+shader_parameter/AlphaScissorThreshold = 0.5
+shader_parameter/Warp = ExtResource("8_gvkrg")
+shader_parameter/BaseColor = ExtResource("5_0dg1v")
+shader_parameter/ORMD = ExtResource("7_hndsf")
+shader_parameter/OverlayBaseColor = ExtResource("5_0dg1v")
+shader_parameter/OverlayORM = ExtResource("7_hndsf")
+shader_parameter/OverlayNormal = ExtResource("6_lfwsp")
+shader_parameter/Normal = ExtResource("6_lfwsp")

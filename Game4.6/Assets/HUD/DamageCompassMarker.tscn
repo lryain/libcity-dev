@@ -1,0 +1,135 @@
+[gd_scene load_steps=13 format=3 uid="uid://cci284a0f6k3c"]
+
+[ext_resource type="Script" path="res://Assets/HUD/DamageCompassMarker.gd" id="1_ls0wa"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_jlkhy"]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_jas1m"]
+source = 1
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_whgmg"]
+constant = 2.5
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_tuyae"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_xf26t"]
+default_input_values = [0, Quaternion(0, 0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_us8mj"]
+default_input_values = [0, 0.0, 1, 0.5]
+operator = 5
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_a5322"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShader" id="VisualShader_uirqk"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D screen_tex_frg_3 : hint_screen_texture;
+
+
+
+void fragment() {
+// Input:2
+	vec2 n_out2p0 = SCREEN_UV;
+
+
+// FloatConstant:4
+	float n_out4p0 = 2.500000;
+
+
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = textureLod(screen_tex_frg_3, n_out2p0, n_out4p0);
+
+
+// Input:5
+	vec4 n_out5p0 = COLOR;
+
+
+// VectorDecompose:7
+	float n_out7p0 = n_out5p0.x;
+	float n_out7p1 = n_out5p0.y;
+	float n_out7p2 = n_out5p0.z;
+	float n_out7p3 = n_out5p0.w;
+
+
+// Mix:9
+	vec3 n_out9p0 = mix(vec3(n_out3p0.xyz), vec3(n_out5p0.xyz), vec3(n_out7p3));
+
+
+// FloatOp:8
+	float n_in8p1 = 0.50000;
+	float n_out8p0 = pow(n_out7p3, n_in8p1);
+
+
+// Output:0
+	COLOR.rgb = n_out9p0;
+	COLOR.a = n_out8p0;
+
+
+}
+"
+graph_offset = Vector2(451.487, -326.191)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(1560, -140)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_jlkhy")
+nodes/fragment/2/position = Vector2(-40, -60)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_jas1m")
+nodes/fragment/3/position = Vector2(380, -160)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatConstant_whgmg")
+nodes/fragment/4/position = Vector2(-20, -280)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_tuyae")
+nodes/fragment/5/position = Vector2(300, -280)
+nodes/fragment/7/node = SubResource("VisualShaderNodeVectorDecompose_xf26t")
+nodes/fragment/7/position = Vector2(800, 80)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatOp_us8mj")
+nodes/fragment/8/position = Vector2(1260, 100)
+nodes/fragment/9/node = SubResource("VisualShaderNodeMix_a5322")
+nodes/fragment/9/position = Vector2(1140, -260)
+nodes/fragment/connections = PackedInt32Array(4, 0, 3, 1, 5, 0, 7, 0, 7, 3, 8, 0, 8, 0, 0, 1, 3, 0, 9, 0, 5, 0, 9, 1, 7, 3, 9, 2, 9, 0, 0, 0, 2, 0, 3, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fxxia"]
+shader = SubResource("VisualShader_uirqk")
+
+[sub_resource type="Gradient" id="Gradient_uq2sb"]
+offsets = PackedFloat32Array(0.907063, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_otwvg"]
+gradient = SubResource("Gradient_uq2sb")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="DamageCompassMarker" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -0.5
+offset_right = 0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ls0wa")
+metadata/_edit_lock_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_fxxia")
+color = Color(1, 0, 0, 1)
+antialiased = true
+texture = SubResource("GradientTexture2D_otwvg")
+polygon = PackedVector2Array(150, -200, 150, 200, 300, 0)
+uv = PackedVector2Array(204.981, 20.0133, 204.981, 237.916, 252.647, 128.965)

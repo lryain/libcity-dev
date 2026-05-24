@@ -1,0 +1,177 @@
+[gd_scene load_steps=6 format=3 uid="uid://vbh70rguoisd"]
+
+[ext_resource type="Script" path="res://Assets/UI/DebugPanel.gd" id="1_obrkl"]
+[ext_resource type="FontFile" uid="uid://vokxbnewve4p" path="res://Assets/Fonts/Liberation Sans/LiberationMono-Regular.ttf" id="2_k3xct"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ckeb"]
+font_size = 18
+
+[sub_resource type="FontVariation" id="FontVariation_c5xjj"]
+base_font = ExtResource("2_k3xct")
+variation_embolden = 0.77
+variation_transform = Transform2D(0.4, 0, 0, 1, 0, 0)
+spacing_glyph = -4
+spacing_top = -12
+spacing_bottom = -12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0mgk8"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="DebugPanel" type="Panel" groups=["DebugPanels"]]
+modulate = Color(1, 1, 1, 0.862745)
+top_level = true
+clip_children = 2
+texture_filter = 4
+offset_left = 33.0
+offset_top = 32.0
+offset_right = 434.0
+offset_bottom = 402.0
+mouse_filter = 1
+script = ExtResource("1_obrkl")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+
+[node name="PrintToggle" type="CheckButton" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+button_pressed = true
+text = "PRINT"
+alignment = 2
+icon_alignment = 2
+
+[node name="TitleBar" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+text = "DEBUG"
+label_settings = SubResource("LabelSettings_1ckeb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Smaller" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+text = "  -  "
+
+[node name="ScaleLabel" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+mouse_filter = 1
+text = "100%"
+label_settings = SubResource("LabelSettings_1ckeb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Larger" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+text = "  +  "
+
+[node name="Close" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "  X  "
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 396.0
+offset_bottom = 32.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="CurChars" type="CheckButton" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_c5xjj")
+theme_override_font_sizes/font_size = 17
+button_pressed = true
+text = "cur. characters"
+alignment = 2
+icon_alignment = 2
+
+[node name="State" type="CheckButton" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_c5xjj")
+theme_override_font_sizes/font_size = 17
+button_pressed = true
+text = "states"
+alignment = 2
+icon_alignment = 2
+
+[node name="Times" type="CheckButton" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_c5xjj")
+button_pressed = true
+text = "times"
+alignment = 2
+icon_alignment = 2
+
+[node name="Performance" type="CheckButton" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_c5xjj")
+theme_override_font_sizes/font_size = 17
+button_pressed = true
+text = "performance"
+alignment = 2
+icon_alignment = 2
+
+[node name="Profiles" type="CheckButton" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_c5xjj")
+theme_override_font_sizes/font_size = 17
+button_pressed = true
+text = "char. profiles"
+alignment = 2
+icon_alignment = 2
+
+[node name="Discovery" type="CheckButton" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_c5xjj")
+theme_override_font_sizes/font_size = 17
+button_pressed = true
+text = "peer discovery"
+alignment = 2
+icon_alignment = 2
+
+[node name="Movement" type="CheckButton" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_c5xjj")
+theme_override_font_sizes/font_size = 17
+button_pressed = true
+text = "movement"
+alignment = 2
+icon_alignment = 2
+
+[node name="Log" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_k3xct")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mgk8")
+bbcode_enabled = true
+text = "debug log"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="toggled" from="HBoxContainer2/PrintToggle" to="." method="_on_print_toggle_toggled"]
+[connection signal="toggled" from="HBoxContainer2/PrintToggle" to="." method="_on_cur_chars_2_toggled"]
+[connection signal="pressed" from="HBoxContainer2/Smaller" to="." method="_on_smaller_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Larger" to="." method="_on_larger_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Close" to="." method="queue_free"]

@@ -1,0 +1,11 @@
+[gd_resource type="ORMMaterial3D" load_steps=4 format=3 uid="uid://bist2mv03egaf"]
+
+[ext_resource type="Texture2D" uid="uid://cpwkqjrufddwt" path="res://Assets/Environments/Props/SpaceTeaPot/SpaceTeaPotMaterial_albedo.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://ylqwqvslpuyo" path="res://Assets/Environments/Props/SpaceTeaPot/SpaceTeaPotMaterial_orm.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://brhbrkgynxkkv" path="res://Assets/Environments/Props/SpaceTeaPot/SpaceTeaPotMaterial_normal.png" id="3"]
+
+[resource]
+albedo_texture = ExtResource("1")
+orm_texture = ExtResource("2")
+normal_enabled = true
+normal_texture = ExtResource("3")

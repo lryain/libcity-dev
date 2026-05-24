@@ -1,0 +1,991 @@
+[gd_scene load_steps=48 format=3 uid="uid://ct2cmoinu4os1"]
+
+[ext_resource type="Texture2D" uid="uid://dlw3sb5tygqf4" path="res://Assets/HUD/Vignette.png" id="1"]
+[ext_resource type="Script" path="res://Assets/HUD/HUD.gd" id="1_wc430"]
+[ext_resource type="Shader" uid="uid://b46ll2oevlpsv" path="res://Assets/HUD/DamageOverlay.tres" id="2_yrtiy"]
+[ext_resource type="AudioStream" uid="uid://dfcyohpsqvri1" path="res://Assets/SFX/HUD_Confirm_Hit.wav" id="4_llqcq"]
+[ext_resource type="FontFile" uid="uid://vokxbnewve4p" path="res://Assets/Fonts/Liberation Sans/LiberationMono-Regular.ttf" id="4_xhkgk"]
+[ext_resource type="Script" path="res://Assets/HUD/Crosshair.gd" id="5"]
+[ext_resource type="FontFile" uid="uid://c53he8uou2bnk" path="res://Assets/Fonts/Liberation Sans/LiberationMono-Bold.ttf" id="5_6b3mp"]
+[ext_resource type="Shader" uid="uid://chgoxpcu64hnb" path="res://Assets/HUD/AdaptiveOutline.tres" id="5_d2npr"]
+[ext_resource type="AudioStream" uid="uid://bllgajqussdi5" path="res://Assets/SFX/HUD_Confirm_Kill.wav" id="5_hh74r"]
+[ext_resource type="FontFile" uid="uid://dedcmqi18s2mk" path="res://Assets/Fonts/Liberation Sans/LiberationSans-Bold.ttf" id="5_jc5w4"]
+[ext_resource type="Script" path="res://Assets/HUD/Chat.gd" id="6"]
+[ext_resource type="Theme" uid="uid://ddtu7o1dbp0s8" path="res://Assets/Theme.tres" id="7"]
+[ext_resource type="Texture2D" uid="uid://dsn7aj7kalch8" path="res://Assets/HUD/Crosshair_Baseline.png" id="7_8ujod"]
+[ext_resource type="Texture2D" uid="uid://cupt2xxgocalo" path="res://Assets/HUD/Crosshair_Hit.png" id="8_k3st1"]
+[ext_resource type="Texture2D" uid="uid://5a3ccki1ybs" path="res://Assets/HUD/Crosshair_Kill.png" id="9_3uknb"]
+[ext_resource type="Texture2D" uid="uid://dsd5k6q1nayd8" path="res://Assets/HUD/BarUnder.png" id="9_q07oy"]
+[ext_resource type="AudioStream" uid="uid://d36o2duyrij57" path="res://Assets/SFX/UI_Message.wav" id="9_ubwxw"]
+[ext_resource type="Texture2D" uid="uid://csoue1u7vfgqq" path="res://Assets/HUD/BarOver.png" id="10_5i332"]
+[ext_resource type="Script" path="res://Assets/HUD/DamageCompass.gd" id="11_5uaf0"]
+[ext_resource type="Texture2D" uid="uid://w4j1crvoxo5y" path="res://Assets/HUD/BarProgress.png" id="11_tlgqu"]
+[ext_resource type="Texture2D" uid="uid://pav2n1oxxs7b" path="res://Assets/Badges/Textures/Badge_Error.png" id="14_3820x"]
+[ext_resource type="Script" path="res://Assets/HUD/Performance.gd" id="17_getmp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_20mjj"]
+shader = ExtResource("2_yrtiy")
+
+[sub_resource type="Gradient" id="Gradient_tiy2a"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.566775, 0.732899, 0.762215)
+colors = PackedColorArray(0, 0, 0, 0, 0.6, 0.6, 0.6, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2847o"]
+gradient = SubResource("Gradient_tiy2a")
+
+[sub_resource type="LabelSettings" id="LabelSettings_jjjq8"]
+line_spacing = 0.0
+font_size = 29
+outline_size = 8
+outline_color = Color(0, 0, 0, 0.396078)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pyv6k"]
+line_spacing = 0.0
+font = ExtResource("4_xhkgk")
+font_size = 60
+outline_size = 16
+outline_color = Color(0, 0, 0, 0.372549)
+
+[sub_resource type="FontVariation" id="FontVariation_cqrh4"]
+base_font = ExtResource("5_6b3mp")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ygxkp"]
+line_spacing = 2.0
+font = SubResource("FontVariation_cqrh4")
+font_size = 29
+outline_size = 8
+outline_color = Color(0, 0, 0, 0.396078)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3hb3x"]
+font = ExtResource("5_jc5w4")
+font_size = 21
+outline_size = 8
+outline_color = Color(0, 0, 0, 0.396078)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xb875"]
+shader = ExtResource("5_d2npr")
+
+[sub_resource type="FontVariation" id="FontVariation_wcyir"]
+spacing_bottom = 2
+
+[sub_resource type="FontVariation" id="FontVariation_yivj4"]
+spacing_bottom = 2
+
+[sub_resource type="FontVariation" id="FontVariation_y3o7a"]
+spacing_bottom = 2
+
+[sub_resource type="FontVariation" id="FontVariation_wy147"]
+spacing_bottom = 2
+
+[sub_resource type="FontVariation" id="FontVariation_311hj"]
+spacing_bottom = 2
+
+[sub_resource type="FontVariation" id="FontVariation_sopvc"]
+variation_embolden = 0.78
+spacing_glyph = 1
+spacing_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ext4g"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_pnwf7"]
+font_size = 44
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_whinn"]
+font_size = 44
+font_color = Color(1, 0.337255, 0, 1)
+outline_size = 5
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o8sar"]
+font_size = 45
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bko1x"]
+font_size = 58
+font_color = Color(1, 0.145098, 0, 1)
+outline_size = 6
+shadow_size = 16
+shadow_color = Color(0, 0, 0, 0.501961)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j0kta"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_17oj5"]
+line_spacing = 0.0
+font = ExtResource("5_jc5w4")
+font_size = 48
+
+[sub_resource type="FontVariation" id="FontVariation_vlwue"]
+variation_embolden = 0.5
+spacing_space = 2
+spacing_top = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_qty54"]
+font = SubResource("FontVariation_vlwue")
+outline_size = 8
+outline_color = Color(0, 0, 0, 0.501961)
+shadow_size = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3t2h3"]
+
+[node name="HUD" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wc430")
+metadata/_edit_horizontal_guides_ = [324.0]
+metadata/_edit_lock_ = true
+metadata/_edit_vertical_guides_ = []
+
+[node name="Overlays" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Damage" type="ColorRect" parent="Overlays"]
+material = SubResource("ShaderMaterial_20mjj")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0.03, 1)
+metadata/_edit_lock_ = true
+
+[node name="Vignette" type="TextureRect" parent="Overlays"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1")
+expand_mode = 1
+metadata/_edit_layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="TopBar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="Team1BG" type="Polygon2D" parent="TopBar"]
+unique_name_in_owner = true
+position = Vector2(-420.002, 84.0026)
+rotation = -1.57079
+scale = Vector2(0.329002, 1)
+color = Color(0.67451, 1, 0, 1)
+antialiased = true
+texture = SubResource("GradientTexture1D_2847o")
+texture_offset = Vector2(128, 0.262)
+texture_scale = Vector2(0.5, 0.998)
+polygon = PackedVector2Array(255.321, 36.0016, 109.425, 84.0015, 109.426, 188, 36.4781, 212, 36.4838, 372.002, 133.748, 372.002, 158.063, 364.002, 255.322, 364)
+
+[node name="YouAreOnTeam1" type="Polygon2D" parent="TopBar"]
+unique_name_in_owner = true
+position = Vector2(-420.002, 84.0026)
+rotation = -1.57079
+scale = Vector2(0.329002, 1)
+color = Color(0.67451, 1, 0, 1)
+antialiased = true
+texture = SubResource("GradientTexture1D_2847o")
+texture_offset = Vector2(128, 0.262)
+texture_scale = Vector2(0.5, 0.998)
+polygon = PackedVector2Array(255.319, -67.9985, 36.4768, 4.00192, 36.4796, 156.827, 36.4804, 196.002, 85.112, 180.002, 85.1101, 76.0018, 255.321, 20.0015)
+
+[node name="You" type="Label" parent="TopBar/YouAreOnTeam1"]
+visible = false
+top_level = true
+offset_left = 131.0
+offset_top = 6.0
+offset_right = 194.0
+offset_bottom = 54.0
+scale = Vector2(0.775, 0.775)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "YOU"
+label_settings = SubResource("LabelSettings_jjjq8")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="YouAreOnTeam2" type="Polygon2D" parent="TopBar"]
+unique_name_in_owner = true
+position = Vector2(420, 84.0017)
+rotation = -1.57079
+scale = Vector2(0.329, -1)
+color = Color(0.643137, 0, 1, 1)
+antialiased = true
+texture = SubResource("GradientTexture1D_2847o")
+texture_offset = Vector2(128, 0.262)
+texture_scale = Vector2(0.5, 0.998)
+polygon = PackedVector2Array(255.321, -67.9995, 36.4768, 4.00192, 36.4804, 196.002, 85.112, 180.002, 85.1101, 76.0018, 255.321, 20.0015)
+
+[node name="You" type="Label" parent="TopBar/YouAreOnTeam2"]
+visible = false
+top_level = true
+offset_left = 968.0
+offset_top = 6.0
+offset_right = 1031.0
+offset_bottom = 54.0
+scale = Vector2(0.775, 0.775)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "YOU"
+label_settings = SubResource("LabelSettings_jjjq8")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="Team2BG" type="Polygon2D" parent="TopBar"]
+unique_name_in_owner = true
+position = Vector2(420, 84.0025)
+rotation = 1.5708
+scale = Vector2(-0.329, 1)
+color = Color(0.643137, 0, 1, 1)
+antialiased = true
+texture = SubResource("GradientTexture1D_2847o")
+texture_offset = Vector2(128, 0.262)
+texture_scale = Vector2(0.5, 0.998)
+polygon = PackedVector2Array(255.321, 36.0003, 109.424, 84.0001, 109.423, 188, 36.4743, 212, 36.4725, 372, 133.737, 372, 158.053, 364, 255.318, 364, 255.321, 297.974)
+
+[node name="ClockBG" type="Polygon2D" parent="TopBar"]
+position = Vector2(420, 84.0025)
+rotation = 1.5708
+scale = Vector2(-0.329, 1)
+color = Color(0, 0, 0, 0.67451)
+antialiased = true
+texture = SubResource("GradientTexture1D_2847o")
+texture_offset = Vector2(128, 0.262)
+texture_scale = Vector2(0.5, 0.998)
+polygon = PackedVector2Array(255.316, 476, 158.052, 476, 133.736, 468, 36.4715, 468, 36.4725, 372, 133.737, 372, 158.053, 364, 255.318, 364)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopBar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 232.0
+offset_right = -232.0
+offset_bottom = 75.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Team1" type="Label" parent="TopBar/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(192, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "team lime"
+label_settings = SubResource("LabelSettings_jjjq8")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="Team1Score" type="Label" parent="TopBar/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(117, 76)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "000"
+label_settings = SubResource("LabelSettings_pyv6k")
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopBar/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+
+[node name="Time" type="Label" parent="TopBar/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "00:00"
+label_settings = SubResource("LabelSettings_ygxkp")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ScoreLimit" type="Label" parent="TopBar/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "000"
+label_settings = SubResource("LabelSettings_ygxkp")
+horizontal_alignment = 1
+
+[node name="Team2Score" type="Label" parent="TopBar/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(117, 76)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "000"
+label_settings = SubResource("LabelSettings_pyv6k")
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+uppercase = true
+
+[node name="Team2" type="Label" parent="TopBar/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(192, 48)
+layout_mode = 2
+size_flags_vertical = 0
+text = "team plum"
+label_settings = SubResource("LabelSettings_jjjq8")
+vertical_alignment = 1
+uppercase = true
+
+[node name="CurrentCharacter" type="HBoxContainer" parent="TopBar/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="CharacterBadge" type="TextureRect" parent="TopBar/VBoxContainer/CurrentCharacter"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("14_3820x")
+expand_mode = 3
+
+[node name="CharacterDisplayName" type="Label" parent="TopBar/VBoxContainer/CurrentCharacter"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Current Character Display Name"
+label_settings = SubResource("LabelSettings_3hb3x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DamageCompass" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_5uaf0")
+metadata/_edit_lock_ = true
+
+[node name="Crosshair" type="Control" parent="."]
+texture_filter = 4
+texture_repeat = 1
+material = SubResource("ShaderMaterial_xb875")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.27, 0.27)
+pivot_offset = Vector2(64, 64)
+script = ExtResource("5")
+hit_marker_color = Color(1, 0.513726, 0, 1)
+metadata/_edit_layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Baseline" type="TextureRect" parent="Crosshair"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(65, 65)
+texture = ExtResource("7_8ujod")
+expand_mode = 1
+stretch_mode = 3
+metadata/_edit_layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Hit" type="TextureRect" parent="Crosshair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(65, 65)
+texture = ExtResource("8_k3st1")
+expand_mode = 1
+stretch_mode = 3
+metadata/_edit_layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Kill" type="TextureRect" parent="Crosshair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(65, 65)
+texture = ExtResource("9_3uknb")
+expand_mode = 1
+stretch_mode = 3
+metadata/_edit_layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="HitSound" type="AudioStreamPlayer" parent="Crosshair"]
+stream = ExtResource("4_llqcq")
+volume_db = 6.0
+max_polyphony = 3
+
+[node name="KillSound" type="AudioStreamPlayer" parent="Crosshair"]
+stream = ExtResource("5_hh74r")
+volume_db = 6.0
+max_polyphony = 3
+bus = &"Confirm Kill"
+
+[node name="Chat" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = -0.105035
+anchor_top = 0.997
+anchor_right = -0.105035
+anchor_bottom = 1.0
+offset_left = 137.0
+offset_top = -305.056
+offset_right = 462.0
+offset_bottom = -2.0
+grow_vertical = 0
+script = ExtResource("6")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Chat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.934
+anchor_bottom = 0.934
+offset_top = -254.87
+offset_right = 440.0
+offset_bottom = 0.130005
+alignment = 2
+metadata/_edit_layout_mode = 1
+
+[node name="ChatHistory" type="RichTextLabel" parent="Chat/VBoxContainer"]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+size_flags_vertical = 2
+theme = ExtResource("7")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/normal_font = SubResource("FontVariation_wcyir")
+theme_override_fonts/bold_font = SubResource("FontVariation_yivj4")
+theme_override_fonts/italics_font = SubResource("FontVariation_y3o7a")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_wy147")
+theme_override_fonts/mono_font = SubResource("FontVariation_311hj")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "1 CHAT HISTORY
+2
+3
+4
+5
+6
+7
+8
+9
+10
+"
+scroll_active = false
+scroll_following = true
+
+[node name="Typing" type="HBoxContainer" parent="Chat/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Chat/VBoxContainer/Typing"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_sopvc")
+text = "say: "
+
+[node name="Editor" type="LineEdit" parent="Chat/VBoxContainer/Typing"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "chat message"
+max_length = 80
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+caret_blink = true
+
+[node name="Panel" type="Panel" parent="Chat/VBoxContainer/Typing/Editor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ext4g")
+
+[node name="Message" type="AudioStreamPlayer" parent="Chat"]
+stream = ExtResource("9_ubwxw")
+
+[node name="RespawnCountdown" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -221.0
+offset_right = 220.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "RESPAWNING IN X.X"
+label_settings = SubResource("LabelSettings_pnwf7")
+
+[node name="TeamLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_right = 270.0
+offset_bottom = 221.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "YOU ARE ON TEAM TEST"
+label_settings = SubResource("LabelSettings_whinn")
+vertical_alignment = 2
+
+[node name="KilledAndKilledBy" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -237.0
+offset_top = 112.0
+offset_right = 376.0
+offset_bottom = 403.0
+grow_horizontal = 2
+scale = Vector2(0.765865, 0.765865)
+
+[node name="Killed" type="VBoxContainer" parent="KilledAndKilledBy"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+alignment = 2
+
+[node name="YouHaveKilled" type="Label" parent="KilledAndKilledBy/Killed"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "you have destroyed"
+label_settings = SubResource("LabelSettings_o8sar")
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="Victim" type="HBoxContainer" parent="KilledAndKilledBy/Killed"]
+layout_mode = 2
+alignment = 1
+
+[node name="Badge" type="TextureRect" parent="KilledAndKilledBy/Killed/Victim"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("14_3820x")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="KilledAndKilledBy/Killed/Victim"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="KilledAndKilledBy/Killed/Victim"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "VICTIM"
+label_settings = SubResource("LabelSettings_bko1x")
+horizontal_alignment = 1
+vertical_alignment = 2
+visible_characters_behavior = 3
+
+[node name="KilledBy" type="VBoxContainer" parent="KilledAndKilledBy"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+alignment = 2
+
+[node name="YouWereKilledBy" type="Label" parent="KilledAndKilledBy/KilledBy"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "you were destroyed by"
+label_settings = SubResource("LabelSettings_o8sar")
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="Attacker" type="HBoxContainer" parent="KilledAndKilledBy/KilledBy"]
+layout_mode = 2
+alignment = 1
+
+[node name="Badge" type="TextureRect" parent="KilledAndKilledBy/KilledBy/Attacker"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("14_3820x")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Margin" type="MarginContainer" parent="KilledAndKilledBy/KilledBy/Attacker"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="KilledAndKilledBy/KilledBy/Attacker"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "ATTACKER"
+label_settings = SubResource("LabelSettings_bko1x")
+horizontal_alignment = 1
+vertical_alignment = 2
+visible_characters_behavior = 3
+
+[node name="ScoreRank" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -27.0
+offset_bottom = 27.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ScoreTable" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.85)
+material = SubResource("CanvasItemMaterial_j0kta")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -439.0
+offset_top = 120.0
+offset_right = 440.0
+offset_bottom = 624.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScoreTable"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="ScoreTabScrollContainer" type="ScrollContainer" parent="ScoreTable/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScoreTable/MarginContainer/ScoreTabScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ScoreTabHeader" type="Label" parent="ScoreTable/MarginContainer/ScoreTabScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "PLAYING TEAM DEATHMATCH
+UNTIL XX POINTS OR YY MINUTES"
+label_settings = SubResource("LabelSettings_17oj5")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScoreTable/MarginContainer/ScoreTabScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Team1ScoreTab" type="RichTextLabel" parent="ScoreTable/MarginContainer/ScoreTabScrollContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 7
+theme = ExtResource("7")
+bbcode_enabled = true
+text = "[center][color=#cbfc10][b]TEAM LIME[/b][/color][/center]"
+
+[node name="VSeparator" type="VSeparator" parent="ScoreTable/MarginContainer/ScoreTabScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="Team2ScoreTab" type="RichTextLabel" parent="ScoreTable/MarginContainer/ScoreTabScrollContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7")
+bbcode_enabled = true
+text = "[center][color=#a100ff][b]TEAM PLUM[/b][/color][/center]"
+
+[node name="Stats" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -68.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+metadata/_edit_lock_ = true
+
+[node name="AmmoLabel" type="Label" parent="Stats"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmmoBar" type="TextureProgressBar" parent="Stats"]
+visible = false
+layout_mode = 2
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_top = 16
+stretch_margin_right = 16
+stretch_margin_bottom = 16
+texture_under = ExtResource("9_q07oy")
+texture_over = ExtResource("10_5i332")
+texture_progress = ExtResource("11_tlgqu")
+tint_under = Color(0, 0, 0, 0.12549)
+tint_over = Color(0.337255, 0.372549, 1, 1)
+tint_progress = Color(0.337255, 0.372549, 1, 1)
+
+[node name="Label" type="Label" parent="Stats/AmmoBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -14.0
+offset_right = 70.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReloadAmmoBar" type="TextureProgressBar" parent="Stats"]
+visible = false
+layout_mode = 2
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_top = 16
+stretch_margin_right = 16
+stretch_margin_bottom = 16
+texture_under = ExtResource("9_q07oy")
+texture_over = ExtResource("10_5i332")
+texture_progress = ExtResource("11_tlgqu")
+tint_under = Color(0, 0, 0, 0.12549)
+tint_over = Color(0.721569, 0, 1, 1)
+tint_progress = Color(0.721569, 0, 1, 1)
+
+[node name="Label" type="Label" parent="Stats/ReloadAmmoBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -14.0
+offset_right = 70.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="Stats"]
+layout_mode = 2
+value = 100.0
+allow_greater = true
+allow_lesser = true
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_top = 16
+stretch_margin_right = 16
+stretch_margin_bottom = 16
+texture_under = ExtResource("9_q07oy")
+texture_over = ExtResource("10_5i332")
+texture_progress = ExtResource("11_tlgqu")
+tint_under = Color(0, 0, 0, 0.12549)
+tint_over = Color(0, 0.780392, 1, 1)
+tint_progress = Color(0, 0.745098, 1, 1)
+
+[node name="Label" type="Label" parent="Stats/HealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -14.0
+offset_right = 70.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "HEALTH"
+label_settings = SubResource("LabelSettings_qty54")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JetpackBar" type="TextureProgressBar" parent="Stats"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_top = 16
+stretch_margin_right = 16
+stretch_margin_bottom = 16
+texture_under = ExtResource("9_q07oy")
+texture_over = ExtResource("10_5i332")
+texture_progress = ExtResource("11_tlgqu")
+tint_under = Color(0, 0, 0, 0.12549)
+tint_over = Color(1, 0.764706, 0, 1)
+tint_progress = Color(1, 0.760784, 0, 1)
+
+[node name="Label" type="Label" parent="Stats/JetpackBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -14.0
+offset_right = 70.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SPECIAL"
+label_settings = SubResource("LabelSettings_qty54")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Performance" type="RichTextLabel" parent="."]
+material = SubResource("ShaderMaterial_3t2h3")
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 18.0
+offset_right = -573.0
+offset_bottom = 61.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "FPS:
+PING:"
+scroll_active = false
+script = ExtResource("17_getmp")
+metadata/_edit_lock_ = true
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="text_submitted" from="Chat/VBoxContainer/Typing/Editor" to="Chat" method="_on_Editor_text_submitted"]
+[connection signal="meta_clicked" from="Performance" to="Performance" method="_on_performance_meta_clicked"]

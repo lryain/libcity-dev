@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cssdq3poknm6j"]
+
+[ext_resource type="Script" path="res://Assets/Badges/Badge.gd" id="1_u2gdx"]
+[ext_resource type="Texture2D" uid="uid://ctnew26kkj8be" path="res://Assets/Badges/Textures/Badge_Beta.png" id="2_fs3ve"]
+
+[resource]
+script = ExtResource( "1_u2gdx" )
+display_name = "Beta Tester"
+description = "registered the account during the beta testing stage of the game"
+texture = ExtResource( "2_fs3ve" )
+priority = 26

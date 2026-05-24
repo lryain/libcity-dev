@@ -1,0 +1,65 @@
+[gd_resource type="VisualShader" format=3 uid="uid://q2dsocfv4nid"]
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id="VisualShaderNodeGlobalExpression_4brsx"]
+size = Vector2(735, 175)
+expression = "uniform sampler2D screen : hint_screen_texture, filter_linear_mipmap;"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_epk51"]
+source = 1
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_ydmue"]
+constant = 3.5
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_rcx4u"]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_go0ny"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_8dp3p"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_o44fi"]
+default_input_values = [0, Quaternion(0, 0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeIntConstant" id="VisualShaderNodeIntConstant_n30as"]
+constant = 1
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_m7hjv"]
+size = Vector2(754, 230)
+expression = "output = textureLod (screen, uv, lod);"
+
+[resource]
+mode = 1
+flags/unshaded = true
+flags/light_only = false
+nodes/fragment/0/position = Vector2(1720, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_epk51")
+nodes/fragment/2/position = Vector2(340, 160)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFloatConstant_ydmue")
+nodes/fragment/3/position = Vector2(-80, 200)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_rcx4u")
+nodes/fragment/4/position = Vector2(-160, -20)
+nodes/fragment/5/node = SubResource("VisualShaderNodeMix_go0ny")
+nodes/fragment/5/position = Vector2(1080, 100)
+nodes/fragment/6/node = SubResource("VisualShaderNodeInput_8dp3p")
+nodes/fragment/6/position = Vector2(-40, 320)
+nodes/fragment/7/node = SubResource("VisualShaderNodeVectorDecompose_o44fi")
+nodes/fragment/7/position = Vector2(520, 480)
+nodes/fragment/8/node = SubResource("VisualShaderNodeIntConstant_n30as")
+nodes/fragment/8/position = Vector2(840, 300)
+nodes/fragment/9/node = SubResource("VisualShaderNodeExpression_m7hjv")
+nodes/fragment/9/position = Vector2(280, -260)
+nodes/fragment/9/size = Vector2(754, 230)
+nodes/fragment/9/input_ports = "0,3,uv;1,0,lod;"
+nodes/fragment/9/output_ports = "0,5,output;"
+nodes/fragment/9/expression = "output = textureLod (screen, uv, lod);"
+nodes/fragment/10/node = SubResource("VisualShaderNodeGlobalExpression_4brsx")
+nodes/fragment/10/position = Vector2(280, -440)
+nodes/fragment/10/size = Vector2(735, 175)
+nodes/fragment/10/input_ports = ""
+nodes/fragment/10/output_ports = ""
+nodes/fragment/10/expression = "uniform sampler2D screen : hint_screen_texture, filter_linear_mipmap;"
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 1, 4, 0, 2, 0, 5, 0, 0, 0, 6, 0, 5, 1, 6, 0, 7, 0, 7, 3, 5, 2, 8, 0, 0, 1, 4, 0, 9, 0, 3, 0, 9, 1, 9, 0, 5, 0)

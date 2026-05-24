@@ -1,0 +1,17 @@
+[gd_resource type="ORMMaterial3D" load_steps=5 format=3 uid="uid://4atprogwqjmt"]
+
+[ext_resource type="Texture2D" uid="uid://blo8325fkurhj" path="res://Assets/Weapons/WeaponTypes/ProjectileShootingWeapon/PlasmaGun/PlasmaGunMaterial_albedo.png.webp" id="1_13t6s"]
+[ext_resource type="Texture2D" uid="uid://drtt7bynmnfgo" path="res://Assets/Weapons/WeaponTypes/ProjectileShootingWeapon/PlasmaGun/PlasmaGunMaterial_emission.png.webp" id="2_cyxbu"]
+[ext_resource type="Texture2D" uid="uid://oxe8rwmaqw46" path="res://Assets/Weapons/WeaponTypes/ProjectileShootingWeapon/PlasmaGun/PlasmaGunMaterial_normal.png.webp" id="3_sm7hi"]
+[ext_resource type="Texture2D" uid="uid://c32e21u4mf36p" path="res://Assets/Weapons/WeaponTypes/ProjectileShootingWeapon/PlasmaGun/PlasmaGunMaterial_orm.png.webp" id="4_5mv5x"]
+
+[resource]
+albedo_texture = ExtResource("1_13t6s")
+orm_texture = ExtResource("4_5mv5x")
+emission_enabled = true
+emission_energy_multiplier = 3.0
+emission_texture = ExtResource("2_cyxbu")
+normal_enabled = true
+normal_texture = ExtResource("3_sm7hi")
+ao_enabled = true
+ao_light_affect = 1.0

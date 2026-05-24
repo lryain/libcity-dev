@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwer22ygd858w"]
+
+[ext_resource type="PackedScene" uid="uid://cspmfl2i5a4cx" path="res://Assets/Maps/AbandonnedShip/glb/corridor_segment.004.glb" id="1_mw1en"]
+[ext_resource type="PackedScene" uid="uid://dhn7repxvmlfo" path="res://Assets/Maps/AbandonnedShip/glb/corridor_segment.004_collider.glb" id="2_2v34s"]
+
+[node name="Corridor004" type="Node3D"]
+
+[node name="corridor_segment004" parent="." instance=ExtResource("1_mw1en")]
+
+[node name="corridor_segment004_collider" parent="." instance=ExtResource("2_2v34s")]
+visible = false

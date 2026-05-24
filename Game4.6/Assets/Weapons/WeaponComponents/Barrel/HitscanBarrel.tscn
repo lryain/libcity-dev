@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://4jhbbahfwd7m"]
+
+[ext_resource type="PackedScene" uid="uid://dttsuev2aug5r" path="res://Assets/Weapons/WeaponComponents/Barrel/Barrel.tscn" id="1_u2lu5"]
+[ext_resource type="Script" path="res://Assets/Weapons/WeaponComponents/Barrel/HitscanBarrel.gd" id="2_78oio"]
+[ext_resource type="AudioStream" uid="uid://bqukgwtx4p87s" path="res://Assets/SFX/Weapons_Handgun_Shoot.wav" id="3_ndpxi"]
+[ext_resource type="PackedScene" uid="uid://bsil2y4nxtx4l" path="res://Assets/Effects/Weapons/MuzzleFlash.tscn" id="4_tv72b"]
+
+[node name="Barrel" instance=ExtResource("1_u2lu5")]
+script = ExtResource("2_78oio")
+penetrating = false
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="ProjectileSpawner" index="0"]
+stream = ExtResource("3_ndpxi")
+bus = &"SFX"
+
+[node name="MuzzleFlash" parent="ProjectileSpawner" index="1" instance=ExtResource("4_tv72b")]

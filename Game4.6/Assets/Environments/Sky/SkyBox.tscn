@@ -1,0 +1,433 @@
+[gd_scene load_steps=41 format=3 uid="uid://b2weimalehumc"]
+
+[ext_resource type="Script" path="res://Assets/Environments/Sky/SkyBox.gd" id="1_fe18i"]
+[ext_resource type="PackedScene" uid="uid://b8w7ao52r1xer" path="res://Assets/Effects/Halo.tscn" id="1_y4dtq"]
+[ext_resource type="Environment" uid="uid://cf1ns7bxijudy" path="res://Assets/Environments/DefaultMedium.tres" id="2_6ijjt"]
+[ext_resource type="Texture2D" uid="uid://bxwfe00s0juj0" path="res://Assets/Textures/CircleAlphaSoft.png" id="2_sw0jc"]
+[ext_resource type="PackedScene" uid="uid://cj00jrbgcsetw" path="res://Assets/Environments/Props/SpaceTeaPot/SpaceTeaPot.tscn" id="3_5kpyf"]
+[ext_resource type="Shader" uid="uid://xtekx2acksgw" path="res://Assets/Environments/Sky/StarDome.tres" id="5_jfwfq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gobi7"]
+render_priority = -2
+shader = ExtResource("5_jfwfq")
+
+[sub_resource type="SphereMesh" id="SphereMesh_4sulh"]
+material = SubResource("ShaderMaterial_gobi7")
+flip_faces = true
+radius = 3200.0
+height = 3200.0
+radial_segments = 8
+rings = 6
+is_hemisphere = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_oyj2l"]
+size = Vector2(8, 8)
+
+[sub_resource type="Gradient" id="Gradient_ki7q6"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0174129, 0.124378, 0.201493, 0.343284, 0.450249, 0.567164, 0.689055, 0.850746, 1)
+colors = PackedColorArray(2, 2, 2, 1, 0.985075, 0.985075, 0.985075, 1, 0.500439, 0.500439, 0.500439, 1, 0.247924, 0.247924, 0.247924, 1, 0.120634, 0.120634, 0.120634, 1, 0.0580323, 0.0580323, 0.0580323, 1, 0.0304474, 0.0304474, 0.0304474, 1, 0.0187759, 0.0187759, 0.0187759, 1, 0.00932661, 0.00932661, 0.00932661, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5y8sa"]
+gradient = SubResource("Gradient_ki7q6")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vy0i"]
+transparency = 1
+blend_mode = 1
+no_depth_test = true
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(1, 0.713726, 0.368627, 1)
+emission_energy_multiplier = 0.5
+emission_operator = 1
+emission_texture = SubResource("GradientTexture2D_5y8sa")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+point_size = 89.7
+proximity_fade_distance = 0.25
+
+[sub_resource type="Gradient" id="Gradient_quei4"]
+offsets = PackedFloat32Array(0, 0.601838, 0.724349, 0.998469)
+colors = PackedColorArray(1, 0.997805, 0.863337, 1, 1, 0.967255, 0.635817, 1, 0.545455, 0.438639, 0.221899, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_phyc1"]
+gradient = SubResource("Gradient_quei4")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ln1p"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(8, 8, 8, 1)
+albedo_texture = SubResource("GradientTexture2D_phyc1")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_xyaqv"]
+material = SubResource("StandardMaterial3D_1ln1p")
+size = Vector2(0.075, 0.075)
+
+[sub_resource type="Gradient" id="Gradient_yp1a6"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.279107, 0.460925, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.117647, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q150k"]
+noise_type = 4
+seed = 7
+frequency = 0.565
+fractal_type = 3
+fractal_octaves = 6
+fractal_lacunarity = 0.687
+fractal_gain = 3.424
+fractal_weighted_strength = 0.24
+fractal_ping_pong_strength = 1.719
+domain_warp_enabled = true
+domain_warp_frequency = 0.005
+domain_warp_fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jicml"]
+width = 256
+height = 256
+invert = true
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.75
+color_ramp = SubResource("Gradient_yp1a6")
+noise = SubResource("FastNoiseLite_q150k")
+
+[sub_resource type="Gradient" id="Gradient_ybk4v"]
+colors = PackedColorArray(0.65098, 0.65098, 0.65098, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_glu1o"]
+noise_type = 4
+seed = 1
+frequency = 0.005
+fractal_type = 3
+fractal_octaves = 8
+fractal_lacunarity = 1.391
+fractal_gain = 1.477
+fractal_weighted_strength = 0.26
+fractal_ping_pong_strength = 1.853
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yno56"]
+width = 256
+height = 256
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.258
+color_ramp = SubResource("Gradient_ybk4v")
+noise = SubResource("FastNoiseLite_glu1o")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v41dg"]
+noise_type = 4
+frequency = 0.027
+fractal_type = 3
+fractal_octaves = 10
+fractal_lacunarity = 1.361
+fractal_gain = 0.794
+fractal_ping_pong_strength = 1.853
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kytn0"]
+width = 128
+height = 128
+invert = true
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.317
+as_normal_map = true
+noise = SubResource("FastNoiseLite_v41dg")
+
+[sub_resource type="Gradient" id="Gradient_anh8q"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.438596, 1)
+colors = PackedColorArray(0.0383972, 0.0383972, 0.0383972, 1, 1, 1, 1, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hl7sy"]
+width = 256
+height = 256
+invert = true
+seamless = true
+seamless_blend_skirt = 1.0
+as_normal_map = true
+bump_strength = 8.7
+color_ramp = SubResource("Gradient_anh8q")
+noise = SubResource("FastNoiseLite_q150k")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6h5os"]
+transparency = 1
+depth_draw_mode = 1
+specular_mode = 2
+disable_fog = true
+albedo_color = Color(0.780392, 0.858824, 1, 0.945098)
+albedo_texture = SubResource("NoiseTexture2D_jicml")
+metallic_specular = 1.0
+roughness = 0.94
+normal_enabled = true
+normal_scale = 0.43
+normal_texture = SubResource("NoiseTexture2D_hl7sy")
+rim_enabled = true
+rim = 0.06
+rim_tint = 1.0
+backlight = Color(0.411765, 0.411765, 0.411765, 1)
+detail_enabled = true
+detail_blend_mode = 3
+detail_uv_layer = 1
+detail_albedo = SubResource("NoiseTexture2D_yno56")
+detail_normal = SubResource("NoiseTexture2D_kytn0")
+uv1_scale = Vector3(12, 12, 12)
+uv1_offset = Vector3(21.0148, 0, 8.43251)
+uv2_scale = Vector3(0.075, 0.075, 0.075)
+uv2_offset = Vector3(146.946, 0, 489.589)
+uv2_triplanar = true
+disable_receive_shadows = true
+distance_fade_mode = 1
+distance_fade_min_distance = 4096.0
+distance_fade_max_distance = 1451.41
+
+[sub_resource type="QuadMesh" id="QuadMesh_ca0dd"]
+material = SubResource("StandardMaterial3D_6h5os")
+size = Vector2(4096, 4096)
+
+[sub_resource type="Gradient" id="Gradient_688lf"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.866769, 0.977671, 1)
+colors = PackedColorArray(0.167969, 0.167969, 0.167969, 1, 0.64, 0.47344, 0.360268, 1, 0.3038, 0.325523, 0.49, 1, 0.34079, 0.3074, 0.53, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m70hp"]
+gradient = SubResource("Gradient_688lf")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3lg5c"]
+transparency = 4
+shading_mode = 2
+specular_mode = 2
+albedo_texture = SubResource("GradientTexture2D_m70hp")
+rim = 0.0
+rim_tint = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_602yl"]
+material = SubResource("StandardMaterial3D_3lg5c")
+size = Vector2(4096, 4096)
+subdivide_width = 8
+subdivide_depth = 8
+
+[sub_resource type="Gradient" id="Gradient_m7gh4"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.586524, 0.749601, 0.911179, 1)
+colors = PackedColorArray(0.611765, 0.611765, 0.611765, 0, 1, 1, 1, 1, 0.609323, 0.609333, 0.609329, 0.773346, 0.446777, 0.446777, 0.446777, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e0uge"]
+gradient = SubResource("Gradient_m7gh4")
+width = 1
+height = 512
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_sw2qa"]
+offsets = PackedFloat32Array(0, 0.189793, 0.516746, 0.582137, 1)
+colors = PackedColorArray(0.660156, 0.660156, 0.660156, 1, 0.102186, 0.102186, 0.102186, 1, 0.358948, 0.358948, 0.358948, 1, 0.410156, 0.410156, 0.410156, 1, 0.646029, 0.646029, 0.646029, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b4mhw"]
+frequency = 0.016
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p46eq"]
+width = 32
+height = 256
+generate_mipmaps = false
+seamless = true
+color_ramp = SubResource("Gradient_sw2qa")
+noise = SubResource("FastNoiseLite_b4mhw")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cbpwc"]
+width = 32
+height = 128
+invert = true
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 1.0
+as_normal_map = true
+bump_strength = 2.5
+color_ramp = SubResource("Gradient_sw2qa")
+noise = SubResource("FastNoiseLite_b4mhw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gddj5"]
+transparency = 1
+specular_mode = 2
+albedo_color = Color(0.572549, 0.572549, 0.572549, 1)
+albedo_texture = SubResource("GradientTexture2D_e0uge")
+metallic = 0.76
+roughness = 0.83
+roughness_texture = SubResource("NoiseTexture2D_p46eq")
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = SubResource("NoiseTexture2D_cbpwc")
+detail_mask = SubResource("NoiseTexture2D_p46eq")
+detail_blend_mode = 1
+uv1_scale = Vector3(8, 1, 1)
+uv1_offset = Vector3(0, 0.001, 0)
+uv2_scale = Vector3(0, 0, 0)
+texture_filter = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1voxg"]
+material = SubResource("StandardMaterial3D_gddj5")
+flip_faces = true
+top_radius = 2048.0
+bottom_radius = 512.0
+height = 256.0
+radial_segments = 32
+rings = 1
+cap_top = false
+
+[node name="Skybox" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8743e-07, 9.34416, -9.03806)
+script = ExtResource("1_fe18i")
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_6ijjt")
+
+[node name="StarsDome" type="MeshInstance3D" parent="."]
+layers = 32
+cast_shadow = 0
+ignore_occlusion_culling = true
+gi_mode = 0
+mesh = SubResource("SphereMesh_4sulh")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866026, 0.347618, 0.359391, 0, -0.718782, 0.695235, 0.5, -0.602092, -0.622483, 0, 13, 0)
+layers = 97
+light_color = Color(1, 0.886275, 0.721569, 1)
+light_energy = 2.0
+light_angular_distance = 1.0
+light_bake_mode = 1
+light_cull_mask = 4293918759
+shadow_enabled = true
+directional_shadow_blend_splits = true
+directional_shadow_pancake_size = 50.0
+
+[node name="Sun4MoonOnly" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866026, 0.347618, 0.359391, 0, -0.718782, 0.695235, 0.5, -0.602092, -0.622483, 0, 13, 0)
+layers = 64
+light_color = Color(0.988235, 0.992157, 1, 1)
+light_energy = 20.0
+light_bake_mode = 0
+light_cull_mask = 4293918784
+directional_shadow_blend_splits = true
+directional_shadow_pancake_size = 50.0
+sky_mode = 1
+
+[node name="Moon" parent="." instance=ExtResource("3_5kpyf")]
+transform = Transform3D(-64.5173, -67.9973, -67.3199, 86.6133, -7.03554, -75.8209, 40.6265, -92.9907, 54.9734, -1342.53, 1966.65, 1259.96)
+
+[node name="OmniLight3D" parent="Moon/Sphere_005" index="1"]
+transform = Transform3D(0.00780025, 2.43937e-06, 4.78199e-06, 4.65661e-10, 0.0077994, 3.87919e-06, 4.65661e-10, -1.16415e-09, 0.00780318, -0.354946, 0.021369, 0.136454)
+light_energy = 80000.0
+omni_range = 176.828
+
+[node name="SunHalo" parent="." instance=ExtResource("1_y4dtq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 368.016, 702.577, -628.385)
+mesh = SubResource("QuadMesh_oyj2l")
+surface_material_override/0 = SubResource("StandardMaterial3D_0vy0i")
+texture = ExtResource("2_sw0jc")
+hide_show_time = 0.075
+fade_factor = 0.0
+halo_size = 4.0
+halo_color = Color(1, 0.713726, 0.368627, 1)
+
+[node name="SunBillboard" type="MeshInstance3D" parent="SunHalo"]
+cast_shadow = 0
+mesh = SubResource("QuadMesh_xyaqv")
+skeleton = NodePath("")
+
+[node name="Clouds" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, -1.74846e-07, -4, 0, 4, -1.74846e-07, 0, 128, 0)
+layers = 32
+cast_shadow = 0
+mesh = SubResource("QuadMesh_ca0dd")
+skeleton = NodePath("")
+metadata/_edit_lock_ = true
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, -128, 0)
+layers = 32
+mesh = SubResource("QuadMesh_602yl")
+skeleton = NodePath("")
+metadata/_edit_lock_ = true
+
+[node name="Horizon" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.165, -48, -0.512)
+layers = 32
+mesh = SubResource("CylinderMesh_1voxg")
+skeleton = NodePath("")
+metadata/_edit_lock_ = true
+
+[node name="SkyOmni" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1660.7, -183.693, -3105.18)
+layers = 32
+light_color = Color(1, 0.482353, 0, 1)
+light_energy = 4.0
+light_size = 4096.0
+light_bake_mode = 0
+light_cull_mask = 4294967200
+omni_range = 4096.0
+omni_attenuation = 0.188205
+
+[node name="SkyOmni4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 380.471, 723.885, -633.861)
+visible = false
+layers = 32
+light_color = Color(1, 0.8, 0, 1)
+light_energy = 64.0
+light_size = 64.0
+light_specular = 0.0
+light_bake_mode = 0
+light_cull_mask = 4294967200
+omni_range = 1024.0
+omni_attenuation = 0.532322
+
+[node name="SkyOmni2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1540.79, -52.7578, -214.876)
+layers = 32
+light_color = Color(0.117647, 0.619608, 0.529412, 1)
+light_energy = 4.0
+light_specular = 16.0
+light_bake_mode = 0
+light_cull_mask = 4294967200
+omni_range = 4096.0
+omni_attenuation = 0.1756
+
+[node name="SkyOmni3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1646.59, 17.3572, 3593.05)
+layers = 32
+light_color = Color(0.2, 0.615686, 0.827451, 1)
+light_energy = 7.82
+light_size = 2048.0
+light_bake_mode = 0
+light_cull_mask = 4294967200
+omni_range = 4096.0
+omni_attenuation = 0.1756
+
+[editable path="Moon"]

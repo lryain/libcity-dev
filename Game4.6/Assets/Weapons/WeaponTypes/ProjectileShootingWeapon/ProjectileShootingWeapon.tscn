@@ -1,0 +1,330 @@
+[gd_scene load_steps=15 format=3 uid="uid://bhbo3gsii2qo8"]
+
+[ext_resource type="PackedScene" uid="uid://did231ce5cp4e" path="res://Assets/Weapons/WeaponTypes/ShootingWeapon/ShootingWeapon.tscn" id="1_vli3f"]
+[ext_resource type="Script" path="res://Assets/Weapons/WeaponTypes/ProjectileShootingWeapon/ProjectileShootingWeapon.gd" id="2_rendt"]
+[ext_resource type="PackedScene" uid="uid://dld8q8hkh4rje" path="res://Assets/Weapons/WeaponComponents/Barrel/ProjectileBarrel.tscn" id="3_dweoi"]
+[ext_resource type="AudioStream" uid="uid://bilkhhg6vobo1" path="res://Assets/SFX/Weapons_PlasmaGun_Shot_Primary_01.wav" id="5_wjb4b"]
+[ext_resource type="PackedScene" uid="uid://cixbq5o1xhpjl" path="res://Assets/Weapons/WeaponTypes/ProjectileShootingWeapon/PlasmaGun/PlasmaGun.gltf" id="6_n2qhf"]
+[ext_resource type="Script" path="res://Assets/Weapons/WeaponComponents/Slide/Slide.gd" id="6_xrp11"]
+[ext_resource type="PackedScene" uid="uid://bj1e3q67qnn7v" path="res://Assets/Weapons/WeaponTypes/ProjectileShootingWeapon/Projectiles/Projectile2.tscn" id="7_mdj8d"]
+[ext_resource type="AudioStream" uid="uid://bltvpvyk7tu8u" path="res://Assets/SFX/Weapons_PlasmaGun_Shot_Secondary_01.wav" id="7_rv1hi"]
+[ext_resource type="PackedScene" uid="uid://b8w7ao52r1xer" path="res://Assets/Effects/Halo.tscn" id="7_vbpbw"]
+[ext_resource type="AnimationLibrary" uid="uid://cq8exw3hrbmxf" path="res://Assets/Weapons/WeaponTypes/ProjectileShootingWeapon/PlasmaGun_Animations.tres" id="8_ij6qq"]
+[ext_resource type="Shader" uid="uid://xrnjj1o8ynv3" path="res://Assets/Weapons/WeaponTypes/ProjectileShootingWeapon/WeaponDisplay.tres" id="11_tdfo4"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6lp3e"]
+points = PackedVector3Array(-0.211514, 1.37685, -1.45758, 0.094232, 2.49541, 0.963332, -0.0824931, 2.49763, 0.965671, -0.142652, -0.467708, 0.67816, 0.969393, 2.49558, -0.836007, -0.9032, 3.25382, -0.800989, 0.47202, -0.612179, -0.400858, -0.460106, -0.612179, -0.338312, 0.324716, 3.23198, -1.37389, 0.907151, 3.36588, -0.462918, 0.161186, -0.176835, 0.904344, 0.151408, 0.270574, -1.32089, -0.957479, 2.49558, -0.525221, -0.77094, 3.36588, -0.338312, -0.307023, 0.29565, -1.18193, -0.317632, 3.26009, -1.39146, -0.895236, 2.49558, -0.960127, -0.142836, -0.112421, 0.857961, 0.969393, 2.49558, -0.587281, -0.149271, -0.612179, -0.711644, 0.099132, 3.36588, -0.214436, 0.161186, 1.37685, -1.45758, -0.137365, 2.40977, 0.933352, 0.262241, 0.294367, -1.2402, 0.904554, 3.23202, -0.794176, -0.140241, 0.264892, -1.32658, -0.957479, 2.49558, -0.836007, 0.1471, 2.39407, 0.915902, 0.161186, -0.612179, -0.711644, 0.782854, 3.36588, -0.338312, 0.1471, -0.375041, 0.633318, -0.149271, 3.36588, -0.214436)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d21vv"]
+render_priority = 0
+shader = ExtResource("11_tdfo4")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_csdde"]
+material = SubResource("ShaderMaterial_d21vv")
+size = Vector2(0.075, 0.65)
+
+[node name="Weapon" instance=ExtResource("1_vli3f")]
+script = ExtResource("2_rendt")
+damage_amount = 15
+full_auto = true
+projectile_velocity = 45.0
+ammo_display_mesh_instance = NodePath("Model/Displays/DisplayAmmo")
+
+[node name="Barrels" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.340744, 0.0584221, -9.42051e-05)
+
+[node name="Barrel1" parent="Barrels" index="0" instance=ExtResource("3_dweoi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.479404, 0.1355, 1.58616e-09)
+projectile_velocity = 55.0
+inaccuracy = 1.0
+slide_path = NodePath("../../Slides/Slide1")
+
+[node name="ProjectileSpawner" parent="Barrels/Barrel1" index="0"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0, 0, 0)
+
+[node name="ShootSound2" type="AudioStreamPlayer3D" parent="Barrels/Barrel1/ProjectileSpawner" index="0"]
+volume_db = 4.0
+pitch_scale = 0.8
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="ShootSound3" type="AudioStreamPlayer3D" parent="Barrels/Barrel1/ProjectileSpawner" index="1"]
+volume_db = 4.0
+unit_size = 14.0
+pitch_scale = 0.8
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="ShootSound" parent="Barrels/Barrel1/ProjectileSpawner" index="2"]
+stream = ExtResource("5_wjb4b")
+volume_db = 8.0
+unit_size = 8.0
+max_db = 6.0
+max_polyphony = 2
+
+[node name="MuzzleFlash" parent="Barrels/Barrel1/ProjectileSpawner" index="3"]
+transform = Transform3D(0.807, 0, 0, 0, 0.807, 0, 0, 0, 0.807, 0, 0, 0)
+color = Color(0.345098, 0.6, 1, 1)
+
+[node name="Flash" parent="Barrels/Barrel1/ProjectileSpawner/MuzzleFlash" index="1"]
+instance_shader_parameters/Color = Color(0, 0.313726, 1, 1)
+
+[node name="Light" parent="Barrels/Barrel1/ProjectileSpawner/MuzzleFlash/Flash" index="0"]
+light_color = Color(0.8, 0.823529, 1, 1)
+
+[node name="Barrel2" parent="Barrels" index="1" instance=ExtResource("3_dweoi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.479404, 0.1355, 1.58616e-09)
+projectile = ExtResource("7_mdj8d")
+projectile_velocity = 25.0
+shoot_animation = "Shoot2"
+inaccuracy = 0.2
+slide_path = NodePath("../../Slides/Slide2")
+
+[node name="ProjectileSpawner" parent="Barrels/Barrel2" index="0"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0, 0, 0)
+
+[node name="ShootSound2" type="AudioStreamPlayer3D" parent="Barrels/Barrel2/ProjectileSpawner" index="0"]
+volume_db = 4.0
+pitch_scale = 0.5
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="ShootSound3" type="AudioStreamPlayer3D" parent="Barrels/Barrel2/ProjectileSpawner" index="1"]
+volume_db = 4.0
+unit_size = 14.0
+pitch_scale = 0.5
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="ShootSound" parent="Barrels/Barrel2/ProjectileSpawner" index="2"]
+stream = ExtResource("7_rv1hi")
+volume_db = 4.0
+unit_size = 6.0
+pitch_scale = 0.5
+max_polyphony = 2
+
+[node name="MuzzleFlash" parent="Barrels/Barrel2/ProjectileSpawner" index="3"]
+transform = Transform3D(1.198, 0, 0, 0, 1.198, 0, 0, 0, 1.198, 0, 0, 0)
+color = Color(0.105882, 0.360784, 1, 1)
+
+[node name="AnimationPlayer" parent="Barrels/Barrel2/ProjectileSpawner/MuzzleFlash" index="0"]
+speed_scale = 0.5
+
+[node name="Flash" parent="Barrels/Barrel2/ProjectileSpawner/MuzzleFlash" index="1"]
+instance_shader_parameters/Color = Color(0.05, 0.224, 1.2, 1)
+instance_shader_parameters/FlameSineModulation = 0.155
+
+[node name="Slide1" parent="Slides" index="0"]
+rollback_time = 0.125
+slide_display_mesh_instance = NodePath("../../Model/Displays/DisplayPrimary")
+
+[node name="Slide2" type="Node3D" parent="Slides" index="1"]
+script = ExtResource("6_xrp11")
+rollback_time = 0.8
+ammo_cost = 5
+magazine_path = NodePath("../../Magazines/Magazine1")
+slide_display_mesh_instance = NodePath("../../Model/Displays/DisplaySecondary")
+
+[node name="Magazine1" parent="Magazines" index="0"]
+clip_size = 30
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+root_node = NodePath("../Model")
+callback_mode_process = 0
+libraries = {
+"": ExtResource("8_ij6qq")
+}
+autoplay = "RESET"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="AnimationPlayer" index="0"]
+volume_db = 6.0
+unit_size = 3.0
+max_db = 0.0
+bus = &"SFX"
+attenuation_filter_cutoff_hz = 18000.0
+
+[node name="Model" type="Node3D" parent="." index="4"]
+transform = Transform3D(3.78861e-07, -0.104658, -2.65327e-07, -0.104658, -3.78861e-07, 2.64698e-23, -9.60481e-13, 2.65327e-07, -0.104658, 0.0185394, 0, -8.10382e-10)
+
+[node name="PlasmaGun" parent="Model" index="0" instance=ExtResource("6_n2qhf")]
+transform = Transform3D(1.25488e-05, -2, -7.23994e-06, 0, -7.23998e-06, 1.99999, -2, -1.25488e-05, -4.54262e-11, 0.164595, -0.187394, 1.32809e-06)
+
+[node name="PlasmaRifle_LP" parent="Model/PlasmaGun" index="0"]
+transform = Transform3D(1, -4.54747e-13, 0, 0, -4.37114e-08, -1, 2.27374e-13, 1, -4.37114e-08, 0, 0, 0)
+layers = 4
+
+[node name="PlasmaRifle_LP_001" parent="Model/PlasmaGun" index="1"]
+layers = 4
+
+[node name="PlasmaRifle_LP_003" parent="Model/PlasmaGun" index="2"]
+layers = 4
+
+[node name="PlasmaRifle_LP_005" parent="Model/PlasmaGun" index="3"]
+layers = 4
+
+[node name="PlasmaRifle_LP_007" parent="Model/PlasmaGun" index="4"]
+layers = 4
+
+[node name="PlasmaRifle_LP_009" parent="Model/PlasmaGun" index="5"]
+layers = 4
+
+[node name="PlasmaRifle_LP_010" parent="Model/PlasmaGun" index="6"]
+layers = 4
+
+[node name="PlasmaRifle_LP_011" parent="Model/PlasmaGun" index="7"]
+layers = 4
+
+[node name="PlasmaRifle_LP_012" parent="Model/PlasmaGun" index="8"]
+transform = Transform3D(1, -4.54747e-13, 1.64618e-18, 0, -3.61999e-06, -1, 4.54747e-13, 1, -3.61999e-06, 0, 0, 0)
+layers = 4
+
+[node name="PlasmaRifle_LP_013" parent="Model/PlasmaGun" index="9"]
+layers = 4
+
+[node name="PlasmaRifle_LP_014" parent="Model/PlasmaGun" index="10"]
+layers = 4
+
+[node name="PlasmaRifle_LP_016" parent="Model/PlasmaGun" index="11"]
+layers = 4
+
+[node name="PlasmaRifle_LP_017" parent="Model/PlasmaGun" index="12"]
+layers = 4
+
+[node name="PlasmaRifle_LP_018" parent="Model/PlasmaGun" index="13"]
+layers = 4
+
+[node name="PlasmaRifle_LP_019" parent="Model/PlasmaGun" index="14"]
+layers = 4
+
+[node name="PlasmaRifle_LP_020" parent="Model/PlasmaGun" index="15"]
+layers = 4
+
+[node name="PlasmaRifle_LP_002" parent="Model/PlasmaGun" index="16"]
+layers = 4
+
+[node name="PlasmaRifle_LP_004" parent="Model/PlasmaGun" index="17"]
+layers = 4
+
+[node name="HaloOcclusionStaticBody" type="StaticBody3D" parent="Model" index="1"]
+transform = Transform3D(1.25488e-05, -2, -8.74223e-08, 0, -8.74228e-08, 1.99999, -2, -1.25488e-05, -5.48521e-13, 0.164595, -0.187394, 1.32809e-06)
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/HaloOcclusionStaticBody" index="0"]
+transform = Transform3D(1, -4.54747e-13, 4.54747e-13, 4.54747e-13, -5.20417e-18, -1, 2.27374e-13, 1, 3.46945e-18, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_6lp3e")
+
+[node name="Halos" type="Node3D" parent="Model" index="2"]
+transform = Transform3D(1.25488e-05, -2, -8.74234e-08, 9.09495e-13, -8.74252e-08, 1.99999, -2, -1.25488e-05, 4.54747e-13, 0.164595, -0.187394, 1.32809e-06)
+visible = false
+
+[node name="Halo" parent="Model/Halos" index="0" instance=ExtResource("7_vbpbw")]
+transform = Transform3D(1, 4.54747e-13, 9.09495e-13, -9.09495e-13, 1, -6.05095e-12, 9.09495e-13, -3.66604e-13, 1, 0.324659, 0.994654, 0.750998)
+visibility_range_end_margin = 1.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../../PlasmaGun")
+halo_size = 0.1
+halo_color = Color(1, 0.372549, 0.027451, 1)
+
+[node name="Halo2" parent="Model/Halos" index="1" instance=ExtResource("7_vbpbw")]
+transform = Transform3D(1, 4.54747e-13, 9.09495e-13, -9.09495e-13, 1, -6.73307e-12, 9.09495e-13, -3.66604e-13, 1, 0.324659, 0.994654, 0.584891)
+visibility_range_end_margin = 1.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../../PlasmaGun")
+halo_size = 0.1
+halo_color = Color(1, 0.372549, 0.027451, 1)
+
+[node name="Halo3" parent="Model/Halos" index="2" instance=ExtResource("7_vbpbw")]
+transform = Transform3D(1, 4.54747e-13, 9.09495e-13, -9.09495e-13, 1, -7.41519e-12, 9.09495e-13, -3.66604e-13, 1, 0.32466, 0.994653, 0.42063)
+visibility_range_end_margin = 1.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../../PlasmaGun")
+halo_size = 0.1
+halo_color = Color(1, 0.372549, 0.027451, 1)
+
+[node name="Halo4" parent="Model/Halos" index="3" instance=ExtResource("7_vbpbw")]
+transform = Transform3D(1, 4.54747e-13, 9.09495e-13, -9.09495e-13, 1, -6.73307e-12, 9.09495e-13, -3.66604e-13, 1, -0.334429, 0.994652, 0.750997)
+visibility_range_end_margin = 1.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../../PlasmaGun")
+halo_size = 0.1
+halo_color = Color(1, 0.372549, 0.027451, 1)
+
+[node name="Halo5" parent="Model/Halos" index="4" instance=ExtResource("7_vbpbw")]
+transform = Transform3D(1, 4.54747e-13, 9.09495e-13, -9.09495e-13, 1, -7.41519e-12, 9.09495e-13, -3.66604e-13, 1, -0.334428, 0.994651, 0.58489)
+visibility_range_end_margin = 1.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../../PlasmaGun")
+halo_size = 0.1
+halo_color = Color(1, 0.372549, 0.027451, 1)
+
+[node name="Halo6" parent="Model/Halos" index="5" instance=ExtResource("7_vbpbw")]
+transform = Transform3D(1, 4.54747e-13, 9.09495e-13, -9.09495e-13, 1, -8.09731e-12, 9.09495e-13, -3.66604e-13, 1, -0.334428, 0.994651, 0.420628)
+visibility_range_end_margin = 1.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../../PlasmaGun")
+halo_size = 0.1
+halo_color = Color(1, 0.372549, 0.027451, 1)
+
+[node name="Halo7" parent="Model/Halos" index="6" instance=ExtResource("7_vbpbw")]
+transform = Transform3D(1, 4.54747e-13, 1.36424e-12, -1.81899e-12, 1, -1.0014e-11, 1.59162e-12, -4.64101e-13, 1, -5.01458e-06, 1.43167, 2.12005)
+visibility_range_end_margin = 1.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../../PlasmaGun")
+halo_size = 0.1
+halo_color = Color(1, 0.372549, 0.027451, 1)
+
+[node name="Halo8" parent="Model/Halos" index="7" instance=ExtResource("7_vbpbw")]
+transform = Transform3D(1, 4.54747e-13, 1.36424e-12, -1.81899e-12, 1, -1.06961e-11, 1.59162e-12, -4.64101e-13, 1, -4.31055e-06, 1.43167, 1.67624)
+visibility_range_end_margin = 1.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../../PlasmaGun")
+halo_size = 0.1
+halo_color = Color(1, 0.372549, 0.027451, 1)
+
+[node name="Halo9" parent="Model/Halos" index="8" instance=ExtResource("7_vbpbw")]
+transform = Transform3D(1, 4.54747e-13, 1.36424e-12, -1.81899e-12, 1, -1.13782e-11, 1.59162e-12, -4.64101e-13, 1, -5.30384e-06, 1.43167, 1.90378)
+visibility_range_end_margin = 1.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../../PlasmaGun")
+halo_size = 0.1
+halo_color = Color(1, 0.372549, 0.027451, 1)
+
+[node name="Displays" type="Node3D" parent="Model" index="3"]
+transform = Transform3D(3.45888e-05, -9.55493, -8.76888e-11, -9.55493, -3.45888e-05, 2.42235e-05, -2.42235e-05, -3.5467e-17, -9.55493, -6.41255e-07, 0.177143, 4.41346e-07)
+
+[node name="DisplayPrimary" type="MeshInstance3D" parent="Model/Displays" index="0"]
+transform = Transform3D(3.9153e-07, 5.12359e-07, -0.301347, -0.112224, -1.30417e-06, -1.05135e-06, -6.9923e-07, 0.209316, 7.37622e-07, -0.364995, 0.127036, 0.0727332)
+layers = 4
+instance_shader_parameters/Color = Color(0, 0.47451, 0.0705882, 1)
+instance_shader_parameters/ColorWarning = Color(0.921569, 0.466667, 0, 1)
+instance_shader_parameters/EmptyWarning = false
+instance_shader_parameters/Value = 0.0
+instance_shader_parameters/WarningThreshold = 0.99
+mesh = SubResource("PlaneMesh_csdde")
+
+[node name="DisplaySecondary" type="MeshInstance3D" parent="Model/Displays" index="1"]
+transform = Transform3D(3.9153e-07, 5.12359e-07, -0.301347, -0.112224, -1.30417e-06, -1.05135e-06, -6.9923e-07, 0.209316, 7.37622e-07, -0.364993, 0.116169, 0.0727333)
+layers = 4
+instance_shader_parameters/Color = Color(0.639216, 0.00392157, 0.870588, 1)
+instance_shader_parameters/ColorWarning = Color(1, 0.337255, 0, 1)
+instance_shader_parameters/EmptyWarning = false
+instance_shader_parameters/Value = 1.0
+instance_shader_parameters/WarningThreshold = 0.99
+mesh = SubResource("PlaneMesh_csdde")
+
+[node name="DisplayAmmo" type="MeshInstance3D" parent="Model/Displays" index="2"]
+transform = Transform3D(-4.98667e-07, -5.12361e-07, 0.198511, 0.139438, 1.30418e-06, 7.0993e-07, -8.68795e-07, 0.209317, 4.85906e-07, -0.0857488, 0.191984, 0.0630089)
+layers = 4
+instance_shader_parameters/Color = Color(0, 0.32549, 1, 1)
+instance_shader_parameters/ColorWarning = Color(1, 0.337255, 0, 1)
+instance_shader_parameters/EmptyWarning = true
+instance_shader_parameters/Value = 1.0
+instance_shader_parameters/WarningThreshold = 0.01
+mesh = SubResource("PlaneMesh_csdde")
+
+[editable path="Barrels/Barrel1"]
+[editable path="Barrels/Barrel1/ProjectileSpawner/MuzzleFlash"]
+[editable path="Barrels/Barrel2"]
+[editable path="Barrels/Barrel2/ProjectileSpawner/MuzzleFlash"]
+[editable path="Model/PlasmaGun"]

@@ -1,0 +1,14 @@
+[gd_resource type="ORMMaterial3D" load_steps=4 format=3 uid="uid://b0q5ef5mw77h5"]
+
+[ext_resource type="Texture2D" uid="uid://d2pj0cd8x1ym1" path="res://Assets/Materials/Generic/PerforatedSteel_03_Hotspot/PerforatedSteel_03_Hotspot_albedo.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bp1cum56uklpk" path="res://Assets/Materials/Generic/PerforatedSteel_03_Hotspot/PerforatedSteel_03_Hotspot_orm.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dk4iw3y604fb1" path="res://Assets/Materials/Generic/PerforatedSteel_03_Hotspot/PerforatedSteel_03_Hotspot_normal.png" id="3"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1")
+orm_texture = ExtResource("2")
+normal_enabled = true
+normal_texture = ExtResource("3")

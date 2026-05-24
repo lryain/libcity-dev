@@ -1,0 +1,75 @@
+[gd_resource type="Environment" format=3 uid="uid://cf1ns7bxijudy"]
+
+[ext_resource type="Material" uid="uid://cwslqiphlif7x" path="res://Assets/Environments/Sky/PhysicalSky.tres" id="1_l878n"]
+
+[sub_resource type="Gradient" id="Gradient_6fb8u"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.72126, 0.811024, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.864675, 0.864675, 0.864675, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dib1l"]
+noise_type = 2
+seed = 6
+frequency = 0.03
+fractal_octaves = 3
+fractal_lacunarity = 1.919
+fractal_gain = 1.033
+fractal_weighted_strength = 0.36
+cellular_jitter = 0.957
+cellular_return_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yle1f"]
+width = 720
+height = 480
+noise = SubResource("FastNoiseLite_dib1l")
+color_ramp = SubResource("Gradient_6fb8u")
+invert = true
+in_3d_space = true
+seamless_blend_skirt = 0.092
+
+[sub_resource type="Sky" id="Sky_hxysa"]
+sky_material = ExtResource("1_l878n")
+
+[resource]
+background_mode = 2
+background_canvas_max_layer = 2
+sky = SubResource("Sky_hxysa")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 3
+tonemap_white = 16.0
+ssr_max_steps = 128
+ssr_fade_in = 0.117687
+ssr_fade_out = 1.27456
+ssr_depth_tolerance = 1.01
+ssao_radius = 8.0
+ssao_light_affect = 1.0
+ssao_ao_channel_affect = 1.0
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 0.8
+sdfgi_cascades = 2
+sdfgi_min_cell_size = 0.5859375
+sdfgi_y_scale = 2
+glow_enabled = true
+glow_levels/1 = 0.75
+glow_levels/2 = 0.5
+glow_levels/3 = 0.3
+glow_levels/4 = 0.2
+glow_levels/5 = 0.1
+glow_levels/6 = 0.14
+glow_levels/7 = 0.08
+glow_normalized = true
+glow_hdr_luminance_cap = 32.0
+glow_map_strength = 0.15
+glow_map = SubResource("NoiseTexture2D_yle1f")
+fog_light_color = Color(0.317647, 0.462745, 0.768627, 1)
+fog_sun_scatter = 0.35
+fog_density = 0.001
+fog_sky_affect = 0.0
+fog_height_density = -6.5
+volumetric_fog_density = 0.01
+volumetric_fog_gi_inject = 0.03
+volumetric_fog_length = 24.0
+adjustment_brightness = 1.31
+adjustment_contrast = 1.34
+adjustment_saturation = 0.2

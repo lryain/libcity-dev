@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdoiga2fbtkc4"]
+
+[ext_resource type="Texture2D" uid="uid://eysb80jsgrvp" path="res://Assets/Environments/Decoration/BannerLogo.png" id="2_uv3tc"]
+[ext_resource type="Shader" uid="uid://db27eu5fscqc7" path="res://Assets/Environments/Decoration/Banner.tres" id="2_wa7db"]
+[ext_resource type="Script" path="res://Assets/Environments/Decoration/Banner.gd" id="3_ejojp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o1jb3"]
+render_priority = 0
+shader = ExtResource("2_wa7db")
+shader_parameter/Emission = 1.5
+shader_parameter/Texture = ExtResource("2_uv3tc")
+
+[sub_resource type="PlaneMesh" id="QuadMesh_buelp"]
+material = SubResource("ShaderMaterial_o1jb3")
+size = Vector2(10.24, 2.56)
+
+[node name="Banner" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0383568, 0, -0.00447178)
+mesh = SubResource("QuadMesh_buelp")
+script = ExtResource("3_ejojp")
+
+[node name="Fallback" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+visible = false
+modulate = Color(2, 2, 2, 1)
+pixel_size = 0.005
+texture_filter = 5
+texture = ExtResource("2_uv3tc")

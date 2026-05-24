@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://doiexxd5fctiv"]
+
+[ext_resource type="Shader" uid="uid://k8uuqsqt4h7s" path="res://Assets/Effects/Alternate Halo/Halo.tres" id="1_56k1l"]
+[ext_resource type="Script" path="res://Assets/Effects/Alternate Halo/Halo.gd" id="2_h5iq2"]
+
+[sub_resource type="Gradient" id="Gradient_ki7q6"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0696517, 0.154229, 0.241294, 0.320896, 0.425373, 0.537313, 0.634328, 0.756219, 1)
+colors = PackedColorArray(2, 2, 2, 1, 0.985075, 0.985075, 0.985075, 1, 0.500439, 0.500439, 0.500439, 1, 0.247924, 0.247924, 0.247924, 1, 0.120634, 0.120634, 0.120634, 1, 0.0580323, 0.0580323, 0.0580323, 1, 0.0304474, 0.0304474, 0.0304474, 1, 0.0187759, 0.0187759, 0.0187759, 1, 0.00932661, 0.00932661, 0.00932661, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5y8sa"]
+gradient = SubResource("Gradient_ki7q6")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bk7g"]
+render_priority = 0
+shader = ExtResource("1_56k1l")
+shader_parameter/Texture = SubResource("GradientTexture2D_5y8sa")
+
+[sub_resource type="QuadMesh" id="QuadMesh_n03u8"]
+material = SubResource("ShaderMaterial_1bk7g")
+size = Vector2(0.5, 0.5)
+
+[node name="Halo" type="MeshInstance3D"]
+layers = 2
+cast_shadow = 0
+gi_mode = 0
+visibility_range_end = 1.0
+visibility_range_end_margin = 100.0
+visibility_range_fade_mode = 1
+instance_shader_parameters/Color = Color(1, 1, 1, 1)
+mesh = SubResource("QuadMesh_n03u8")
+script = ExtResource("2_h5iq2")
+metadata/_edit_lock_ = true

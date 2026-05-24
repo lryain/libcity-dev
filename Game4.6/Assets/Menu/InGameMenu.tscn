@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://ljycuchn3kvo"]
+
+[ext_resource type="Script" path="res://Assets/Menu/InGameMenu.gd" id="1_te03i"]
+
+[sub_resource type="FontVariation" id="FontVariation_ne4st"]
+variation_embolden = 0.36
+
+[sub_resource type="LabelSettings" id="LabelSettings_lruqq"]
+font = SubResource("FontVariation_ne4st")
+
+[node name="InGameMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_te03i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -20.0
+offset_right = 52.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "in-game menu"
+label_settings = SubResource("LabelSettings_lruqq")
+horizontal_alignment = 1
+
+[node name="SwitchTeams" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(128, 48)
+layout_mode = 2
+text = "switch teams"
+
+[connection signal="pressed" from="VBoxContainer/SwitchTeams" to="." method="_on_switch_teams_pressed"]

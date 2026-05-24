@@ -1,0 +1,102 @@
+[gd_resource type="Resource" script_class="CharVoice" format=3 uid="uid://dlp7wtosia18h"]
+
+[ext_resource type="AudioStream" uid="uid://xv1jp0gql8tc" path="res://Assets/SFX/Player_Death_01.wav" id="1_6vpk5"]
+[ext_resource type="Script" uid="uid://dqnhsnw8qat7s" path="res://Assets/Characters/CharacterVoice.gd" id="1_vmtsc"]
+[ext_resource type="AudioStream" uid="uid://dnffb1xcdi2u5" path="res://Assets/SFX/Player_Pain_01.wav" id="2_ijyt4"]
+[ext_resource type="AudioStream" uid="uid://b8ek5d73ugh3u" path="res://Assets/SFX/Player_Death_02.wav" id="2_njhtr"]
+[ext_resource type="AudioStream" uid="uid://p6xanbonv1qh" path="res://Assets/SFX/Player_Jump_01.wav" id="3_4b583"]
+[ext_resource type="AudioStream" uid="uid://gqypp5xk2ka7" path="res://Assets/SFX/Player_Pain_02.wav" id="4_663uw"]
+[ext_resource type="AudioStream" uid="uid://b2vgruyk0hae" path="res://Assets/SFX/Player_Land_01.wav" id="4_gcg0d"]
+[ext_resource type="AudioStream" uid="uid://rua2tbbusuav" path="res://Assets/SFX/Character1Taunts/Character1_Kill_01.wav" id="4_mku3q"]
+[ext_resource type="AudioStream" uid="uid://ddj28v4w4whkg" path="res://Assets/SFX/Player_Pain_03.wav" id="5_0n0ee"]
+[ext_resource type="AudioStream" uid="uid://8vsw7xrnl5fs" path="res://Assets/SFX/Character1Taunts/Character1_Kill_02.wav" id="5_pgo21"]
+[ext_resource type="AudioStream" uid="uid://fi6qc7hyj4ak" path="res://Assets/SFX/Character1Taunts/Character1_Kill_03.wav" id="6_66mex"]
+[ext_resource type="AudioStream" uid="uid://xe0bppsq0wef" path="res://Assets/SFX/Player_Pain_04.wav" id="6_tqhxy"]
+[ext_resource type="AudioStream" uid="uid://ba6gxl5sf10nn" path="res://Assets/SFX/Player_Pain_05.wav" id="7_3bmqa"]
+[ext_resource type="AudioStream" uid="uid://dbdb7nc6b7fq8" path="res://Assets/SFX/Character1Taunts/Character1_Kill_04.wav" id="7_7wuqc"]
+[ext_resource type="AudioStream" uid="uid://lew2lo3bjwy3" path="res://Assets/SFX/Character1Taunts/Character1_Kill_05.wav" id="8_pkyx8"]
+[ext_resource type="AudioStream" uid="uid://cgqjsrhmsf5up" path="res://Assets/SFX/Character1Taunts/Character1_Kill_06.wav" id="9_gw5cn"]
+[ext_resource type="AudioStream" uid="uid://dpxtkvkdj2ri3" path="res://Assets/SFX/Player_Jump_02.wav" id="9_ioocl"]
+[ext_resource type="AudioStream" uid="uid://djrvphgdsl875" path="res://Assets/SFX/Character1Taunts/Character1_Kill_07.wav" id="10_couy2"]
+[ext_resource type="AudioStream" uid="uid://cwlu0xi25ycti" path="res://Assets/SFX/Character1Taunts/Character1_Kill_08.wav" id="11_xttul"]
+[ext_resource type="AudioStream" uid="uid://brknigkegh1iv" path="res://Assets/SFX/Character1Taunts/Character1_Kill_09.wav" id="12_eyr4m"]
+[ext_resource type="AudioStream" uid="uid://v0htwe0x3mwe" path="res://Assets/SFX/Character1Taunts/Character1_Kill_10.wav" id="13_g32k6"]
+[ext_resource type="AudioStream" uid="uid://dxvpkadlps5uk" path="res://Assets/SFX/Character1Taunts/Character1_Kill_11.wav" id="14_vgdxt"]
+[ext_resource type="AudioStream" uid="uid://c06t73pgefwfv" path="res://Assets/SFX/Character1Taunts/Character1_Kill_12.wav" id="15_pkc8y"]
+[ext_resource type="AudioStream" uid="uid://cr5aa33nd04gi" path="res://Assets/SFX/Character1Taunts/Character1_Kill_13.wav" id="16_5k6yi"]
+[ext_resource type="AudioStream" uid="uid://c1f3qs2p0adwx" path="res://Assets/SFX/Character1Taunts/Character1_Kill_14.wav" id="17_pvjg0"]
+[ext_resource type="AudioStream" uid="uid://1cetgv1l1wkf" path="res://Assets/SFX/Character1Taunts/Character1_Kill_15.wav" id="18_aroho"]
+[ext_resource type="AudioStream" uid="uid://cridsh6w3b2ig" path="res://Assets/SFX/Character1Taunts/Character1_Kill_16.wav" id="19_rjnph"]
+[ext_resource type="AudioStream" uid="uid://dqrsp8lcc7e8e" path="res://Assets/SFX/Character1Taunts/Character1_Kill_17.wav" id="20_k1l1o"]
+[ext_resource type="AudioStream" uid="uid://x3d343ex0gbj" path="res://Assets/SFX/Character1Taunts/Character1_Kill_18.wav" id="21_qhc6k"]
+[ext_resource type="AudioStream" uid="uid://dak5sjcs4yln" path="res://Assets/SFX/Character1Taunts/Character1_Kill_19.wav" id="22_b55os"]
+[ext_resource type="AudioStream" uid="uid://bhrarevpi5thd" path="res://Assets/SFX/Character1Taunts/Character1_Kill_20.wav" id="23_hissf"]
+[ext_resource type="AudioStream" uid="uid://d12sheofagru4" path="res://Assets/SFX/Character1Taunts/Character1_Kill_21.wav" id="24_us4l4"]
+[ext_resource type="AudioStream" uid="uid://o1t7ln5g5bvm" path="res://Assets/SFX/Character1Taunts/Character1_Kill_22.wav" id="25_w8jv4"]
+[ext_resource type="AudioStream" uid="uid://dpipniedlumk0" path="res://Assets/SFX/Character1Taunts/Character1_Kill_23.wav" id="26_q8rpc"]
+[ext_resource type="AudioStream" uid="uid://dxrah6kyfcb" path="res://Assets/SFX/Character1Taunts/Character1_Kill_24.wav" id="27_q7kl8"]
+[ext_resource type="AudioStream" uid="uid://b5g4nvscnxko3" path="res://Assets/SFX/Character1Taunts/Character1_Kill_25.wav" id="28_275md"]
+[ext_resource type="AudioStream" uid="uid://cjhrqnftcobf3" path="res://Assets/SFX/Character1Taunts/Character1_Kill_26.wav" id="29_0jrve"]
+[ext_resource type="AudioStream" uid="uid://bhtar1gbyrvhb" path="res://Assets/SFX/Character1Taunts/Character1_Kill_27.wav" id="30_ljkto"]
+[ext_resource type="AudioStream" uid="uid://c61kmvjpt04mp" path="res://Assets/SFX/Character1Taunts/Character1_Kill_28.wav" id="31_ytasl"]
+[ext_resource type="AudioStream" uid="uid://b1mrfdtxrobik" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_01.wav" id="34_ysoke"]
+[ext_resource type="AudioStream" uid="uid://cvqlivw36y4p1" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_02.wav" id="35_va6n2"]
+[ext_resource type="AudioStream" uid="uid://cew8fljmwcf2" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_03.wav" id="36_ljiwk"]
+[ext_resource type="AudioStream" uid="uid://c3glc8tgo2jxu" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_04.wav" id="37_5x4ap"]
+[ext_resource type="AudioStream" uid="uid://bubb4oyyoodfb" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_05.wav" id="38_4r534"]
+[ext_resource type="AudioStream" uid="uid://bebdbgixaa1ru" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_06.wav" id="39_7fe85"]
+[ext_resource type="AudioStream" uid="uid://6ada27xlkwgx" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_07.wav" id="40_kvux6"]
+[ext_resource type="AudioStream" uid="uid://u7vogkei4ud4" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_08.wav" id="41_hynh3"]
+[ext_resource type="AudioStream" uid="uid://cuu7yhs14mtg6" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_09.wav" id="42_yd12g"]
+[ext_resource type="AudioStream" uid="uid://da4vmiwpj4a4g" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_10.wav" id="43_tikth"]
+[ext_resource type="AudioStream" uid="uid://buj2d5j0qc02j" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_11.wav" id="44_352y4"]
+[ext_resource type="AudioStream" uid="uid://18xkasfbkql0" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_12.wav" id="45_vosmg"]
+[ext_resource type="AudioStream" uid="uid://67iyw2lgt57" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_13.wav" id="46_pphqg"]
+[ext_resource type="AudioStream" uid="uid://bnan5rreamjqv" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_14.wav" id="47_ql6qk"]
+[ext_resource type="AudioStream" uid="uid://tquo3on0cnpj" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_15.wav" id="48_3ckos"]
+[ext_resource type="AudioStream" uid="uid://dmks4j83pu7cb" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_16.wav" id="49_ibbd8"]
+[ext_resource type="AudioStream" uid="uid://n4a8p3y4k6ka" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_17.wav" id="50_s65yv"]
+[ext_resource type="AudioStream" uid="uid://cdho0xxeatdh6" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_18.wav" id="51_3rvdn"]
+[ext_resource type="AudioStream" uid="uid://cw6c6imuv7yh8" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_19.wav" id="52_m8ipk"]
+[ext_resource type="AudioStream" uid="uid://dm8tek7oqe564" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_20.wav" id="53_eeuvs"]
+[ext_resource type="AudioStream" uid="uid://pbystid1dw7x" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_21.wav" id="54_h3d6s"]
+[ext_resource type="AudioStream" uid="uid://dfg5lmmycpbs7" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_22.wav" id="55_xhoqj"]
+[ext_resource type="AudioStream" uid="uid://bc4x21gtkrbek" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_23.wav" id="56_05t74"]
+[ext_resource type="AudioStream" uid="uid://d2sqx0ndr8bam" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_24.wav" id="57_lpnc3"]
+[ext_resource type="AudioStream" uid="uid://ci5hrwwpic2p" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_25.wav" id="58_mcbrk"]
+[ext_resource type="AudioStream" uid="uid://4y2ool2he4ma" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_26.wav" id="59_vv2h2"]
+[ext_resource type="AudioStream" uid="uid://bctayf4twn3l0" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_27.wav" id="60_2fo3j"]
+[ext_resource type="AudioStream" uid="uid://dsgn1i3mkgqnu" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_28.wav" id="61_5xo8b"]
+[ext_resource type="AudioStream" uid="uid://bevdiulc6w17l" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_29.wav" id="62_paupb"]
+[ext_resource type="AudioStream" uid="uid://brc8t8ksl224o" path="res://Assets/SFX/Character1Taunts/Character1_Spawn_30.wav" id="63_rhtrg"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ai1su"]
+streams_count = 2
+stream_0/stream = ExtResource("1_6vpk5")
+stream_1/stream = ExtResource("2_njhtr")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cjpcf"]
+streams_count = 5
+stream_0/stream = ExtResource("2_ijyt4")
+stream_1/stream = ExtResource("4_663uw")
+stream_2/stream = ExtResource("5_0n0ee")
+stream_3/stream = ExtResource("6_tqhxy")
+stream_4/stream = ExtResource("7_3bmqa")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pxhpv"]
+streams_count = 2
+stream_0/stream = ExtResource("3_4b583")
+stream_1/stream = ExtResource("9_ioocl")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_schg2"]
+streams_count = 1
+stream_0/stream = ExtResource("4_gcg0d")
+
+[resource]
+script = ExtResource("1_vmtsc")
+jump = SubResource("AudioStreamRandomizer_pxhpv")
+land = SubResource("AudioStreamRandomizer_schg2")
+hurt = SubResource("AudioStreamRandomizer_cjpcf")
+die = SubResource("AudioStreamRandomizer_ai1su")
+spawn = Array[AudioStream]([ExtResource("34_ysoke"), ExtResource("35_va6n2"), ExtResource("36_ljiwk"), ExtResource("37_5x4ap"), ExtResource("38_4r534"), ExtResource("39_7fe85"), ExtResource("40_kvux6"), ExtResource("41_hynh3"), ExtResource("42_yd12g"), ExtResource("43_tikth"), ExtResource("44_352y4"), ExtResource("45_vosmg"), ExtResource("46_pphqg"), ExtResource("47_ql6qk"), ExtResource("48_3ckos"), ExtResource("49_ibbd8"), ExtResource("50_s65yv"), ExtResource("51_3rvdn"), ExtResource("52_m8ipk"), ExtResource("53_eeuvs"), ExtResource("54_h3d6s"), ExtResource("55_xhoqj"), ExtResource("56_05t74"), ExtResource("57_lpnc3"), ExtResource("58_mcbrk"), ExtResource("59_vv2h2"), ExtResource("60_2fo3j"), ExtResource("61_5xo8b"), ExtResource("62_paupb"), ExtResource("63_rhtrg")])
+kill = Array[AudioStream]([ExtResource("4_mku3q"), ExtResource("5_pgo21"), ExtResource("6_66mex"), ExtResource("7_7wuqc"), ExtResource("8_pkyx8"), ExtResource("9_gw5cn"), ExtResource("10_couy2"), ExtResource("11_xttul"), ExtResource("12_eyr4m"), ExtResource("13_g32k6"), ExtResource("14_vgdxt"), ExtResource("15_pkc8y"), ExtResource("16_5k6yi"), ExtResource("17_pvjg0"), ExtResource("18_aroho"), ExtResource("19_rjnph"), ExtResource("20_k1l1o"), ExtResource("21_qhc6k"), ExtResource("22_b55os"), ExtResource("23_hissf"), ExtResource("24_us4l4"), ExtResource("25_w8jv4"), ExtResource("26_q8rpc"), ExtResource("27_q7kl8"), ExtResource("28_275md"), ExtResource("29_0jrve"), ExtResource("30_ljkto"), ExtResource("31_ytasl")])

@@ -1,0 +1,181 @@
+[gd_scene load_steps=11 format=3 uid="uid://biem8fsufto8s"]
+
+[ext_resource type="Script" path="res://ManualTests/RagdollTest.gd" id="1_e5hyh"]
+[ext_resource type="PackedScene" uid="uid://qftdnx3ynol6" path="res://Assets/Maps/MapA.tscn" id="1_rawqo"]
+[ext_resource type="PackedScene" uid="uid://dd6oll1sm7uxf" path="res://Assets/Characters/Character.tscn" id="2_4logx"]
+[ext_resource type="Script" path="res://Assets/Characters/CharacterProfile.gd" id="3_qrm6k"]
+
+[sub_resource type="Resource" id="Resource_rdrcr"]
+resource_local_to_scene = true
+script = ExtResource("3_qrm6k")
+display_name = "Bot 1"
+display_color = Color(0.662745, 0.662745, 0.662745, 1)
+avatar_hash = null
+fov = 90
+badges = Array[int]([1])
+voice = "res://Assets/Characters/CharacterVoices/Default.tres"
+voice_pitch = 1.0
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_xna5d"]
+polyphony = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_68yqb"]
+font_size = 32
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_81unf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Map/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.359538, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ahera"]
+resource_name = "Ragdoll"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Map/Camera3D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.5, 3.9, 4.1, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.359538, 3.14159, 0), Vector3(0.0349066, 3.14159, 0), Vector3(0.0349066, 3.14159, 0), Vector3(0.0349066, 3.14159, 0), Vector3(0.0349066, 3.14159, 0), Vector3(0.359538, 3.14159, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x70ln"]
+_data = {
+"RESET": SubResource("Animation_81unf"),
+"Ragdoll": SubResource("Animation_ahera")
+}
+
+[node name="RagdollTest" type="Node3D"]
+script = ExtResource("1_e5hyh")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, -0.00025266, 4.93458e-05, -0.00025736, 0.985762, -0.168146, -6.15944e-06, -0.168146, -0.985762, 0.0174874, -5.74619, -2.84261)
+light_size = 0.107
+shadow_enabled = true
+spot_range = 20.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.956062, -0.027808, -0.291843, -0.293165, 0.0898167, 0.951834, -0.00025618, 0.99557, -0.0940227, -2.23659, -1.4746, -1.70889)
+light_energy = 2.0
+light_size = 0.107
+shadow_enabled = true
+spot_range = 20.0
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.956062, -0.027808, -0.291843, -0.293165, 0.0898167, 0.951834, -0.00025618, 0.99557, -0.0940227, -2.23659, -1.4746, -1.70889)
+light_energy = 2.0
+light_size = 0.107
+shadow_enabled = true
+spot_range = 20.0
+
+[node name="Character" parent="." instance=ExtResource("2_4logx")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -0.00201488, 4.00769, -0.00368786)
+profile = SubResource("Resource_rdrcr")
+
+[node name="Map" parent="." instance=ExtResource("1_rawqo")]
+transform = Transform3D(1, 0.00025265, -4.94549e-05, -0.000252625, 1, 0.000592241, 4.95832e-05, -0.00059223, 1, 0, -7, 0)
+
+[node name="Music" parent="Map" index="0"]
+stream = SubResource("AudioStreamPolyphonic_xna5d")
+
+[node name="SpawnPoint1" parent="Map/SpawnPoints" index="0"]
+transform = Transform3D(1, 1.75682e-11, 3.63798e-12, 1.1724e-12, 1, 0, 0, -5.82077e-11, 1, 0, 2, 4)
+
+[node name="ReflectionProbes" parent="Map" index="15"]
+visible = false
+
+[node name="ReflectionProbe" parent="Map/ReflectionProbes" index="0"]
+visible = false
+
+[node name="Camera3D" parent="Map" index="17"]
+transform = Transform3D(-1, 8.91982e-07, 2.37308e-06, 0, 0.936059, -0.351842, -2.53518e-06, -0.351842, -0.93606, 0.0172533, 0.370019, -2.8424)
+fov = 51.4
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+text = "press any key to ragdoll"
+label_settings = SubResource("LabelSettings_68yqb")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HSlider" type="HSlider" parent="Label"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 349.0
+offset_top = 54.0
+offset_right = -368.0
+offset_bottom = 103.0
+grow_horizontal = 2
+min_value = 0.25
+max_value = 1.0
+step = 0.25
+value = 1.0
+tick_count = 4
+ticks_on_borders = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Label/HSlider"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.989
+anchor_bottom = 0.408
+offset_left = -1.0
+offset_right = 16.785
+offset_bottom = 2.008
+alignment = 1
+
+[node name="Label" type="Label" parent="Label/HSlider/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "25%"
+
+[node name="Label2" type="Label" parent="Label/HSlider/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "50%"
+
+[node name="Label3" type="Label" parent="Label/HSlider/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "75%"
+
+[node name="Label4" type="Label" parent="Label/HSlider/HBoxContainer"]
+layout_mode = 2
+text = "100%"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.558814, -7, 0)
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.890419, -6, 0)
+use_collision = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x70ln")
+}
+autoplay = "RESET"
+
+[editable path="Map"]
+[editable path="Map/SpecialCollision/KillFloor"]

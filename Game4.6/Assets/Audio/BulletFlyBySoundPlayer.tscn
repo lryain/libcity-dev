@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://d4iqe4blqefah"]
+
+[ext_resource type="PackedScene" uid="uid://c5cwnfuw4go1b" path="res://Assets/Audio/SoundPlayer.tscn" id="1"]
+[ext_resource type="Script" path="res://Assets/Audio/BulletFlyBySoundPlayer.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://dlbnvd5ypkwor" path="res://Assets/SFX/Weapons_BulletFlyBy_01.wav" id="2_odrst"]
+[ext_resource type="AudioStream" uid="uid://ccg0kgl6cq8wq" path="res://Assets/SFX/Weapons_BulletFlyBy_02.wav" id="3_2kofw"]
+[ext_resource type="AudioStream" uid="uid://baog7oxjincev" path="res://Assets/SFX/Weapons_BulletFlyBy_07.wav" id="3_tpw2g"]
+[ext_resource type="AudioStream" uid="uid://cp3mhtlpqbi3u" path="res://Assets/SFX/Weapons_BulletFlyBy_03.wav" id="4_jbosb"]
+[ext_resource type="AudioStream" uid="uid://6kwhhfwc4fy6" path="res://Assets/SFX/Weapons_BulletFlyBy_04.wav" id="5_onshx"]
+[ext_resource type="AudioStream" uid="uid://blbt1qsx3pkhh" path="res://Assets/SFX/Weapons_BulletFlyBy_05.wav" id="6_le7fg"]
+[ext_resource type="AudioStream" uid="uid://byga60ybd2prx" path="res://Assets/SFX/Weapons_BulletFlyBy_06.wav" id="7_1emcr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7sfvw"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_htx0w"]
+playback_mode = 1
+random_pitch = 1.05
+streams_count = 7
+stream_0/stream = ExtResource("2_odrst")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_2kofw")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("4_jbosb")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("5_onshx")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("6_le7fg")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("7_1emcr")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("3_tpw2g")
+stream_6/weight = 1.0
+
+[node name="BulletFlyBySoundPlayer" type="Node3D"]
+script = ExtResource("2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_7sfvw")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_htx0w")
+attenuation_model = 1
+volume_db = -4.0
+unit_size = 1.0
+max_db = 0.0
+autoplay = true
+max_distance = 10.0
+bus = &"SFX"
+attenuation_filter_cutoff_hz = 20000.0
+attenuation_filter_db = 0.0
+
+[node name="SoundPlayer" parent="." instance=ExtResource("1")]
+SoundClip = "res://Assets/SFX/Weapons_BulletFlyBy_01.wav"
+RandomizePitch = 0.3
+
+[node name="AudioStreamPlayer3D" parent="SoundPlayer" index="0"]
+stream = ExtResource("3_tpw2g")
+unit_size = 2.0
+max_db = 0.0
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
+[connection signal="SoundPlayer_finished" from="SoundPlayer" to="." method="_on_SoundPlayer_SoundPlayer_finished"]
+[connection signal="finished" from="SoundPlayer/AudioStreamPlayer3D" to="SoundPlayer" method="_on_AudioStreamPlayer3D_finished"]
+
+[editable path="SoundPlayer"]

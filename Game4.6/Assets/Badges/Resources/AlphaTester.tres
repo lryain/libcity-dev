@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dmqp8j6bfgy52"]
+
+[ext_resource type="Script" path="res://Assets/Badges/Badge.gd" id="1_u2gdx"]
+[ext_resource type="Texture2D" uid="uid://dd55ujb5caiu5" path="res://Assets/Badges/Textures/Badge_Alpha.png" id="2_5jwd3"]
+
+[resource]
+script = ExtResource( "1_u2gdx" )
+display_name = "Alpha Tester"
+description = "registered an account during the alpha testing phase of the game"
+texture = ExtResource( "2_5jwd3" )
+priority = 25

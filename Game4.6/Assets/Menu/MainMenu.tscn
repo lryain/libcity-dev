@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwct0yvcmxci7"]
+
+[ext_resource type="Script" path="res://Assets/Menu/MainMenu.gd" id="1_onxk7"]
+[ext_resource type="PackedScene" uid="uid://ljycuchn3kvo" path="res://Assets/Menu/InGameMenu.tscn" id="2_cdbji"]
+[ext_resource type="PackedScene" uid="uid://cby6b7yceqdh" path="res://Assets/Menu/GameMenu.tscn" id="2_yy4py"]
+[ext_resource type="PackedScene" uid="uid://bbey7g03awrrp" path="res://Assets/Menu/UserProfileMenu.tscn" id="3_d878w"]
+[ext_resource type="PackedScene" uid="uid://cfp7wv5asv7i7" path="res://Assets/Menu/PreferencesMenu.tscn" id="4_qd7ys"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_onxk7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InGameMenu" type="PanelContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(196, 128)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Control" parent="HBoxContainer/InGameMenu" instance=ExtResource("2_cdbji")]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+use_hidden_tabs_for_min_size = true
+
+[node name="Game" parent="HBoxContainer/TabContainer" instance=ExtResource("2_yy4py")]
+layout_mode = 2
+
+[node name="User Profile" parent="HBoxContainer/TabContainer" instance=ExtResource("3_d878w")]
+visible = false
+layout_mode = 2
+
+[node name="Preferences" parent="HBoxContainer/TabContainer" instance=ExtResource("4_qd7ys")]
+visible = false
+layout_mode = 2

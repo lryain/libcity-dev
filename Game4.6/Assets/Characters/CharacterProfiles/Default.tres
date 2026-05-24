@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dyxvx82qbjfh2"]
+
+[ext_resource type="Script" path="res://Assets/Characters/CharacterProfile.gd" id="1_fierp"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_fierp")
+display_name = "Bot 1"
+display_color = Color(0.662745, 0.662745, 0.662745, 1)
+avatar_hash = null
+fov = 90
+badges = [1]
+voice = "res://Assets/Characters/CharacterVoices/Default.tres"
+voice_pitch = 1.0

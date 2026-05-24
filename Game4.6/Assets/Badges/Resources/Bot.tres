@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dtxgr0rmo3hs3"]
+
+[ext_resource type="Script" path="res://Assets/Badges/Badge.gd" id="1_u2gdx"]
+[ext_resource type="Texture2D" uid="uid://boqp0b6pyospf" path="res://Assets/Badges/Textures/Badge_Bot.png" id="2_p05x3"]
+
+[resource]
+script = ExtResource( "1_u2gdx" )
+display_name = "Bot"
+description = "not a human player"
+texture = ExtResource( "2_p05x3" )
+priority = -10

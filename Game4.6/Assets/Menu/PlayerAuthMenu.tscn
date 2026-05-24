@@ -1,0 +1,447 @@
+[gd_scene load_steps=17 format=3 uid="uid://hixlw26lqvyw"]
+
+[ext_resource type="Script" path="res://Assets/Menu/PlayerAuth.gd" id="1_ux4o8"]
+[ext_resource type="Texture2D" uid="uid://bbivi15j5aq76" path="res://Assets/HUD/Confetti.png" id="2_oa1y2"]
+[ext_resource type="Texture2D" uid="uid://bb0cpuabaavyg" path="res://Assets/Badges/Textures/Badge_Auth.png" id="3_oy5kh"]
+[ext_resource type="Texture2D" uid="uid://b8jffd1fxms82" path="res://Assets/Badges/Textures/Badge_NoAuth.png" id="4_jdwm7"]
+[ext_resource type="Theme" uid="uid://ddtu7o1dbp0s8" path="res://Assets/Theme.tres" id="5_o3wdj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_embjx"]
+light_mode = 1
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_uxn3q"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.181406, 0.408163, 0.612245, 0.816327)
+colors = PackedColorArray(1, 0.433123, 0.714151, 1, 0.422322, 0.334102, 1, 1, 0.32808, 1, 0.739227, 1, 0.840989, 1, 0.395553, 1, 1, 0.547459, 0.199876, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wmt5r"]
+gradient = SubResource("Gradient_uxn3q")
+width = 64
+
+[sub_resource type="Gradient" id="Gradient_ms7i6"]
+offsets = PackedFloat32Array(0.702948, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qujlv"]
+gradient = SubResource("Gradient_ms7i6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticlesMaterial_n0a5t"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0.5, -1, 0)
+spread = 30.98
+initial_velocity_min = 222.05
+initial_velocity_max = 1000.0
+angular_velocity_min = -392.85
+angular_velocity_max = 480.58
+gravity = Vector3(0, 98, 0)
+tangential_accel_min = -50.0
+tangential_accel_max = 45.08
+damping_min = 36.37
+damping_max = 56.11
+scale_min = 0.1
+scale_max = 0.1
+color_ramp = SubResource("GradientTexture1D_qujlv")
+color_initial_ramp = SubResource("GradientTexture1D_wmt5r")
+anim_offset_max = 3.0
+collision_use_scale = true
+
+[sub_resource type="InputEventKey" id="InputEventKey_lpevj"]
+keycode = 16777221
+
+[sub_resource type="InputEventKey" id="InputEventKey_1t2fh"]
+keycode = 16777217
+
+[sub_resource type="Shortcut" id="Shortcut_72l8e"]
+events = [SubResource("InputEventKey_lpevj"), SubResource("InputEventKey_1t2fh")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_vweeu"]
+device = -1
+keycode = 16777221
+
+[sub_resource type="Shortcut" id="Shortcut_4swti"]
+events = [SubResource("InputEventKey_vweeu")]
+
+[node name="PlayerAuthMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ux4o8")
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="ConfettiL" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_embjx")
+position = Vector2(-66, 518)
+emitting = false
+amount = 512
+process_material = SubResource("ParticlesMaterial_n0a5t")
+texture = ExtResource("2_oa1y2")
+lifetime = 20.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.2
+fixed_fps = 0
+
+[node name="ConfettiR" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_embjx")
+position = Vector2(1215, 504)
+rotation = 3.14159
+scale = Vector2(1, -1)
+emitting = false
+amount = 512
+process_material = SubResource("ParticlesMaterial_n0a5t")
+texture = ExtResource("2_oa1y2")
+lifetime = 20.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.2
+fixed_fps = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -143.0
+offset_right = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="LoginOrNot" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="CenterContainer/LoginOrNot"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Authenticate or not?"
+
+[node name="HSeparator5" type="HSeparator" parent="CenterContainer/LoginOrNot"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/LoginOrNot"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+text = "Do you wish to use a Liblast online account?"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/LoginOrNot"]
+layout_mode = 2
+
+[node name="Why" type="Button" parent="CenterContainer/LoginOrNot/HBoxContainer2"]
+layout_mode = 2
+text = "What's the difference?"
+
+[node name="DontAskAgain" type="CheckBox" parent="CenterContainer/LoginOrNot/HBoxContainer2"]
+layout_mode = 2
+text = "Don't ask me again"
+
+[node name="HSeparator4" type="HSeparator" parent="CenterContainer/LoginOrNot"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/LoginOrNot"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/LoginOrNot/HBoxContainer"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("3_oy5kh")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Account" type="Button" parent="CenterContainer/LoginOrNot/HBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Login"
+icon_alignment = 2
+expand_icon = true
+
+[node name="Create" type="Button" parent="CenterContainer/LoginOrNot/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Create Account"
+icon_alignment = 2
+expand_icon = true
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/LoginOrNot"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/LoginOrNot"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect3" type="TextureRect" parent="CenterContainer/LoginOrNot/HBoxContainer3"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("4_jdwm7")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Anonymous" type="Button" parent="CenterContainer/LoginOrNot/HBoxContainer3"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Proceed without an account"
+icon_alignment = 2
+expand_icon = true
+
+[node name="WhyAccount" type="AcceptDialog" parent="CenterContainer/LoginOrNot"]
+disable_3d = true
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+gui_embed_subwindows = true
+title = "Why use an account?"
+position = Vector2i(64, 64)
+size = Vector2i(800, 500)
+mode = 2
+unresizable = true
+borderless = true
+transparent = true
+content_scale_aspect = 4
+theme = ExtResource("5_o3wdj")
+dialog_text = "Liblast online accounts are optional for the sake of respecting user privacy, though we do recommend using an on-line account.
+
+For players choosing to use an online account, we are able to provide a few extra things:
+
+1. Secure one chosen display name as unique among all players in the game network (authenticated or not);
+2. Store user profile and preferences allowing these to be fetched when playing on a different machine - otherwise this data is only stored locally;
+3. Display user badges, helping to distinguish characters  in-game;
+4. Track user's game statistics and achievements (once implemented);
+5. Possibly allow direct messages between authenticated users (do we want this?);
+
+Also - game servers may require authentifaction, and only allow users using an online account."
+dialog_autowrap = true
+
+[node name="AuthInfo" type="Panel" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(1000, 450)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/AuthInfo"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/AuthInfo/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/AuthInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]Liblast online accounts are optional for the sake of respecting user privacy.
+[b]For best experience we recommend using an on-line account.
+[/b]It also makes it easier for Liblast developers to track issues and provide help.
+
+[b]Players who choose to register an online account can:[/b][/center]
+
+[ul]Secure one display name as unique among all players in the game network (authenticated or not)
+Store user profile (color, face, etc.) and game preferences online, making them accessible from anywhere.
+Store befriended and blocked account lists online, accessible from anywhere.
+Display user badges, helping to distinguish characters in-game
+Track game statistics and achievements (once implemented)
+Message other authenticated users (maybe?)[/ul]
+Access game servers that [i]require[/i] authentifaction
+
+[center][b]How is user data stored?[/b]
+
+User data is stored on a central Liblast Infrastructure Server and can only be fetched
+by the game client and servers after authenticating with a username and password.
+User passwords are never stored or transmitted in clear text - only as secure salted hashes.[/center]"
+fit_content_height = true
+shortcut_keys_enabled = false
+
+[node name="Close" type="Button" parent="CenterContainer/AuthInfo/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+shortcut = SubResource("Shortcut_72l8e")
+text = "OK"
+
+[node name="Login" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Login"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"HeaderLabel"
+text = "Log into your Liblast account"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/Login"]
+layout_mode = 2
+
+[node name="UserName" type="LineEdit" parent="CenterContainer/Login"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Password")
+placeholder_text = "user name"
+
+[node name="Password" type="LineEdit" parent="CenterContainer/Login"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../UserName")
+focus_neighbor_bottom = NodePath("../Login")
+placeholder_text = "password"
+secret = true
+
+[node name="Login" type="Button" parent="CenterContainer/Login"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Password")
+shortcut = SubResource("Shortcut_4swti")
+text = "Login"
+
+[node name="RememberMe" type="CheckBox" parent="CenterContainer/Login"]
+layout_mode = 2
+text = "Remember my login"
+
+[node name="InvalidateOtherTokens" type="CheckBox" parent="CenterContainer/Login"]
+layout_mode = 2
+text = "Log me out everywhere else"
+
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/Login"]
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="CenterContainer/Login"]
+layout_mode = 2
+text = "Cancel
+"
+
+[node name="Create" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/Create"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Create a Liblast online account"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/Create"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Create"]
+layout_mode = 2
+text = "Please provide a user name and a password.
+You can set a different display name later."
+
+[node name="UserName" type="LineEdit" parent="CenterContainer/Create"]
+layout_mode = 2
+placeholder_text = "user name"
+context_menu_enabled = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+
+[node name="UserNameError" type="Label" parent="CenterContainer/Create"]
+visible = false
+layout_mode = 2
+text = "This username is crap"
+
+[node name="Password1" type="LineEdit" parent="CenterContainer/Create"]
+layout_mode = 2
+placeholder_text = "password"
+secret = true
+context_menu_enabled = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+
+[node name="Password1Error" type="Label" parent="CenterContainer/Create"]
+visible = false
+layout_mode = 2
+text = "This password is crap"
+
+[node name="Password2" type="LineEdit" parent="CenterContainer/Create"]
+layout_mode = 2
+placeholder_text = "repeat password"
+secret = true
+context_menu_enabled = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+
+[node name="Password2Error" type="Label" parent="CenterContainer/Create"]
+visible = false
+layout_mode = 2
+text = "The passwords don't match"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/Create"]
+layout_mode = 2
+
+[node name="CreateError" type="Label" parent="CenterContainer/Create"]
+visible = false
+layout_mode = 2
+text = "Server error. Please try again later."
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CreateConfirm" type="Button" parent="CenterContainer/Create"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Create Account"
+
+[node name="GoToLogin" type="Button" parent="CenterContainer/Create"]
+visible = false
+layout_mode = 2
+text = "Proceed to Login"
+
+[node name="CancelCreate" type="Button" parent="CenterContainer/Create"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="resized" from="." to="." method="_on_player_auth_resized"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CenterContainer/LoginOrNot/HBoxContainer2/Why" to="." method="_on_why_pressed"]
+[connection signal="pressed" from="CenterContainer/LoginOrNot/HBoxContainer/Account" to="." method="_on_account_pressed"]
+[connection signal="pressed" from="CenterContainer/LoginOrNot/HBoxContainer/Create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="CenterContainer/LoginOrNot/HBoxContainer3/Anonymous" to="." method="_on_anonymous_pressed"]
+[connection signal="pressed" from="CenterContainer/AuthInfo/MarginContainer/VBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="CenterContainer/Login/Login" to="." method="_on_login_pressed"]
+[connection signal="pressed" from="CenterContainer/Login/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="text_changed" from="CenterContainer/Create/UserName" to="." method="_on_user_name_text_changed"]
+[connection signal="text_changed" from="CenterContainer/Create/Password1" to="." method="_on_password_1_text_changed"]
+[connection signal="text_changed" from="CenterContainer/Create/Password2" to="." method="_on_password_2_text_changed"]
+[connection signal="pressed" from="CenterContainer/Create/CreateConfirm" to="." method="_on_create_confirm_pressed"]
+[connection signal="pressed" from="CenterContainer/Create/GoToLogin" to="." method="_on_go_to_login_pressed"]
+[connection signal="pressed" from="CenterContainer/Create/CancelCreate" to="." method="_on_cancel_create_pressed"]

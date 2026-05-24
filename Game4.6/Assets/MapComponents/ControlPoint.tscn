@@ -1,0 +1,265 @@
+[gd_scene load_steps=18 format=3 uid="uid://cnfmmhwo4nc05"]
+
+[ext_resource type="Script" path="res://Assets/MapComponents/ControlPoint.gd" id="1_uddb7"]
+[ext_resource type="Texture2D" uid="uid://bxwfe00s0juj0" path="res://Assets/Textures/CircleAlphaSoft.png" id="2_6gk4h"]
+[ext_resource type="AudioStream" uid="uid://bkcpcs3vgddlo" path="res://Assets/SFX/Pickups_Respawn.wav" id="2_bk063"]
+[ext_resource type="Shader" uid="uid://c4ksl01bsr6ne" path="res://Assets/MapComponents/ControlPointBeam.tres" id="4_18nc5"]
+[ext_resource type="PackedScene" uid="uid://b8w7ao52r1xer" path="res://Assets/Effects/Halo.tscn" id="5_puuac"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1oncd"]
+radius = 2.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_62b5f"]
+height = 0.1
+radius = 2.95
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l8fe4"]
+albedo_color = Color(0.717647, 0.717647, 0.717647, 1)
+metallic = 1.0
+roughness = 0.33
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bikou"]
+material = SubResource("StandardMaterial3D_l8fe4")
+top_radius = 2.9
+bottom_radius = 3.0
+height = 0.1
+
+[sub_resource type="Gradient" id="Gradient_vq84w"]
+offsets = PackedFloat32Array(0.8, 0.9, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_86xvv"]
+gradient = SubResource("Gradient_vq84w")
+width = 76
+height = 76
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlnbk"]
+albedo_color = Color(0, 0, 0, 1)
+roughness = 0.05
+emission_energy_multiplier = 8.0
+emission_operator = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2x68b"]
+material = SubResource("StandardMaterial3D_qlnbk")
+top_radius = 1.9
+bottom_radius = 2.0
+height = 0.001
+cap_bottom = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slrf5"]
+render_priority = 0
+shader = ExtResource("4_18nc5")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nwsxy"]
+material = SubResource("ShaderMaterial_slrf5")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 4.0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1vbt"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.48606, 1, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cypwg"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.486275, 0, 1, 1)
+emission_energy_multiplier = 2.0
+
+[node name="ControlPoint" type="Node3D" groups=["ControlPoints"]]
+script = ExtResource("1_uddb7")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04887, 0)
+shape = SubResource("CylinderShape3D_1oncd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0488666, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_62b5f")
+
+[node name="Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0488666, 0)
+mesh = SubResource("CylinderMesh_bikou")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+stream = ExtResource("2_bk063")
+attenuation_model = 3
+max_polyphony = 2
+panning_strength = 2.0
+bus = &"UI"
+area_mask = 0
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+layers = 8
+sorting_offset = 1.0
+cast_shadow = 0
+pixel_size = 0.001
+billboard = 1
+double_sided = false
+no_depth_test = true
+fixed_size = true
+alpha_cut = 1
+alpha_scissor_threshold = 0.041
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.14
+texture_filter = 1
+texture = SubResource("GradientTexture2D_86xvv")
+region_rect = Rect2(40, 40, 50, 50)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+layers = 8
+cast_shadow = 0
+pixel_size = 0.001
+billboard = 1
+double_sided = false
+fixed_size = true
+alpha_cut = 1
+alpha_scissor_threshold = 0.041
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.14
+texture_filter = 1
+texture = ExtResource("2_6gk4h")
+region_rect = Rect2(40, 40, 50, 50)
+
+[node name="LightBase" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.107561, 0)
+mesh = SubResource("CylinderMesh_2x68b")
+
+[node name="Light" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -2.18557e-07, -1, 0, 1, -2.18557e-07, 0, 0.0895133, 5.52901e-08)
+light_color = Color(0, 0.101961, 1, 1)
+light_energy = 5.0
+light_size = 4.0
+light_specular = 0.0
+light_cull_mask = 4293918727
+spot_range = 5.82404
+spot_angle = 86.2171
+
+[node name="Beam" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.105, 0)
+transparency = 0.75
+visibility_range_begin = 5.0
+visibility_range_begin_margin = 2.0
+visibility_range_fade_mode = 1
+instance_shader_parameters/team = null
+mesh = SubResource("CylinderMesh_nwsxy")
+
+[node name="Team1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.111205, 0)
+material_override = SubResource("StandardMaterial3D_u1vbt")
+mesh = SubResource("CylinderMesh_2x68b")
+
+[node name="Team2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.111205, 0)
+material_override = SubResource("StandardMaterial3D_cypwg")
+mesh = SubResource("CylinderMesh_2x68b")
+
+[node name="ScoreTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 3.0
+
+[node name="Halo" parent="." instance=ExtResource("5_puuac")]
+transform = Transform3D(1.00895, 0, 0, 0, 1.00895, 0, 0, 0, 1.00895, 0, 0.29181, 0)
+visibility_range_begin = 10.0
+visibility_range_begin_margin = 5.0
+visibility_range_fade_mode = 1
+
+[node name="Halo2" parent="Halo" instance=ExtResource("5_puuac")]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.999999, 0, 0)
+visible = false
+visibility_range_begin = 10.0
+visibility_range_begin_margin = 5.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../..")
+hide_show_time = 0.1
+halo_size = 0.5
+
+[node name="Halo3" parent="Halo" instance=ExtResource("5_puuac")]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, -0.999999)
+visible = false
+visibility_range_begin = 10.0
+visibility_range_begin_margin = 5.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../..")
+hide_show_time = 0.1
+halo_size = 0.5
+
+[node name="Halo4" parent="Halo" instance=ExtResource("5_puuac")]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, -0.699999, 0, -0.699999)
+visible = false
+visibility_range_begin = 10.0
+visibility_range_begin_margin = 5.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../..")
+hide_show_time = 0.1
+halo_size = 0.5
+
+[node name="Halo5" parent="Halo" instance=ExtResource("5_puuac")]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.00886989, 0, 0.991129)
+visible = false
+visibility_range_begin = 10.0
+visibility_range_begin_margin = 5.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../..")
+hide_show_time = 0.1
+halo_size = 0.5
+
+[node name="Halo6" parent="Halo" instance=ExtResource("5_puuac")]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0.991129, 0, -0.0088693)
+visible = false
+visibility_range_begin = 10.0
+visibility_range_begin_margin = 5.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../..")
+hide_show_time = 0.1
+halo_size = 0.5
+
+[node name="Halo7" parent="Halo" instance=ExtResource("5_puuac")]
+transform = Transform3D(0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 0.999997, 0.694918, 0, 0.687582)
+visible = false
+visibility_range_begin = 10.0
+visibility_range_begin_margin = 5.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../..")
+hide_show_time = 0.1
+halo_size = 0.5
+
+[node name="Halo8" parent="Halo" instance=ExtResource("5_puuac")]
+transform = Transform3D(0.000955352, -0.000564578, -0.999996, -0.000930846, 0.999996, -0.000565442, 0.999996, 0.000931371, 0.000954841, 0.690582, 0.00104141, -0.704328)
+visible = false
+visibility_range_begin = 10.0
+visibility_range_begin_margin = 5.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../..")
+hide_show_time = 0.1
+halo_size = 0.5
+
+[node name="Halo9" parent="Halo" instance=ExtResource("5_puuac")]
+transform = Transform3D(0.000955351, -0.000564577, -0.999996, -0.000930845, 0.999996, -0.000565442, 0.999996, 0.00093137, 0.000954841, -0.695663, -0.00104165, 0.691911)
+visible = false
+visibility_range_begin = 10.0
+visibility_range_begin_margin = 5.0
+visibility_range_fade_mode = 1
+skeleton = NodePath("../..")
+hide_show_time = 0.1
+halo_size = 0.5
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

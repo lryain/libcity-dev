@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://l1yde4ckel2u"
+path="res://.godot/imported/unfa - Liblast 02.ogg-58849ec4f5ea51f886cb11ad2549a98f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Music/unfa - Liblast 02.ogg"
+dest_files=["res://.godot/imported/unfa - Liblast 02.ogg-58849ec4f5ea51f886cb11ad2549a98f.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=95.0
+beat_count=224
+bar_beats=4

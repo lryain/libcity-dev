@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://wqv8bhorthgx"]
+
+[ext_resource type="Script" path="res://Assets/Weapons/WeaponComponents/Magazine/Magazine.gd" id="1_8b8hi"]
+
+[node name="Magazine" type="Node3D"]
+script = ExtResource("1_8b8hi")
