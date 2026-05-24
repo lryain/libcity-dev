@@ -1,0 +1,38 @@
+# Godot 项目换行符配置
+# 确保跨平台兼容性，所有文本文件使用 LF 换行符
+
+# Godot 脚本和场景文件
+*.gd text eol=lf
+*.tscn text eol=lf
+*.tres text eol=lf
+*.uid text eol=lf
+
+# 配置文件
+*.cfg text eol=lf
+*.json text eol=lf
+*.import text eol=lf
+
+# 文档文件
+*.md text eol=lf
+*.txt text eol=lf
+
+# Shader 文件
+*.gdshader text eol=lf
+
+# GLTF/GLB 相关文件（文本部分）
+*.gltf text eol=lf
+
+# 二进制资源文件 - 不进行换行符转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.wav binary
+*.ogg binary
+*.mp3 binary
+*.glb binary
+*.bin binary
+*.ttf binary
+*.otf binary
+*.blend binary
+*.fbx binary
+*.dae binary
